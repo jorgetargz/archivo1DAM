@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Ejercicio2 {
     public void ejercicio2(Scanner sc){
         System.out.println("Introduce una cadena de caracteres: ");
-        sc.nextLine();
         String texto = sc.nextLine();
         System.out.println("Introduce una subcadena de caracteres: ");
         String inicioTexto = sc.nextLine();

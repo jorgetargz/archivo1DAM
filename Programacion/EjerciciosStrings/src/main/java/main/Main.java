@@ -21,6 +21,7 @@ public class Main {
             System.out.println("0. Salir. ");
             System.out.print("Introduce el ejercicio a realizar: ");
             menu = sc.nextInt();
+            sc.nextLine();
             switch (menu) {
                 case 0:
                     System.out.println("Programa finalizado, adios.");
