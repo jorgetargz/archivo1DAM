@@ -11,7 +11,7 @@ public class Ejercicio9 {
         if (texto.contains(texto2)) {
             System.out.println("La segunda cadena es parte de la primera");
         } else {
-            System.out.println("La segunda cadena es parte de la primera");
+            System.out.println("La segunda cadena no es parte de la primera");
         }
     }
 }
