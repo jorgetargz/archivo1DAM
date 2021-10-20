@@ -25,17 +25,18 @@ public class Main {
                     System.out.println("0. Salir");
                     System.out.print("Introduce un numero: ");
                     opcionCesar = sc.nextInt();
+                    sc.nextLine();
                     switch (opcionCesar) {
                         case 0:
                             System.out.println("Salir");
                             break;
                         case 1:
-                            Cesar encriptarCesar = new Cesar();
-                            encriptarCesar.encriptarCesar(sc);
+                            Cesar cifrarCesar = new Cesar();
+                            cifrarCesar.cifrarCesar(sc);
                             break;
                         case 2:
-                            Cesar desencriptarCesar = new Cesar();
-                            desencriptarCesar.desencriptarCesar(sc);
+                            Cesar descifrarCesar = new Cesar();
+                            descifrarCesar.descifrarCesar(sc);
                             break;
                     }
                     } while (opcionCesar != 0);
@@ -48,17 +49,18 @@ public class Main {
                         System.out.println("0. Salir");
                         System.out.print("Introduce un numero: ");
                         opcionVigenere = sc.nextInt();
+                        sc.nextLine();
                         switch (opcionVigenere) {
                             case 0:
                                 System.out.println("Salir");
                                 break;
                             case 1:
-                                Vigenere encriptarVigenere = new Vigenere();
-                                encriptarVigenere.encriptarVigenere(sc);
+                                Vigenere cifrarVigenere = new Vigenere();
+                               cifrarVigenere.cifrarVigenere(sc);
                                 break;
                             case 2:
-                                Vigenere desencriptarVigenere = new Vigenere();
-                                desencriptarVigenere.desencriptarVigenere(sc);
+                                Vigenere descifrarVigenere = new Vigenere();
+                                descifrarVigenere.descifrarVigenere(sc);
                                 break;
                         }
                     }while (opcionVigenere != 0);
