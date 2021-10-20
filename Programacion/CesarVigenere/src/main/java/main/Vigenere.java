@@ -10,14 +10,19 @@ public class Vigenere {
         String clave = sc.nextLine();
         StringBuilder cifrado = new StringBuilder();
         for (int i = 0; i < texto.length(); i++) {
+            int caracteresNoCifrables = 0;
             char caraterTexto = texto.charAt(i);
-            char caracterClave = clave.charAt((i) % clave.length());
             if (texto.charAt(i) >= 'a' && texto.charAt(i) <= 'z') {
-                cifrado.append((char) ((caraterTexto + caracterClave) % 26 + 'a'));
+                char caracterClaveMinus = (char) ((clave.toLowerCase().charAt(i) + caracteresNoCifrables) % clave.length());
+                char caracterCifrado = (char) (((caraterTexto - 'a') + (caracterClaveMinus - 'a')) % 26 + 'a');
+                cifrado.append(caracterCifrado);
             } else if (texto.charAt(i) >= 'A' && texto.charAt(i) <= 'Z') {
-                cifrado.append((char) ((caraterTexto + caracterClave - 2 * 'A') % 26 + 'A'));
+                char caracterClaveMayus = clave.toUpperCase().charAt((i) % clave.length());
+                char caracterCifrado = (char) (((caraterTexto - 'A') + (caracterClaveMayus - 'A')) % 26 + 'A');
+                cifrado.append(caracterCifrado);
             } else {
                 cifrado.append(texto.charAt(i));
+                caracteresNoCifrables++;
             }
         }
         System.out.println("El mensaje cifrado es: ");
@@ -29,19 +34,22 @@ public class Vigenere {
         String texto = sc.nextLine();
         System.out.println("Introduce la clave:");
         String clave = sc.nextLine();
-        StringBuilder cifrado = new StringBuilder();
+        StringBuilder descifrado = new StringBuilder();
         for (int i = 0; i < texto.length(); i++) {
             char caraterTexto = texto.charAt(i);
-            char caracterClave = clave.charAt((i) % clave.length());
             if (texto.charAt(i) >= 'a' && texto.charAt(i) <= 'z') {
-                cifrado.append((char) ((caraterTexto + caracterClave) % 26 + 'a'));
+                char caracterClaveMinus = clave.toLowerCase().charAt((i) % clave.length());
+                char caracterCifrado = (char) (((caraterTexto - 'a') - (caracterClaveMinus - 'a') + 26) % 26 + 'a');
+                descifrado.append(caracterCifrado);
             } else if (texto.charAt(i) >= 'A' && texto.charAt(i) <= 'Z') {
-                cifrado.append((char) ((caraterTexto + caracterClave) % 26 + 'A'));
+                char caracterClaveMayus = clave.toUpperCase().charAt((i) % clave.length());
+                char caracterCifrado = (char) (((caraterTexto - 'A') - (caracterClaveMayus - 'A') + 26) % 26 + 'A');
+                descifrado.append(caracterCifrado);
             } else {
-                cifrado.append(texto.charAt(i));
+                descifrado.append(texto.charAt(i));
             }
         }
-        System.out.println("El mensaje cifrado es: ");
-        System.out.println(cifrado);
+        System.out.println("El mensaje descifrado es: ");
+        System.out.println(descifrado);
     }
 }
