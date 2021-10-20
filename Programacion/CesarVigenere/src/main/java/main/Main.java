@@ -10,60 +10,66 @@ public class Main {
             System.out.println("Menu");
             System.out.println("1. Cesar");
             System.out.println("2. Vigenere");
-            System.out.println("0. Salir");
+            System.out.println("0. Salir del programa");
             System.out.print("Introduce un numero: ");
             opcion = sc.nextInt();
             switch (opcion) {
                 case 0:
-                    System.out.println("Salir");
+                    System.out.println("Programa finalizado");
                     break;
                 case 1:
-                    int opcionCesar = 0;
+                    int opcionCesar;
                     do {
-                    System.out.println("1. Cifrar en Cesar");
-                    System.out.println("2. Descifrar Cesar");
-                    System.out.println("0. Salir");
-                    System.out.print("Introduce un numero: ");
-                    opcionCesar = sc.nextInt();
-                    sc.nextLine();
-                    switch (opcionCesar) {
-                        case 0:
-                            System.out.println("Salir");
-                            break;
-                        case 1:
-                            Cesar cifrarCesar = new Cesar();
-                            cifrarCesar.cifrarCesar(sc);
-                            break;
-                        case 2:
-                            Cesar descifrarCesar = new Cesar();
-                            descifrarCesar.descifrarCesar(sc);
-                            break;
-                    }
+                        System.out.println("1. Cifrar en Cesar");
+                        System.out.println("2. Descifrar Cesar");
+                        System.out.println("0. Ir al menu principal");
+                        System.out.print("Introduce un numero: ");
+                        opcionCesar = sc.nextInt();
+                        sc.nextLine();
+                        switch (opcionCesar) {
+                            case 0:
+                                break;
+                            case 1:
+                                Cesar cifrarCesar = new Cesar();
+                                cifrarCesar.cifrarCesar(sc);
+                                break;
+                            case 2:
+                                Cesar descifrarCesar = new Cesar();
+                                descifrarCesar.descifrarCesar(sc);
+                                break;
+                            default:
+                                System.out.print("Introduce un numero del 1 al 2: ");
+                                opcion = sc.nextInt();
+                                break;
+                        }
                     } while (opcionCesar != 0);
                     break;
                 case 2:
-                    int opcionVigenere = 0;
+                    int opcionVigenere;
                     do {
                         System.out.println("1. Cifrar en Vigenere");
                         System.out.println("2. Descifrar Vigenere");
-                        System.out.println("0. Salir");
+                        System.out.println("0. Ir al menu principal");
                         System.out.print("Introduce un numero: ");
                         opcionVigenere = sc.nextInt();
                         sc.nextLine();
                         switch (opcionVigenere) {
                             case 0:
-                                System.out.println("Salir");
                                 break;
                             case 1:
                                 Vigenere cifrarVigenere = new Vigenere();
-                               cifrarVigenere.cifrarVigenere(sc);
+                                cifrarVigenere.cifrarVigenere(sc);
                                 break;
                             case 2:
                                 Vigenere descifrarVigenere = new Vigenere();
                                 descifrarVigenere.descifrarVigenere(sc);
                                 break;
+                            default:
+                                System.out.print("Introduce un numero del 1 al 2: ");
+                                opcion = sc.nextInt();
+                                break;
                         }
-                    }while (opcionVigenere != 0);
+                    } while (opcionVigenere != 0);
                     break;
                 default:
                     System.out.print("Introduce un numero del 1 al 2: ");

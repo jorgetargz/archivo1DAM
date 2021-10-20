@@ -9,22 +9,15 @@ public class Cesar {
         System.out.println("Introduce la clave:");
         int clave = sc.nextInt();
         StringBuilder cifrado = new StringBuilder();
-        clave = clave % 26;
         for (int i = 0; i < texto.length(); i++) {
             if (texto.charAt(i) >= 'a' && texto.charAt(i) <= 'z') {
-                if ((texto.charAt(i) + clave) > 'z') {
-                    cifrado.append((char) (texto.charAt(i) + clave - 26));
-                } else {
-                    cifrado.append((char) (texto.charAt(i) + clave));
-                }
+                char caracterCifrado = (char) (((texto.charAt(i) - 'a') + clave) % 26 + 'a');
+                cifrado.append(caracterCifrado);
             } else if (texto.charAt(i) >= 'A' && texto.charAt(i) <= 'Z') {
-                if ((texto.charAt(i) + clave) > 'Z') {
-                    cifrado.append((char) (texto.charAt(i) + clave - 26));
-                } else {
-                    cifrado.append((char) (texto.charAt(i) + clave));
-                }
+                char caracterCifrado = (char) (((texto.charAt(i) - 'A') + clave) % 26 + 'A');
+                cifrado.append(caracterCifrado);
             } else {
-                cifrado.append((char) texto.charAt(i));
+                cifrado.append(texto.charAt(i));
             }
         }
         System.out.println("El mensaje cifrado es: ");
@@ -40,19 +33,13 @@ public class Cesar {
         clave = clave % 26;
         for (int i = 0; i < texto.length(); i++) {
             if (texto.charAt(i) >= 'a' && texto.charAt(i) <= 'z') {
-                if ((texto.charAt(i) - clave) < 'a') {
-                    descifrado.append((char) (texto.charAt(i) - clave + 26));
-                } else {
-                    descifrado.append((char) (texto.charAt(i) - clave));
-                }
+                char caracterCifrado = (char) (((texto.charAt(i) - 'a') - clave) % 26 + 'a');
+                descifrado.append(caracterCifrado);
             } else if (texto.charAt(i) >= 'A' && texto.charAt(i) <= 'Z') {
-                if ((texto.charAt(i) - clave) < 'A') {
-                    descifrado.append((char) (texto.charAt(i) - clave + 26));
-                } else {
-                    descifrado.append((char) (texto.charAt(i) - clave));
-                }
+                char caracterCifrado = (char) (((texto.charAt(i) - 'A') - clave) % 26 + 'A');
+                descifrado.append(caracterCifrado);
             } else {
-                descifrado.append((char) texto.charAt(i));
+                descifrado.append(texto.charAt(i));
             }
         }
         System.out.println("El mensaje descifrado es: ");
