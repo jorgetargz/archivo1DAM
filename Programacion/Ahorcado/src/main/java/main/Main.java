@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Pintar DibujarAhorcado = new Pintar();
+        Pintar dibujarAhorcado = new Pintar();
         Faker faker = new Faker(new Locale("es"));
         Scanner sc = new Scanner(System.in);
         StringBuilder mostrar = new StringBuilder();
@@ -47,7 +47,7 @@ public class Main {
             }
         }
         do {
-            DibujarAhorcado.DibujarAhorcado(intentos);
+            dibujarAhorcado.dibujarAhorcado(intentos);
             System.out.println("Ahorcado: ");
             System.out.println(mostrar);
             System.out.println();
@@ -60,7 +60,17 @@ public class Main {
             switch (juego) {
                 case 0:
                     intentos = 0;
-                    DibujarAhorcado.DibujarAhorcado(intentos);
+                    dibujarAhorcado.dibujarAhorcado(intentos);
+                    break;
+                case 2:
+                    System.out.print("¿Cual es?: ");
+                    String respuesta = sc.nextLine();
+                    if (palabra.equalsIgnoreCase(respuesta)) {
+                        mostrar.replace(0, mostrar.length(), respuesta.toUpperCase());
+                    } else {
+                        System.out.println("Fallaste, no es la respuesta correcta");
+                        intentos--;
+                    }
                     break;
                 default:
                     if (letrasProbadas.length() > 0) {
@@ -85,21 +95,11 @@ public class Main {
                         intentos--;
                     }
                     break;
-                case 2:
-                    System.out.print("¿Cual es?: ");
-                    String respuesta = sc.nextLine();
-                    if (palabra.equalsIgnoreCase(respuesta)) {
-                        mostrar.replace(0, mostrar.length(), respuesta.toUpperCase());
-                    } else {
-                        System.out.println("Fallaste, no es la respuesta correcta");
-                        intentos--;
-                    }
-                    break;
             }
         } while (intentos > 0 && (mostrar.indexOf("_") >= 0));
         if (mostrar.indexOf("_") < 0) {
             intentos = 10;
-            DibujarAhorcado.DibujarAhorcado(intentos);
+            dibujarAhorcado.dibujarAhorcado(intentos);
         }
     }
 }

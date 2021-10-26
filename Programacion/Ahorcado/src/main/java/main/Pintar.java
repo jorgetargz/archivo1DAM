@@ -1,7 +1,7 @@
 package main;
 
 public class Pintar {
-    public void DibujarAhorcado(int intentos) {
+    public void dibujarAhorcado(int intentos) {
         switch (intentos) {
             case 9:
                 System.out.println("   +---+");
