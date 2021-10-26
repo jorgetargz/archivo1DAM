@@ -79,8 +79,11 @@ public class Main {
                     }
                     System.out.print("Introduce una letra: ");
                     char letra = sc.nextLine().toUpperCase().charAt(0);
-                    letrasProbadas.append(letra).append(" ");
-                    if (palabra.indexOf(letra) >= 0) {
+                    if (letrasProbadas.toString().contains("" + letra)) {
+                        System.out.println("Ya has probado esa letra intolerable");
+                        System.out.println("Pierdes 2 intentos por no prestar atención a la partida");
+                        intentos -= 2;
+                    } else if (palabra.indexOf(letra) >= 0) {
                         System.out.println("Acertaste, la letra " + letra + " esta");
                         for (int i = 0; i < palabra.length(); i++) {
                             i = palabra.indexOf(letra, i);
@@ -94,6 +97,7 @@ public class Main {
                         System.out.println("Fallaste, la letra " + letra + " no esta");
                         intentos--;
                     }
+                    letrasProbadas.append(letra).append(" ");
                     break;
             }
         } while (intentos > 0 && (mostrar.indexOf("_") >= 0));
