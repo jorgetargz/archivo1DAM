@@ -21,6 +21,7 @@ public class Main {
         System.out.println("2. Colores");
         System.out.println("3. Nombres de animales");
         System.out.println("4. Ingredientes");
+        System.out.println("5. Introducir tu propia palabra");
         System.out.print("Elige un tema para el ahorcado: ");
         tema = sc.nextInt();
         sc.nextLine();
@@ -33,6 +34,10 @@ public class Main {
                 break;
             case 4:
                 palabra = faker.food().ingredient();
+                break;
+            case 5:
+                System.out.print("Introduce una palabra: ");
+                palabra = sc.nextLine();
                 break;
             default:
                 palabra = faker.pokemon().name();
