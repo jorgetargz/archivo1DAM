@@ -51,54 +51,38 @@ public class Main {
             System.out.println("Ahorcado: ");
             System.out.println(mostrar);
             System.out.println();
-            System.out.println("1. Pedir letra.");
-            System.out.println("2. Adivinar el ahorcado.");
-            System.out.println("0. Salir");
-            System.out.print("¿Que quieres hacer?: ");
-            int juego = sc.nextInt();
-            sc.nextLine();
-            switch (juego) {
-                case 0:
-                    intentos = 0;
-                    dibujarAhorcado.dibujarAhorcado(intentos);
-                    break;
-                case 2:
-                    System.out.print("¿Cual es?: ");
-                    String respuesta = sc.nextLine();
-                    if (palabra.equalsIgnoreCase(respuesta)) {
-                        mostrar.replace(0, mostrar.length(), respuesta.toUpperCase());
-                    } else {
-                        System.out.println("Fallaste, no es la respuesta correcta");
-                        intentos--;
-                    }
-                    break;
-                default:
-                    if (letrasProbadas.length() > 0) {
-                        System.out.println("Letras probadas");
-                        System.out.println(letrasProbadas);
-                    }
-                    System.out.print("Introduce una letra: ");
-                    char letra = sc.nextLine().toUpperCase().charAt(0);
-                    if (letrasProbadas.toString().contains("" + letra)) {
-                        System.out.println("Ya has probado esa letra intolerable");
-                        System.out.println("Pierdes 2 intentos por no prestar atención a la partida");
-                        intentos -= 2;
-                    } else if (palabra.indexOf(letra) >= 0) {
-                        System.out.println("Acertaste, la letra " + letra + " esta");
-                        for (int i = 0; i < palabra.length(); i++) {
-                            i = palabra.indexOf(letra, i);
-                            if (i >= 0) {
-                                mostrar.replace(palabra.indexOf(letra, i), palabra.indexOf(letra, i) + 1, "" + letra);
-                            } else {
-                                i = palabra.length();
-                            }
+            if (letrasProbadas.length() > 0) {
+                System.out.println("Letras probadas");
+                System.out.println(letrasProbadas);
+            }
+            System.out.print("Introduce una letra o adivina el ahorcado: ");
+            String entrada = sc.nextLine().toUpperCase();
+            if (entrada.length() == 1) {
+                char letra = entrada.charAt(0);
+                if (letrasProbadas.toString().contains("" + letra)) {
+                    System.out.println("Ya has probado esa letra intolerable");
+                    System.out.println("Pierdes 2 intentos por no prestar atención a la partida");
+                    intentos -= 2;
+                } else if (palabra.indexOf(letra) >= 0) {
+                    System.out.println("Acertaste, la letra " + letra + " esta");
+                    for (int i = 0; i < palabra.length(); i++) {
+                        i = palabra.indexOf(letra, i);
+                        if (i >= 0) {
+                            mostrar.replace(palabra.indexOf(letra, i), palabra.indexOf(letra, i) + 1, "" + letra);
+                        } else {
+                            i = palabra.length();
                         }
-                    } else {
-                        System.out.println("Fallaste, la letra " + letra + " no esta");
-                        intentos--;
                     }
-                    letrasProbadas.append(letra).append(" ");
-                    break;
+                } else {
+                    System.out.println("Fallaste, la letra " + letra + " no esta");
+                    intentos--;
+                }
+                letrasProbadas.append(letra).append(" ");
+            } else if (palabra.equalsIgnoreCase(entrada)) {
+                mostrar.replace(0, mostrar.length(), entrada.toUpperCase());
+            } else {
+                System.out.println("Fallaste, no es la respuesta correcta");
+                intentos--;
             }
         } while (intentos > 0 && (mostrar.indexOf("_") >= 0));
         if (mostrar.indexOf("_") < 0) {

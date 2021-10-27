@@ -93,6 +93,7 @@ public class Pintar {
                 System.out.println("=========");
                 System.out.println("Tienes 1 intento.");
                 break;
+            case -1:
             case 0:
                 System.out.println("   +---+");
                 System.out.println("   |   |");
