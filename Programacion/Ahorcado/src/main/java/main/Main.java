@@ -26,6 +26,9 @@ public class Main {
         tema = sc.nextInt();
         sc.nextLine();
         switch (tema) {
+            case 1:
+                palabra = faker.pokemon().name();
+                break;
             case 2:
                 palabra = faker.color().name();
                 break;
@@ -40,12 +43,13 @@ public class Main {
                 palabra = sc.nextLine();
                 break;
             default:
-                palabra = faker.pokemon().name();
+                System.out.println("Ese tema no existe introduce una palabra para jugar");
+                palabra = sc.nextLine();
                 break;
         }
         palabra = palabra.toUpperCase();
         for (int i = 0; i < palabra.length(); i++) {
-            if ((palabra.charAt(i) >= 'A' && palabra.charAt(i) <= 'Z' ) || palabra.charAt(i) == 'Ñ'){
+            if ((palabra.charAt(i) >= 'A' && palabra.charAt(i) <= 'Z') || palabra.charAt(i) == 'Ñ') {
                 mostrar.append("_");
             } else {
                 mostrar.append(palabra.charAt(i));
@@ -65,15 +69,15 @@ public class Main {
             if (entrada.length() == 1) {
                 char letra = entrada.charAt(0);
                 if (letrasProbadas.toString().contains("" + letra)) {
-                    System.out.println("Ya has probado esa letra presta mas atencion");
+                    System.out.println("Ya has probado esa letra presta mas atención");
                 } else if (palabra.indexOf(letra) >= 0) {
                     System.out.println("Acertaste, la letra " + letra + " esta");
-                    for (int i = 0; i < palabra.length(); i++) {
-                        i = palabra.indexOf(letra, i);
-                        if (i >= 0) {
+                    boolean hayMas = true;
+                    for (int i = 0; hayMas; i++) {
+                        if (palabra.indexOf(letra, i) >= 0) {
                             mostrar.replace(palabra.indexOf(letra, i), palabra.indexOf(letra, i) + 1, "" + letra);
                         } else {
-                            i = palabra.length();
+                            hayMas = false;
                         }
                     }
                     letrasProbadas.append(letra).append(" ");

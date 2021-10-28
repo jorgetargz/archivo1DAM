@@ -114,6 +114,9 @@ public class Pintar {
                 System.out.println("=========");
                 System.out.println("Enhorabuena has ganado.");
                 break;
+            default:
+                System.out.println("Error con la variable intentos");
+                break;
         }
     }
 }
