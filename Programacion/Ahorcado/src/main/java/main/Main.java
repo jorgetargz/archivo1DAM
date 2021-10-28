@@ -45,7 +45,7 @@ public class Main {
         }
         palabra = palabra.toUpperCase();
         for (int i = 0; i < palabra.length(); i++) {
-            if (palabra.charAt(i) >= 'A' && palabra.charAt(i) <= 'Z') {
+            if ((palabra.charAt(i) >= 'A' && palabra.charAt(i) <= 'Z' ) || palabra.charAt(i) == 'Ñ'){
                 mostrar.append("_");
             } else {
                 mostrar.append(palabra.charAt(i));
