@@ -92,7 +92,7 @@ public class Main {
         } while (intentos > 0 && (mostrar.indexOf("_") >= 0));
         if (mostrar.indexOf("_") < 0) {
             intentos = 10;
-            dibujarAhorcado.dibujarAhorcado(intentos);
         }
+        dibujarAhorcado.dibujarAhorcado(intentos);
     }
 }
