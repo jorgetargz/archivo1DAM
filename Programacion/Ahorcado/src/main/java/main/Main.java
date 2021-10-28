@@ -65,9 +65,7 @@ public class Main {
             if (entrada.length() == 1) {
                 char letra = entrada.charAt(0);
                 if (letrasProbadas.toString().contains("" + letra)) {
-                    System.out.println("Ya has probado esa letra intolerable");
-                    System.out.println("Pierdes 2 intentos por no prestar atención a la partida");
-                    intentos -= 2;
+                    System.out.println("Ya has probado esa letra presta mas atencion");
                 } else if (palabra.indexOf(letra) >= 0) {
                     System.out.println("Acertaste, la letra " + letra + " esta");
                     for (int i = 0; i < palabra.length(); i++) {
@@ -78,11 +76,12 @@ public class Main {
                             i = palabra.length();
                         }
                     }
+                    letrasProbadas.append(letra).append(" ");
                 } else {
                     System.out.println("Fallaste, la letra " + letra + " no esta");
+                    letrasProbadas.append(letra).append(" ");
                     intentos--;
                 }
-                letrasProbadas.append(letra).append(" ");
             } else if (palabra.equalsIgnoreCase(entrada)) {
                 mostrar.replace(0, mostrar.length(), entrada.toUpperCase());
             } else {
