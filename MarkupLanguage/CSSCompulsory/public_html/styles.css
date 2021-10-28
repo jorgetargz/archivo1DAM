@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+}
+
+#webTitle {
+    color: white;
+    width: 100%;
+    background-image: linear-gradient(lightgreen, darkgreen);
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+
+#webTitle h1 {
+    font-family: "Comic Sans MS";
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+#webTitle p {
+    padding-bottom: 20px;
+}
+
+#menuTop {
+    background-color: darkgreen;
+    color: white;
+}
+
+#menuTop ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+#menuTop li {
+    float: left;
+}
+
+#menuTop a {
+    display: block;
+    padding: 5px 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+#menuTop a:hover {
+    background-color: lightgreen;
+}
+
+#mainContent {
+
+}
