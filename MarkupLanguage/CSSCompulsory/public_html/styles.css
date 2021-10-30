@@ -22,21 +22,21 @@
     padding-bottom: 20px;
 }
 
-#menuTop {
+#topMenu {
     background-color: #618a33;
     color: white;
 }
 
-#menuTop ul {
+#topMenu ul {
     list-style-type: none;
     overflow: hidden;
 }
 
-#menuTop li {
+#topMenu li {
     float: left;
 }
 
-#menuTop a {
+#topMenu a {
     display: block;
     padding: 5px 10px;
     color: white;
@@ -44,7 +44,7 @@
     text-decoration: none;
 }
 
-#menuTop a:hover {
+#topMenu a:hover {
     background-color: lightgreen;
 }
 
@@ -76,6 +76,10 @@
     margin-top: 10px;
     margin-left: 50px;
     border-bottom: lime solid 2px;
+}
+
+#mainContent img {
+    margin: 10px;
 }
 
 #lateralMenu {
