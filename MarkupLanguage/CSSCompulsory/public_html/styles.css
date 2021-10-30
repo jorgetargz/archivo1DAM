@@ -4,20 +4,16 @@
     padding: 0;
 }
 
-body {
-    margin: 0;
-}
-
 #webTitle {
     color: white;
     width: 100%;
-    background-image: linear-gradient(lightgreen, darkgreen);
+    background-image: linear-gradient(#87bf47, #618a33);
     padding-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
 }
 
 #webTitle h1 {
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans MS", serif;
     padding-top: 30px;
     padding-bottom: 10px;
 }
@@ -27,7 +23,7 @@ body {
 }
 
 #menuTop {
-    background-color: darkgreen;
+    background-color: #618a33;
     color: white;
 }
 
@@ -53,5 +49,60 @@ body {
 }
 
 #mainContent {
+    margin-top: 10px;
+    float: left;
+    padding: 5px 10px;
+    width: 63%;
+}
 
+#mainContent h2 {
+    color: green;
+    border-bottom: #618a33 solid 2px;
+    margin-bottom: 10px;
+}
+
+#mainContent span {
+    font-weight: bold;
+}
+
+#mainContent h3 {
+    margin-top: 20px;
+    margin-left: 20px;
+    color: #618a33;
+}
+
+#mainContent li {
+    list-style-image: url('./images/greentick.jpg');
+    margin-top: 10px;
+    margin-left: 50px;
+    border-bottom: lime solid 2px;
+}
+
+#lateralMenu {
+    float: right;
+    width: 30%;
+    color: #618a33;
+    margin: 10px 20px 20px;
+    border-top: 25px solid #dae6cc;
+    border-bottom: 25px solid #dae6cc;
+    padding: 20px;
+}
+
+#lateralMenu ul {
+    list-style-type: none;
+}
+
+#lateralMenu li {
+    border-bottom: #618a33 solid 2px;
+}
+
+#lateralMenu a {
+    color: #618a33;
+    text-decoration: none;
+}
+.validation {
+    float: right;
+    margin-left: 15px;
+    margin-right: 10px;
+    width: 55px;
 }
