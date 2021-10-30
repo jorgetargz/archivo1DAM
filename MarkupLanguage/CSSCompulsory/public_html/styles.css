@@ -100,9 +100,17 @@
     border-bottom: #618a33 solid 2px;
 }
 
+#lateralMenu li:hover {
+    border-bottom: #dae6cc solid 2px;
+}
+
 #lateralMenu a {
     color: #618a33;
     text-decoration: none;
+}
+
+#lateralMenu a:hover {
+    color : #dae6cc;
 }
 .validation {
     float: right;
