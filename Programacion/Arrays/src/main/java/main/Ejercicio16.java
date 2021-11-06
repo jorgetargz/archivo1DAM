@@ -22,19 +22,19 @@ public class Ejercicio16 {
         }
 
         System.out.println("Nota media 1 evaluacion del grupo");
-        int suma1Evaluacion = 0;
+        double suma1Evaluacion = 0;
         for (int i = 0; i < notas1Evaluacion.length; i++) {
             suma1Evaluacion += notas1Evaluacion[i];
         }
         double media1Evaluacion = suma1Evaluacion/notas1Evaluacion.length;
         System.out.println("Nota media 2 evaluacion del grupo");
-        int suma2Evaluacion = 0;
+        double suma2Evaluacion = 0;
         for (int i = 0; i < notas2Evaluacion.length; i++) {
             suma2Evaluacion += notas2Evaluacion[i];
         }
         double media2Evaluacion = suma2Evaluacion/notas2Evaluacion.length;
         System.out.println("Nota media 3 evaluacion del grupo");
-        int suma3Evaluacion = 0;
+        double suma3Evaluacion = 0;
         for (int i = 0; i < notas3Evaluacion.length; i++) {
             suma1Evaluacion += notas1Evaluacion[i];
         }
