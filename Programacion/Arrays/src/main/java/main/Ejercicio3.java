@@ -3,8 +3,7 @@ package main;
 import java.util.Random;
 
 public class Ejercicio3 {
-    public static void main(String[] args) {
-        Random r = new Random();
+    public void ejercicio3(Random r) {
         int[] valores = new int[5];
         int sumaValoresPositivos = 0;
         int sumaValoresNegativos = 0;

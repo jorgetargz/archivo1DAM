@@ -3,8 +3,7 @@ package main;
 import java.util.Random;
 
 public class Ejercicio6 {
-    public static void main(String[] args) {
-        Random r = new Random();
+    public void ejercicio6(Random r) {
         int[] tabla1 = new int[12];
         int[] tabla2 = new int[12];
         int[] tabla3 = new int[24];

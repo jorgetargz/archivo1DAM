@@ -3,8 +3,7 @@ package main;
 import java.util.Random;
 
 public class Ejercicio16 {
-    public static void main(String[] args) {
-        Random r = new Random();
+    public void ejercicio16(Random r) {
         int[] notas1Evaluacion = new int[5];
         for (int i = 0; i < notas1Evaluacion.length; i++) {
             notas1Evaluacion[i] = r.nextInt(9)+1;
