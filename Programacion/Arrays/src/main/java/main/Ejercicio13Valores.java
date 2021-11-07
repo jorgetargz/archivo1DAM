@@ -6,7 +6,7 @@ public class Ejercicio13Valores {
     public void ejercicio13Valores(Random r) {
         int[] valores = new int[10];
         for (int i = 0; i < valores.length; i++) {
-            valores[i] = r.nextInt(9)+1;
+            valores[i] = r.nextInt(9) + 1;
         }
         int indiceOrdenado = 0;
         int[] valoresOrdenados = new int[10];

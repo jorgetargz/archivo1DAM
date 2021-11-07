@@ -6,10 +6,10 @@ public class Ejercicio10 {
     public void ejercicio10(Random r) {
         int[] valores = new int[10];
         for (int i = 0; i < valores.length; i++) {
-            valores[i] = r.nextInt(9)+1;
+            valores[i] = r.nextInt(9) + 1;
         }
         System.out.println("Introduce un desplazamiento: ");
-        int desplazamiento = r.nextInt(9)+1;
+        int desplazamiento = r.nextInt(9) + 1;
 
         do {
             int ultimoValor = valores[9];

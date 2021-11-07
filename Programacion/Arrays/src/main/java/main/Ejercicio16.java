@@ -6,15 +6,15 @@ public class Ejercicio16 {
     public void ejercicio16(Random r) {
         int[] notas1Evaluacion = new int[5];
         for (int i = 0; i < notas1Evaluacion.length; i++) {
-            notas1Evaluacion[i] = r.nextInt(9)+1;
+            notas1Evaluacion[i] = r.nextInt(9) + 1;
         }
         int[] notas2Evaluacion = new int[5];
         for (int i = 0; i < notas2Evaluacion.length; i++) {
-            notas2Evaluacion[i] = r.nextInt(9)+1;
+            notas2Evaluacion[i] = r.nextInt(9) + 1;
         }
         int[] notas3Evaluacion = new int[5];
         for (int i = 0; i < notas3Evaluacion.length; i++) {
-            notas3Evaluacion[i] = r.nextInt(9)+1;
+            notas3Evaluacion[i] = r.nextInt(9) + 1;
         }
 
         double suma1Evaluacion = 0;

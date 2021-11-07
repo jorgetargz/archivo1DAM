@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Ejercicio11 {
     public void ejercicio11(Random r) {
-        int[] valores = {1,2,3,4,5,0,0,0,0,0};
-        int nuevoValor = r.nextInt(9)+1;
+        int[] valores = {1, 2, 3, 4, 5, 0, 0, 0, 0, 0};
+        int nuevoValor = r.nextInt(9) + 1;
         int posicionNuevoValor = 0;
         int j = 0;
         while (valores[j] < nuevoValor && j <= 4) {

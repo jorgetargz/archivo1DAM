@@ -3,8 +3,8 @@ package main;
 
 public class Ejercicio14 {
     public void ejercicio14() {
-        int[] valores1 = {1,3,5,7,9,11,13,15,17,19};
-        int[] valores2 = {0,2,4,6,8,10,12,14,16,18};
+        int[] valores1 = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+        int[] valores2 = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18};
 
         int[] valores3 = new int[20];
         int indiceValores1 = 0;
