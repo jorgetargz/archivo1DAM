@@ -1,18 +1,16 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio10 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
         int[] valores = new int[10];
-//        for (int i = 0; i < valores.length; i++) {
-//            System.out.print("Introduce un numero: ");
-//            valores[i] = sc.nextInt();
-//        }
-        valores = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (int i = 0; i < valores.length; i++) {
+            valores[i] = r.nextInt(9)+1;
+        }
         System.out.println("Introduce un desplazamiento: ");
-        int desplazamiento = sc.nextInt();
+        int desplazamiento = r.nextInt(9)+1;
 
         do {
             int ultimoValor = valores[9];

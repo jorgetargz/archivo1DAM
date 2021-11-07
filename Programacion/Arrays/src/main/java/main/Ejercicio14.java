@@ -1,20 +1,11 @@
 package main;
 
-import java.util.Scanner;
 
 public class Ejercicio14 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] valores1 = new int[10];
-        for (int i = 0; i < valores1.length; i++) {
-            System.out.print("Introduce un numero: ");
-            valores1[i] = sc.nextInt();
-        }
-        int[] valores2 = new int[10];
-        for (int i = 0; i < valores2.length; i++) {
-            System.out.print("Introduce un numero: ");
-            valores2[i] = sc.nextInt();
-        }
+        int[] valores1 = {1,3,5,7,9,11,13,15,17,19};
+        int[] valores2 = {0,2,4,6,8,10,12,14,16,18};
+
         int[] valores3 = new int[20];
         int indiceValores1 = 0;
         int indiceValores2 = 0;

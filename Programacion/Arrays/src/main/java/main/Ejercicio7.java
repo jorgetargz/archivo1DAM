@@ -1,14 +1,13 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio7 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
         int[] valores = new int[10];
         for (int i = 0; i < valores.length; i++) {
-            System.out.print("Introduce un numero: ");
-            valores[i] = sc.nextInt();
+            valores[i] = r.nextInt(9)+1;
         }
         boolean ordenadoAscendente = true;
         boolean ordenadoDescendente = true;

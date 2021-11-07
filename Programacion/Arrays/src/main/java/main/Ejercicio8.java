@@ -1,20 +1,18 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio8 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
         int[] valores = new int[10];
-//        for (int i = 0; i < 8; i++) {
-//            System.out.print("Introduce un numero: ");
-//            valores[i] = sc.nextInt();
-//        }
-        valores = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 0, 0};
+        for (int i = 0; i < 8; i++) {
+            valores[i] = r.nextInt(9)+1;
+        }
         System.out.println("Introduce un valor para añadir");
-        int valorNuevo = sc.nextInt();
+        int valorNuevo = r.nextInt(9)+1;
         System.out.println("Indica en que posicion se ha de añadir");
-        int posValorNuevo = sc.nextInt();
+        int posValorNuevo = r.nextInt(7);
         int[] valoresDesplazados = new int[10];
         for (int i = 0; i < 9; i++) {
             if (i > posValorNuevo) {

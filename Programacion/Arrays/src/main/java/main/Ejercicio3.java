@@ -1,21 +1,20 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio3 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
         int[] valores = new int[5];
         int sumaValoresPositivos = 0;
         int sumaValoresNegativos = 0;
         int contadorPositivos = 0;
         int contadorNegativos = 0;
-        int mediaValoresPositivos = 0;
-        int mediaValoresNegativos = 0;
+        int mediaValoresPositivos;
+        int mediaValoresNegativos;
         int contadorCeros = 0;
         for (int i = 0; i < valores.length; i++) {
-            System.out.print("Introduce un numero: ");
-            valores[i] = sc.nextInt();
+            valores[i] = r.nextInt(10);
         }
         for (int i = 0; i < valores.length; i++) {
             if (valores[i] > 0) {

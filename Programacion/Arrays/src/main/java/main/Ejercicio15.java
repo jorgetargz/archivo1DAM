@@ -1,17 +1,12 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio15 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] valores = new int[10];
-//        for (int i = 0; i < valores.length; i++) {
-//            System.out.print("Introduce un numero: ");
-//            valores[i] = sc.nextInt();
-//        }
-        valores = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int numeroABuscar = sc.nextInt();
+        Random r = new Random();
+        int[] valores = {1,2,3,4,5,6,7,8,9,10};
+        int numeroABuscar = r.nextInt(9)+1;
         int i = 0;
         while (i < valores.length && valores[i] < numeroABuscar) {
             i++;

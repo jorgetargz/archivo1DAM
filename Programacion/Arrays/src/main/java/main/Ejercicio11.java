@@ -1,18 +1,12 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio11 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] valores = new int[10];
-        for (int i = 0; i < 5; i++) {
-            System.out.print("Introduce un numero: ");
-            valores[i] = sc.nextInt();
-        }
-
-        System.out.print("Introduce un nuevo valor: ");
-        int nuevoValor = sc.nextInt();
+        Random r = new Random();
+        int[] valores = {1,2,3,4,5,0,0,0,0,0};
+        int nuevoValor = r.nextInt(9)+1;
         int posicionNuevoValor = 0;
         int j = 0;
         while (valores[j] < nuevoValor && j <= 4) {

@@ -1,18 +1,17 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio12 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
         int[] valores = new int[10];
         int posicion;
         for (int i = 0; i < valores.length; i++) {
-            System.out.print("Introduce un numero: ");
-            valores[i] = sc.nextInt();
+            valores[i] = r.nextInt(9)+1;
         }
         System.out.println("Introduce la posicion para eliminar: ");
-        posicion = sc.nextInt();
+        posicion = r.nextInt(9);
         for (int i = posicion; i < 9; i++) {
             valores[i] = valores[i + 1];
         }

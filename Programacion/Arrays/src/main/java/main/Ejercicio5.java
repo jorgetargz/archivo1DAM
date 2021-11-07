@@ -1,20 +1,18 @@
 package main;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Ejercicio5 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Random r = new Random();
         int[] tabla1 = new int[10];
         int[] tabla2 = new int[10];
         int[] tabla3 = new int[20];
         for (int i = 0; i < tabla1.length; i++) {
-            System.out.print("Introduce un numero: ");
-            tabla1[i] = sc.nextInt();
+            tabla1[i] = r.nextInt(9)+1;
         }
         for (int i = 0; i < tabla2.length; i++) {
-            System.out.print("Introduce un numero: ");
-            tabla2[i] = sc.nextInt();
+            tabla2[i] = r.nextInt(9)+1;
         }
         for (int i = 0, j = 0, k = 0; i < tabla3.length; i++) {
             if (i % 2 == 0) {
