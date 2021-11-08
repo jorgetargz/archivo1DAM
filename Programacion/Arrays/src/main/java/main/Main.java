@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Random r = new Random();
-        int menu = 0;
+        int menu;
         do {
             System.out.println("Ejercicios de Arrays");
             System.out.println("0. Salir. ");
