@@ -233,5 +233,6 @@ public class Main {
             }
             System.out.println(Constants.LINE);
         }
+        System.out.println(Constants.GAME_OVER);
     }
 }

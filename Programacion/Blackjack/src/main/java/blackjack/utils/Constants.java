@@ -26,4 +26,5 @@ public class Constants {
     public static final String PLAYER_2_LOSE = "Jugador 2 pierde";
     public static final String LINE = "--------------";
     public static final String ERROR = "ERROR! Por favor reinicia el juego. ";
+    public static final String GAME_OVER = "Game Over";
 }
