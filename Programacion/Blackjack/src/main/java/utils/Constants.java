@@ -12,7 +12,7 @@ public class Constants {
     public static final String PLAYER_2_HAVE_BLACKJACK = "Jugador 2 tiene Blackjack. ";
     public static final String CRUPIER_HAVE_BLACKJACK = "Crupier tiene blackjack";
     public static final String HIT_OR_STAND = "Pedir Carta (1) o Plantarse (0): ";
-    public static final String SCORE = "Puntuacion: ";
+    public static final String SCORE = "Puntuación: ";
     public static final String YOU_LOSE_THE_GAME = "Has perdido te pasaste de 21 tienes: ";
     public static final String CRUPIER_LOSE = "El crupier ha perdido. ";
     public static final String PLAYER_1_WINS = "Jugador 1 gana";

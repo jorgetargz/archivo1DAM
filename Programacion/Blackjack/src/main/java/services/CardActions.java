@@ -24,7 +24,6 @@ public class CardActions {
     }
 
     public int getScore(int[] player) {
-        boolean blackjack = false;
         int score = 0;
         for (int i = 0; i < player.length; i++) {
             if (player[i] == 11 || player[i] == 12 || player[i] == 13) {
