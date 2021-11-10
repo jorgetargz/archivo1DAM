@@ -229,9 +229,9 @@ public class Main {
             }
             if (blackjackP2) {
                 moneyP2 += bidP2 * 1.5;
-            } else if (p1Wins) {
+            } else if (p2Wins) {
                 moneyP2 += bidP2;
-            } else if (p1Lose) {
+            } else if (p2Lose) {
                 moneyP2 -= bidP2;
             }
             System.out.println(Constants.LINE);
