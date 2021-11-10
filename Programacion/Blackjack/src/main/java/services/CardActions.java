@@ -43,8 +43,8 @@ public class CardActions {
     }
 
     public int giveCards(int[] deck, int[] player, int posDeck, int posPlayerDeck, int numCards) {
-        while (numCards > 0){
-            player[posPlayerDeck] = deck[posDeck];
+        while (numCards > 0) {
+            player[posPlayerDeck] = deck[posDeck % 51];
             posDeck++;
             posPlayerDeck++;
             numCards--;

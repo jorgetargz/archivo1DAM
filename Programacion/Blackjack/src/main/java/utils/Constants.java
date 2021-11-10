@@ -8,6 +8,9 @@ public class Constants {
     public static final String PLAYER_1 = "Jugador 1: ";
     public static final String PLAYER_2 = "Jugador 2: ";
     public static final String CRUPIER = "Crupier: ";
+    public static final String PLACE_YOUR_BID = "Cuanto dinero quieres apostar: ";
+    public static final String MONEY = "Tienes(€): ";
+    public static final String YOU_DON_T_HAVE_ENOUGH_MONEY = "No tienes esa cantidad, realizas un All-in. ";
     public static final String PLAYER_1_HAVE_BLACKJACK = "Jugador 1 tiene Blackjack. ";
     public static final String PLAYER_2_HAVE_BLACKJACK = "Jugador 2 tiene Blackjack. ";
     public static final String CRUPIER_HAVE_BLACKJACK = "Crupier tiene blackjack";
