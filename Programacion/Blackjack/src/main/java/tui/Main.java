@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
+
         CardActions cardActions = new CardActions();
         ShowCards showCards = new ShowCards();
         ShowWinners showWinners = new ShowWinners();
@@ -73,6 +74,7 @@ public class Main {
                     bidP2 = moneyP2;
                 }
             }
+            System.out.println(Constants.LINE);
 
             //Repartir 2 cartas
             posDeck = cardActions.giveCards(deck, player1, posDeck, posDeckP1, 2);
@@ -232,6 +234,7 @@ public class Main {
             } else if (p1Lose) {
                 moneyP2 -= bidP2;
             }
+            System.out.println(Constants.LINE);
         }
     }
 }
