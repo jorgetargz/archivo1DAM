@@ -13,8 +13,8 @@ public class GenerateDeck {
     }
     private void shuffle(Random r, int[] deck) {
         for (int i = 0; i < 100; i++) {
-            int pos1 = r.nextInt(51);
-            int pos2 = r.nextInt(51);
+            int pos1 = r.nextInt(9);
+            int pos2 = r.nextInt(9);
             int aux = deck[pos1];
             deck[pos1] = deck[pos2];
             deck[pos2] = aux;
