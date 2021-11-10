@@ -3,11 +3,11 @@ package tui;
 import utils.Constants;
 
 public class ShowCards {
-    public void mostrarCartasUltimaOculta(int[] crupier) {
+    public void showCardsLastHide(int[] crupier) {
         for (int i = 0; i < crupier.length; i++) {
             if (i == 1) {
                 System.out.print("*");
-            } else if (crupier[i] > 1 && crupier[i] <= 10 && i != 1) {
+            } else if (crupier[i] > 1 && crupier[i] <= 10) {
                 System.out.print(crupier[i] + " ");
             } else if (crupier[i] == 1) {
                 System.out.print(Constants.ACE);
@@ -22,17 +22,17 @@ public class ShowCards {
         System.out.println();
     }
 
-    public void mostrarCartas(int[] jugador) {
-        for (int i = 0; i < jugador.length; i++) {
-            if (jugador[i] > 1 && jugador[i] <= 10) {
-                System.out.print(jugador[i] + " ");
-            } else if (jugador[i] == 1) {
+    public void showCards(int[] player) {
+        for (int i = 0; i < player.length; i++) {
+            if (player[i] > 1 && player[i] <= 10) {
+                System.out.print(player[i] + " ");
+            } else if (player[i] == 1) {
                 System.out.print(Constants.ACE);
-            } else if (jugador[i] == 11) {
+            } else if (player[i] == 11) {
                 System.out.print(Constants.JACK);
-            } else if (jugador[i] == 12) {
+            } else if (player[i] == 12) {
                 System.out.print(Constants.QUEEN);
-            } else if (jugador[i] == 13) {
+            } else if (player[i] == 13) {
                 System.out.print(Constants.KING);
             }
         }

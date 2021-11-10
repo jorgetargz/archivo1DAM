@@ -1,48 +1,48 @@
 package services;
 
 public class GetWinners {
-    public boolean[] getWinners(boolean blackjackJ1, boolean blackjackJ2, boolean blackjackCp, int sumaJ1, int sumaJ2, int sumaCp, boolean j1Perdio, boolean j2Perdio, boolean cpLose) {
-        boolean j1Gana = false;
-        boolean j1Empata = false;
-        boolean j2Gana = false;
-        boolean j2Empata = false;
-        boolean results[] = new boolean[4];
+    public boolean[] getWinners(boolean blackjackP1, boolean blackjackP2, boolean blackjackCp, int scoreP1, int scoreP2, int scoreCp, boolean p1Lose, boolean p2Lose, boolean cpLose) {
+        boolean p1Wins = false;
+        boolean p1Ties = false;
+        boolean p2Wins = false;
+        boolean p2Ties = false;
+        boolean[] results = new boolean[4];
         if (cpLose) {
-            if (!j1Perdio) {
-                j1Gana = true;
+            if (!p1Lose) {
+                p1Wins = true;
             }
-            if (!j2Perdio) {
-                j2Gana = true;
+            if (!p2Lose) {
+                p2Wins = true;
             }
         } else if (blackjackCp) {
-            if (blackjackJ1) {
-                j1Gana = true;
+            if (blackjackP1) {
+                p1Wins = true;
             }
-            if (blackjackJ2) {
-                j2Gana = true;
+            if (blackjackP2) {
+                p2Wins = true;
             }
         } else {
-            if (sumaJ1 > sumaCp) {
-                j1Gana = true;
-            } else if (sumaJ1 == sumaCp){
-                j1Empata = true;
+            if (scoreP1 > scoreCp) {
+                p1Wins = true;
+            } else if (scoreP1 == scoreCp){
+                p1Ties = true;
             }
-            if (sumaJ2 > sumaCp) {
-                j2Gana = true;
-            } else if (sumaJ2 == sumaCp){
-                j2Empata = true;
+            if (scoreP2 > scoreCp) {
+                p2Wins = true;
+            } else if (scoreP2 == scoreCp){
+                p2Ties = true;
             }
         }
 
         //Agrupo resultados en un array para devolver multiples booleanos
-        if (j1Gana){
+        if (p1Wins){
             results[0] = true;
-        } else if (j1Empata){
+        } else if (p1Ties){
             results[1] = true;
         }
-        if (j2Gana){
+        if (p2Wins){
             results[2] = true;
-        } else if (j2Empata){
+        } else if (p2Ties){
             results[3] = true;
         }
         return results;

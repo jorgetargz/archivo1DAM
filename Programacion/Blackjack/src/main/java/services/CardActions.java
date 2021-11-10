@@ -4,53 +4,53 @@ import java.util.Random;
 
 public class CardActions {
 
-    public int[] generarBarajaBarajeada(Random r) {
-        int[] baraja = new int[52];
-        for (int i = 0; i < baraja.length; i++) {
-            baraja[i] = (i % 13) + 1;
+    public int[] generateShuffledDeck(Random r) {
+        int[] deck = new int[52];
+        for (int i = 0; i < deck.length; i++) {
+            deck[i] = (i % 13) + 1;
         }
-        barajear(r, baraja);
-        return baraja;
+        shuffle(r, deck);
+        return deck;
     }
 
-    private void barajear(Random r, int[] baraja) {
+    private void shuffle(Random r, int[] deck) {
         for (int i = 0; i < 100; i++) {
             int pos1 = r.nextInt(51);
             int pos2 = r.nextInt(51);
-            int aux = baraja[pos1];
-            baraja[pos1] = baraja[pos2];
-            baraja[pos2] = aux;
+            int aux = deck[pos1];
+            deck[pos1] = deck[pos2];
+            deck[pos2] = aux;
         }
     }
 
-    public int sumarCartas(int[] jugador) {
+    public int getScore(int[] player) {
         boolean blackjack = false;
-        int suma = 0;
-        for (int i = 0; i < jugador.length; i++) {
-            if (jugador[i] == 11 || jugador[i] == 12 || jugador[i] == 13) {
-                suma += 10;
+        int score = 0;
+        for (int i = 0; i < player.length; i++) {
+            if (player[i] == 11 || player[i] == 12 || player[i] == 13) {
+                score += 10;
             } else {
-                suma += jugador[i];
+                score += player[i];
             }
         }
-        for (int i = 0; i < jugador.length; i++) {
-            if (jugador[i] == 1) {
-                if (suma + 10 <= 21) {
-                    suma += 10;
+        for (int i = 0; i < player.length; i++) {
+            if (player[i] == 1) {
+                if (score + 10 <= 21) {
+                    score += 10;
                 }
             }
         }
-        return suma;
+        return score;
     }
 
-    public int repartirCartas(int[] baraja, int[] jugador, int posicionBaraja, int posicionMazo, int numeroCartas) {
-        while (numeroCartas > 0){
-            jugador[posicionMazo] = baraja[posicionBaraja];
-            posicionBaraja++;
-            posicionMazo++;
-            numeroCartas--;
+    public int giveCards(int[] deck, int[] player, int posDeck, int posPlayerDeck, int numCards) {
+        while (numCards > 0){
+            player[posPlayerDeck] = deck[posDeck];
+            posDeck++;
+            posPlayerDeck++;
+            numCards--;
         }
-        return posicionBaraja;
+        return posDeck;
     }
 
 }

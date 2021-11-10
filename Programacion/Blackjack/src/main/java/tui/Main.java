@@ -18,166 +18,164 @@ public class Main {
         GetWinners getWinners = new GetWinners();
 
         //Mazos de juego
-        int[] jugador1 = new int[4];
-        int[] jugador2 = new int[4];
+        int[] player1 = new int[4];
+        int[] player2 = new int[4];
         int[] crupier = new int[4];
-        int posicionMazoJ1 = 0;
-        int posicionMazoJ2 = 0;
-        int posicionMazoCp = 0;
+        int posDeckP1 = 0;
+        int posDeckP2 = 0;
+        int posDeckCp = 0;
 
         //Generar baraja
-        int[] baraja = cardActions.generarBarajaBarajeada(r);
-        int posicionBaraja = 0;
+        int[] deck = cardActions.generateShuffledDeck(r);
+        int posDeck = 0;
 
         //Repartir 2 cartas
-        posicionBaraja = cardActions.repartirCartas(baraja, jugador1, posicionBaraja, posicionMazoJ1, 2);
-        posicionBaraja = cardActions.repartirCartas(baraja, jugador2, posicionBaraja, posicionMazoJ2, 2);
-        posicionBaraja = cardActions.repartirCartas(baraja, crupier, posicionBaraja, posicionMazoCp, 2);
-        posicionMazoJ1 += 2;
-        posicionMazoJ2 += 2;
-        posicionMazoCp += 2;
+        posDeck = cardActions.giveCards(deck, player1, posDeck, posDeckP1, 2);
+        posDeck = cardActions.giveCards(deck, player2, posDeck, posDeckP2, 2);
+        posDeck = cardActions.giveCards(deck, crupier, posDeck, posDeckCp, 2);
+        posDeckP1 += 2;
+        posDeckP2 += 2;
+        posDeckCp += 2;
 
         //Mostrar cartas repartidas ronda 0
         System.out.println(Constants.PLAYER_1);
-        showCards.mostrarCartas(jugador1);
+        showCards.showCards(player1);
         System.out.println(Constants.PLAYER_2);
-        showCards.mostrarCartas(jugador2);
+        showCards.showCards(player2);
         System.out.println(Constants.CRUPIER);
-        showCards.mostrarCartasUltimaOculta(crupier);
+        showCards.showCardsLastHide(crupier);
         System.out.println(Constants.LINE);
 
         //Comprobar si los jugadores tienen blackjack
-        boolean blackjackJ1 = false;
-        boolean blackjackJ2 = false;
+        boolean blackjackP1 = false;
+        boolean blackjackP2 = false;
         boolean blackjackCp = false;
-        int sumaJ1 = cardActions.sumarCartas(jugador1);
-        if (sumaJ1 == 21) {
-            blackjackJ1 = true;
+        int scoreP1 = cardActions.getScore(player1);
+        if (scoreP1 == 21) {
+            blackjackP1 = true;
             System.out.println(Constants.PLAYER_1_HAVE_BLACKJACK);
         }
-        int sumaJ2 = cardActions.sumarCartas(jugador2);
-        if (sumaJ2 == 21) {
-            blackjackJ2 = true;
+        int scoreP2 = cardActions.getScore(player2);
+        if (scoreP2 == 21) {
+            blackjackP2 = true;
             System.out.println(Constants.PLAYER_2_HAVE_BLACKJACK);
         }
-        int sumaCp = cardActions.sumarCartas(crupier);
-        if (sumaCp == 21) {
+        int scoreCp = cardActions.getScore(crupier);
+        if (scoreCp == 21) {
             blackjackCp = true;
         }
 
         //Variables de juego
-        boolean j1Plantado = false;
-        boolean j1Perdio = false;
+        boolean p1Stands = false;
+        boolean p1Lose = false;
 
-        boolean j2Plantado = false;
-        boolean j2Perdio = false;
+        boolean p2Stands = false;
+        boolean p2Lose = false;
 
         boolean cpLose = false;
 
         do {
             //Turno Jugador 1
-            if (sumaJ1 <= 21 && !j1Plantado && !blackjackJ1) {
+            if (scoreP1 <= 21 && !p1Stands && !blackjackP1) {
                 System.out.println(Constants.LINE);
                 System.out.println(Constants.PLAYER_1);
-                showCards.mostrarCartas(jugador1);
+                showCards.showCards(player1);
                 System.out.print(Constants.HIT_OR_STAND);
                 int decision = sc.nextInt();
                 sc.nextLine();
                 switch (decision) {
                     case 0:
-                        sumaJ1 = cardActions.sumarCartas(jugador1);
+                        scoreP1 = cardActions.getScore(player1);
                         System.out.print(Constants.SCORE);
-                        System.out.println(sumaJ1);
-                        j1Plantado = true;
+                        System.out.println(scoreP1);
+                        p1Stands = true;
                         break;
                     case 1:
-                        posicionBaraja = cardActions.repartirCartas(baraja, jugador1, posicionBaraja, posicionMazoJ1, 1);
-                        posicionMazoJ1++;
-                        sumaJ1 = cardActions.sumarCartas(jugador1);
-                        showCards.mostrarCartas(jugador1);
+                        posDeck = cardActions.giveCards(deck, player1, posDeck, posDeckP1, 1);
+                        posDeckP1++;
+                        scoreP1 = cardActions.getScore(player1);
+                        showCards.showCards(player1);
                         break;
                     default:
                         System.out.println(Constants.ERROR);
                         break;
                 }
             }
-            if (sumaJ1 > 21) {
-                j1Perdio = true;
+            if (scoreP1 > 21) {
+                p1Lose = true;
                 System.out.println(Constants.LINE);
                 System.out.println(Constants.PLAYER_1);
                 System.out.print(Constants.YOU_LOSE_THE_GAME);
-                sumaJ1 = cardActions.sumarCartas(jugador1);
-                System.out.println(sumaJ1);
+                scoreP1 = cardActions.getScore(player1);
+                System.out.println(scoreP1);
             }
 
             //Turno Jugador 2
-            if (sumaJ2 <= 21 && !j2Plantado && !blackjackJ2) {
+            if (scoreP2 <= 21 && !p2Stands && !blackjackP2) {
                 System.out.println(Constants.LINE);
                 System.out.println(Constants.PLAYER_2);
-                showCards.mostrarCartas(jugador2);
+                showCards.showCards(player2);
                 System.out.print(Constants.HIT_OR_STAND);
                 int decision = sc.nextInt();
                 sc.nextLine();
                 switch (decision) {
                     case 0:
-                        sumaJ2 = cardActions.sumarCartas(jugador2);
+                        scoreP2 = cardActions.getScore(player2);
                         System.out.print(Constants.SCORE);
-                        System.out.println(sumaJ2);
-                        j2Plantado = true;
+                        System.out.println(scoreP2);
+                        p2Stands = true;
                         break;
                     case 1:
-                        posicionBaraja = cardActions.repartirCartas(baraja, jugador2, posicionBaraja, posicionMazoJ2, 1);
-                        posicionMazoJ2++;
-                        sumaJ2 = cardActions.sumarCartas(jugador2);
-                        showCards.mostrarCartas(jugador2);
+                        posDeck = cardActions.giveCards(deck, player2, posDeck, posDeckP2, 1);
+                        posDeckP2++;
+                        scoreP2 = cardActions.getScore(player2);
+                        showCards.showCards(player2);
                         break;
                     default:
                         System.out.println(Constants.ERROR);
                         break;
                 }
             }
-            if (sumaJ2 > 21) {
-                j2Perdio = true;
+            if (scoreP2 > 21) {
+                p2Lose = true;
                 System.out.println(Constants.LINE);
                 System.out.println(Constants.PLAYER_2);
                 System.out.print(Constants.YOU_LOSE_THE_GAME);
-                sumaJ2 = cardActions.sumarCartas(jugador2);
-                System.out.println(sumaJ2);
+                scoreP2 = cardActions.getScore(player2);
+                System.out.println(scoreP2);
             }
 
             //Turno Crupier
             System.out.println(Constants.LINE);
             System.out.println(Constants.CRUPIER);
-            if (sumaCp < 17) {
-                posicionBaraja = cardActions.repartirCartas(baraja, crupier, posicionBaraja, posicionMazoCp, 1);
-                posicionMazoCp++;
-                sumaCp = cardActions.sumarCartas(crupier);
-                showCards.mostrarCartas(crupier);
+            if (scoreCp < 17) {
+                posDeck = cardActions.giveCards(deck, crupier, posDeck, posDeckCp, 1);
+                posDeckCp++;
+                scoreCp = cardActions.getScore(crupier);
+                showCards.showCards(crupier);
             } else if (blackjackCp) {
                 System.out.println(Constants.CRUPIER_HAVE_BLACKJACK);
-                showCards.mostrarCartas(crupier);
+                showCards.showCards(crupier);
             } else {
-                showCards.mostrarCartas(crupier);
-                sumaCp = cardActions.sumarCartas(crupier);
+                showCards.showCards(crupier);
+                scoreCp = cardActions.getScore(crupier);
                 System.out.print(Constants.SCORE);
-                System.out.println(sumaCp);
+                System.out.println(scoreCp);
             }
-            if (sumaCp > 21) {
+            if (scoreCp > 21) {
                 System.out.println(Constants.LINE);
                 System.out.println(Constants.CRUPIER_LOSE);
                 cpLose = true;
             }
-        } while ((!blackjackCp && !cpLose) && ((!j1Plantado && !j1Perdio) || (!j2Plantado && !j2Perdio)));
+        } while ((!blackjackCp && !cpLose) && ((!p1Stands && !p1Lose) || (!p2Stands && !p2Lose)));
 
         //Sacar ganadores
-        boolean[] results = getWinners.getWinners(blackjackJ1, blackjackJ2, blackjackCp, sumaJ1, sumaJ2, sumaCp, j1Perdio, j2Perdio, cpLose);
-        boolean j1Gana =  results[0];
-        boolean j1Empata = results[1];
-        boolean j2Gana = results[2];
-        boolean j2Empata = results[3];
+        boolean[] results = getWinners.getWinners(blackjackP1, blackjackP2, blackjackCp, scoreP1, scoreP2, scoreCp, p1Lose, p2Lose, cpLose);
+        boolean p1Wins =  results[0];
+        boolean p1Ties = results[1];
+        boolean p2Wins = results[2];
+        boolean p2Ties = results[3];
         System.out.println(Constants.LINE);
-        showWinners.mostrarPuntuaciones(j1Gana, j1Empata, j2Gana, j2Empata);
-
-
+        showWinners.showWinners(p1Wins, p1Ties, p2Wins, p2Ties);
     }
 }
