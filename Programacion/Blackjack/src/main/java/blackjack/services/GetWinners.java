@@ -1,4 +1,4 @@
-package services;
+package blackjack.services;
 
 public class GetWinners {
     public boolean[] getWinners(boolean blackjackP1, boolean blackjackP2, boolean blackjackCp, int scoreP1, int scoreP2, int scoreCp, boolean p1Lose, boolean p2Lose, boolean cpLose) {

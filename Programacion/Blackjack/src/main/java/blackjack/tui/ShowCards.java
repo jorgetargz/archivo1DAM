@@ -1,6 +1,6 @@
-package tui;
+package blackjack.tui;
 
-import utils.Constants;
+import blackjack.utils.Constants;
 
 public class ShowCards {
     public void showCardsLastHide(int[] crupier) {

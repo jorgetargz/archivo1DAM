@@ -1,8 +1,8 @@
-package tui;
+package blackjack.tui;
 
-import services.CardActions;
-import services.GetWinners;
-import utils.Constants;
+import blackjack.services.CardActions;
+import blackjack.services.GetWinners;
+import blackjack.utils.Constants;
 
 import java.util.Random;
 import java.util.Scanner;

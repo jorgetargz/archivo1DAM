@@ -1,6 +1,6 @@
-package tui;
+package blackjack.tui;
 
-import utils.Constants;
+import blackjack.utils.Constants;
 
 public class ShowWinners {
     public void showWinners(boolean p1Wins, boolean p1Ties, boolean p2Wins, boolean p2Ties) {

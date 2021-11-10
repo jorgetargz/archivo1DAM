@@ -1,4 +1,4 @@
-package utils;
+package blackjack.utils;
 
 public class Constants {
     public static final String ACE = "As ";

@@ -1,4 +1,4 @@
-package services;
+package blackjack.services;
 
 import java.util.Random;
 
@@ -33,12 +33,10 @@ public class CardActions {
             }
         }
         for (int i = 0; i < player.length; i++) {
-            if (player[i] == 1) {
-                if (score + 10 <= 21) {
+            if (player[i] == 1 && score + 10 <= 21) {
                     score += 10;
                 }
             }
-        }
         return score;
     }
 
