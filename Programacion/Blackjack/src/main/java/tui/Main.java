@@ -38,10 +38,8 @@ public class Main {
             //Variables de juego
             boolean p1Stands = false;
             boolean p1Lose = false;
-
             boolean p2Stands = false;
             boolean p2Lose = false;
-
             boolean cpLose = false;
 
             //Apostar
@@ -207,7 +205,6 @@ public class Main {
                     System.out.println(Constants.CRUPIER_LOSE);
                     cpLose = true;
                 }
-
             }
 
             //Sacar ganadores
