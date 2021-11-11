@@ -27,6 +27,7 @@ public class Main {
         int moneyP2 = 200;
 
         while (moneyP1 > 0 || moneyP2 > 0) {
+
             //Mazos de juego
             int[] player1 = new int[5];
             int[] player2 = new int[5];
@@ -207,7 +208,7 @@ public class Main {
                         cpLose = true;
                     }
                 }
-            } while ((!blackjackCp && !cpLose) && ((!blackjackP1 && !p1Stands && !p1Lose) || (!blackjackP2 && !p2Stands && !p2Lose)) || scoreCp < 17);
+            } while (((!blackjackCp && !cpLose) || scoreCp < 17) && ((!blackjackP1 && !p1Stands && !p1Lose) || (!blackjackP2 && !p2Stands && !p2Lose)));
 
             //Sacar ganadores
             boolean[] results = getWinners.getWinners(blackjackP1, blackjackP2, blackjackCp, scoreP1, scoreP2, scoreCp, p1Lose, p2Lose, cpLose);
