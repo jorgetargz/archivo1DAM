@@ -6,7 +6,10 @@ public class GetWinners {
         boolean p1Ties = false;
         boolean p2Wins = false;
         boolean p2Ties = false;
-        boolean[] results = new boolean[4];
+        boolean[] results = new boolean[6];
+        for (int i = 0; i < results.length; i++) {
+            results[i] = false;
+        }
         if (cpLose) {
             if (!p1Lose) {
                 p1Wins = true;
@@ -22,12 +25,12 @@ public class GetWinners {
                 p2Wins = true;
             }
         } else {
-            if (scoreP1 > scoreCp) {
+            if (scoreP1 > scoreCp && scoreP1 <= 21) {
                 p1Wins = true;
             } else if (scoreP1 == scoreCp){
                 p1Ties = true;
             }
-            if (scoreP2 > scoreCp) {
+            if (scoreP2 > scoreCp && scoreP2 <= 21) {
                 p2Wins = true;
             } else if (scoreP2 == scoreCp){
                 p2Ties = true;
@@ -39,11 +42,15 @@ public class GetWinners {
             results[0] = true;
         } else if (p1Ties){
             results[1] = true;
+        } else {
+            results[2] = true;
         }
         if (p2Wins){
-            results[2] = true;
-        } else if (p2Ties){
             results[3] = true;
+        } else if (p2Ties){
+            results[4] = true;
+        } else {
+            results[5] = true;
         }
         return results;
     }
