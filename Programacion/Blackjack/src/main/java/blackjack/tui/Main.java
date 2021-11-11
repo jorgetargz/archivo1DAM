@@ -1,7 +1,6 @@
 package blackjack.tui;
 
 import blackjack.services.CardActions;
-import blackjack.services.GetWinners;
 import blackjack.utils.Constants;
 
 import java.util.Random;
@@ -15,229 +14,156 @@ public class Main {
 
         CardActions cardActions = new CardActions();
         ShowCards showCards = new ShowCards();
-        ShowWinners showWinners = new ShowWinners();
-        GetWinners getWinners = new GetWinners();
 
         //Generar baraja
         int[] deck = cardActions.generateShuffledDeck(r);
         int posDeck = 0;
 
-        //Dinero jugadores
-        int moneyP1 = 200;
-        int moneyP2 = 200;
 
-        while (moneyP1 > 0 || moneyP2 > 0) {
+        while (true) {
+            //Array jugadores (jugador, variables/mazo, datos)
+            int numPlayers = 2;
+            int[][][] jugadores = new int[numPlayers][2][7];
 
-            //Mazos de juego
-            int[] player1 = new int[5];
-            int[] player2 = new int[5];
-            int[] crupier = new int[5];
-            int posDeckP1 = 0;
-            int posDeckP2 = 0;
-            int posDeckCp = 0;
+            //Crupier
+            int[] crupier = new int[7];
+            int posDeckCrupier = 0;
+            int scoreCrupier;
 
-            //Variables de juego
-            boolean p1Stands = false;
-            boolean p1Lose = false;
-            boolean p2Stands = false;
-            boolean p2Lose = false;
-            boolean cpLose = false;
-
-            //Apostar
-            int bidP1 = 0;
-            int bidP2 = 0;
-            if (moneyP1 == 0) {
-                p1Lose = true;
-            } else {
-                System.out.println(Constants.PLAYER_1);
-                System.out.print(Constants.MONEY);
-                System.out.println(moneyP1);
-                System.out.print(Constants.PLACE_YOUR_BID);
-                bidP1 = sc.nextInt();
-                if (bidP1 > moneyP1) {
-                    System.out.println(Constants.YOU_DON_T_HAVE_ENOUGH_MONEY);
-                    bidP1 = moneyP1;
-                }
-            }
-
-            if (moneyP2 == 0) {
-                p2Lose = true;
-            } else {
-                System.out.println(Constants.PLAYER_2);
-                System.out.print(Constants.MONEY);
-                System.out.println(moneyP2);
-                System.out.print(Constants.PLACE_YOUR_BID);
-                bidP2 = sc.nextInt();
-                if (bidP2 > moneyP2) {
-                    System.out.println(Constants.YOU_DON_T_HAVE_ENOUGH_MONEY);
-                    bidP2 = moneyP2;
-                }
-            }
             System.out.println(Constants.LINE);
+            System.out.println(Constants.NEW_GAME);
 
             //Repartir 2 cartas
-            posDeck = cardActions.giveCards(deck, player1, posDeck, posDeckP1, 2);
-            posDeck = cardActions.giveCards(deck, player2, posDeck, posDeckP2, 2);
-            posDeck = cardActions.giveCards(deck, crupier, posDeck, posDeckCp, 2);
-            posDeckP1 += 2;
-            posDeckP2 += 2;
-            posDeckCp += 2;
+            int posDeckPlayer = 0;
+            for (int i = 0; i < numPlayers; i++) {
+                posDeck = cardActions.giveCards(deck, i, jugadores, posDeck, posDeckPlayer, 2);
+            }
+            posDeckPlayer += 2;
+            cardActions.giveCardsCrupier(deck, crupier, posDeck, posDeckCrupier, 2);
+            posDeckCrupier += 2;
 
             //Mostrar cartas repartidas ronda 0
-            System.out.println(Constants.PLAYER_1);
-            showCards.showCards(player1);
-            System.out.println(Constants.PLAYER_2);
-            showCards.showCards(player2);
-            System.out.println(Constants.CRUPIER);
-            showCards.showCardsLastHide(crupier);
+            for (int i = 0; i < numPlayers; i++) {
+                System.out.println(Constants.LINE);
+                System.out.println(Constants.PLAYER + (i + 1) + ":");
+                showCards.showCards(i, jugadores);
+
+            }
             System.out.println(Constants.LINE);
+            System.out.println(Constants.CRUPIER);
+            showCards.showCardsCrupierLastHide(crupier);
 
-            //Comprobar si los jugadores tienen blackjack
-            boolean blackjackP1 = false;
-            boolean blackjackP2 = false;
-            boolean blackjackCp = false;
-            int scoreP1 = cardActions.getScore(player1);
-            if (scoreP1 == 21) {
-                blackjackP1 = true;
-                System.out.println(Constants.PLAYER_1_HAVE_BLACKJACK);
+            //Comprobar si los jugadores tienen blackjack se guarda la puntuación en [i][1][2] y si hay blackjack en [i][1][3]
+            for (int i = 0; i < numPlayers; i++) {
+                int score = cardActions.getScore(i, jugadores);
+                jugadores[i][1][2] = score;
+                if (score == 21) {
+                    jugadores[i][1][3] = 1;
+                }
             }
-            int scoreP2 = cardActions.getScore(player2);
-            if (scoreP2 == 21) {
-                blackjackP2 = true;
-                System.out.println(Constants.PLAYER_2_HAVE_BLACKJACK);
+
+            //Comprobar si el crupier tiene blackjack
+            boolean blackjackCrupier = false;
+            scoreCrupier = cardActions.getScoreCrupier(crupier);
+            if (scoreCrupier == 21 && posDeckCrupier == 2) {
+                blackjackCrupier = true;
             }
-            int scoreCp = 0;
 
-            do {
-                if (moneyP1 > 0 || moneyP2 > 0) {
-                    //Comprobar si el crupier tiene blackjack
-                    scoreCp = cardActions.getScore(crupier);
-                    if (scoreCp == 21 && posDeckCp == 2) {
-                        blackjackCp = true;
-                    }
-                    //Turno Jugador 1
-                    if (scoreP1 <= 21 && !p1Stands && !blackjackP1 && !p1Lose) {
-                        System.out.println(Constants.LINE);
-                        System.out.println(Constants.PLAYER_1);
-                        showCards.showCards(player1);
-                        System.out.print(Constants.HIT_OR_STAND);
-                        int decision = sc.nextInt();
-                        sc.nextLine();
-                        switch (decision) {
-                            case 0:
-                                scoreP1 = cardActions.getScore(player1);
-                                System.out.print(Constants.SCORE);
-                                System.out.println(scoreP1);
-                                p1Stands = true;
-                                break;
-                            case 1:
-                                posDeck = cardActions.giveCards(deck, player1, posDeck, posDeckP1, 1);
-                                posDeckP1++;
-                                scoreP1 = cardActions.getScore(player1);
-                                showCards.showCards(player1);
-                                break;
-                            default:
-                                System.out.println(Constants.ERROR);
-                                break;
-                        }
-                    }
-                    if (scoreP1 > 21) {
-                        p1Lose = true;
-                        System.out.println(Constants.LINE);
-                        System.out.println(Constants.PLAYER_1);
-                        System.out.print(Constants.YOU_LOSE_THE_GAME);
-                        scoreP1 = cardActions.getScore(player1);
-                        System.out.println(scoreP1);
-                    }
-
-                    //Turno Jugador 2
-                    if (scoreP2 <= 21 && !p2Stands && !blackjackP2 && !p2Lose) {
-                        System.out.println(Constants.LINE);
-                        System.out.println(Constants.PLAYER_2);
-                        showCards.showCards(player2);
-                        System.out.print(Constants.HIT_OR_STAND);
-                        int decision = sc.nextInt();
-                        sc.nextLine();
-                        switch (decision) {
-                            case 0:
-                                scoreP2 = cardActions.getScore(player2);
-                                System.out.print(Constants.SCORE);
-                                System.out.println(scoreP2);
-                                p2Stands = true;
-                                break;
-                            case 1:
-                                posDeck = cardActions.giveCards(deck, player2, posDeck, posDeckP2, 1);
-                                posDeckP2++;
-                                scoreP2 = cardActions.getScore(player2);
-                                showCards.showCards(player2);
-                                break;
-                            default:
-                                System.out.println(Constants.ERROR);
-                                break;
-                        }
-                    }
-                    if (scoreP2 > 21) {
-                        p2Lose = true;
-                        System.out.println(Constants.LINE);
-                        System.out.println(Constants.PLAYER_2);
-                        System.out.print(Constants.YOU_LOSE_THE_GAME);
-                        scoreP2 = cardActions.getScore(player2);
-                        System.out.println(scoreP2);
-                    }
-
-                    //Turno Crupier
+            //Turno Jugadores completan su juego y después pasa al siguiente si se planta se guarda en [i][1][4]
+            for (int i = 0; i < numPlayers; i++) {
+                int score = cardActions.getScore(i, jugadores);
+                jugadores[i][1][2] = score;
+                while (score < 21 && jugadores[i][1][4] != 1) {
                     System.out.println(Constants.LINE);
-                    System.out.println(Constants.CRUPIER);
-                    if (scoreCp < 17) {
-                        posDeck = cardActions.giveCards(deck, crupier, posDeck, posDeckCp, 1);
-                        posDeckCp++;
-                        scoreCp = cardActions.getScore(crupier);
-                        showCards.showCards(crupier);
-                    } else if (blackjackCp) {
-                        System.out.println(Constants.CRUPIER_HAVE_BLACKJACK);
-                        showCards.showCards(crupier);
-                    } else {
-                        showCards.showCards(crupier);
-                        scoreCp = cardActions.getScore(crupier);
-                        System.out.print(Constants.SCORE);
-                        System.out.println(scoreCp);
-                    }
-                    if (scoreCp > 21) {
-                        System.out.println(Constants.LINE);
-                        System.out.println(Constants.CRUPIER_LOSE);
-                        cpLose = true;
+                    System.out.println(Constants.IT_S_THE_TURN_OF);
+                    System.out.println(Constants.PLAYER + (i + 1));
+                    showCards.showCards(i, jugadores);
+                    System.out.print(Constants.HIT_OR_STAND);
+                    int decision = sc.nextInt();
+                    sc.nextLine();
+                    switch (decision) {
+                        case 0:
+                            jugadores[i][1][4] = 1;
+                            score = cardActions.getScore(i, jugadores);
+                            jugadores[i][1][2] = score;
+                            System.out.println(Constants.PLAYER + (i + 1) + Constants.SCORE + score);
+                            break;
+                        case 1:
+                            posDeck = cardActions.giveCards(deck, i, jugadores, posDeck, posDeckPlayer, 1);
+                            posDeckPlayer++;
+                            showCards.showCards(i, jugadores);
+                            score = cardActions.getScore(i, jugadores);
+                            jugadores[i][1][2] = score;
+                            break;
+                        default:
+                            System.out.println(Constants.ERROR);
+                            break;
                     }
                 }
-            } while (((!blackjackCp && !cpLose) || scoreCp < 17) && ((!blackjackP1 && !p1Stands && !p1Lose) || (!blackjackP2 && !p2Stands && !p2Lose)));
-
-            //Sacar ganadores
-            boolean[] results = getWinners.getWinners(blackjackP1, blackjackP2, blackjackCp, scoreP1, scoreP2, scoreCp, p1Lose, p2Lose, cpLose);
-            boolean p1Wins = results[0];
-            boolean p1Ties = results[1];
-            p1Lose = results[2];
-            boolean p2Wins = results[3];
-            boolean p2Ties = results[4];
-            p2Lose = results[5];
-            System.out.println(Constants.LINE);
-            showWinners.showWinners(p1Wins, p1Ties, p2Wins, p2Ties);
-
-            //Calcular dinero jugadores
-            if (blackjackP1) {
-                moneyP1 += bidP1 * 1.5;
-            } else if (p1Wins) {
-                moneyP1 += bidP1;
-            } else if (p1Lose) {
-                moneyP1 -= bidP1;
+                if (score > 21) {
+                    System.out.println(Constants.PLAYER + (i + 1) + Constants.YOU_LOSE_THE_GAME + score);
+                } else if (jugadores[i][1][3] == 1) {
+                    System.out.println(Constants.LINE);
+                    System.out.println(Constants.PLAYER + (i + 1) + Constants.HAVE_BLACKJACK);
+                } else if (score == 21) {
+                    //Tiene 21, pero no con 2 cartas, no es blackjack
+                    System.out.println(Constants.PLAYER + (i + 1) + Constants.SCORE + score);
+                }
             }
-            if (blackjackP2) {
-                moneyP2 += bidP2 * 1.5;
-            } else if (p2Wins) {
-                moneyP2 += bidP2;
-            } else if (p2Lose) {
-                moneyP2 -= bidP2;
-            }
+
+            //Turno Crupier
+            boolean crupierLose = false;
             System.out.println(Constants.LINE);
+            System.out.println(Constants.CRUPIER);
+            while (scoreCrupier < 17) {
+                posDeck = cardActions.giveCardsCrupier(deck, crupier, posDeck, posDeckCrupier, 1);
+                posDeckCrupier++;
+                scoreCrupier = cardActions.getScoreCrupier(crupier);
+                showCards.showCardsCrupier(crupier);
+            }
+            if (blackjackCrupier) {
+                System.out.println(Constants.CRUPIER_HAVE_BLACKJACK);
+                showCards.showCardsCrupier(crupier);
+            } else {
+                showCards.showCardsCrupier(crupier);
+                scoreCrupier = cardActions.getScoreCrupier(crupier);
+                System.out.print(Constants.SCORE);
+                System.out.println(scoreCrupier);
+            }
+            if (scoreCrupier > 21) {
+                System.out.println(Constants.LINE);
+                System.out.println(Constants.CRUPIER_LOSE);
+                crupierLose = true;
+            }
+
+            //Sacar ganadores si gana se guarda en [i][1][5]
+            for (int i = 0; i < numPlayers; i++) {
+                if (crupierLose && jugadores[i][1][2] <= 21) {
+                    jugadores[i][1][5] = 1;
+                }
+                if (blackjackCrupier && jugadores[i][1][3] == 1) {
+                    jugadores[i][1][5] = 1;
+                }
+                if (jugadores[i][1][2] > scoreCrupier && jugadores[i][1][2] <= 21) {
+                    jugadores[i][1][5] = 1;
+                }
+            }
+
+            //Si ha perdido se guarda en [i][1][6]
+            for (int i = 0; i < numPlayers; i++) {
+                if (jugadores[i][1][5] == 1) {
+                    System.out.println(Constants.LINE);
+                    System.out.println(Constants.PLAYER + (i + 1) + Constants.WINS);
+                } else if (jugadores[i][1][2] == scoreCrupier) {
+                    System.out.println(Constants.LINE);
+                    System.out.println(Constants.PLAYER + (i + 1) + Constants.TIES);
+                } else {
+                    jugadores[i][1][6] = 1;
+                    System.out.println(Constants.LINE);
+                    System.out.println(Constants.PLAYER + (i + 1) + Constants.LOSE);
+                }
+            }
         }
-        System.out.println(Constants.GAME_OVER);
+        //Fin
     }
 }
