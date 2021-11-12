@@ -41,10 +41,10 @@ public class Main {
             //Repartir 2 cartas
             int posDeckPlayer = 0;
             for (int i = 0; i < numPlayers; i++) {
-                posDeck = cardActions.giveCards( deck, i, jugadores, posDeck, posDeckPlayer, 2);
+                posDeck = cardActions.giveCards(deck, i, jugadores, posDeck, posDeckPlayer, 2);
             }
             posDeckPlayer += 2;
-            cardActions.giveCardsCrupier( deck, crupier, posDeck, posDeckCrupier, 2);
+            cardActions.giveCardsCrupier(deck, crupier, posDeck, posDeckCrupier, 2);
             posDeckCrupier += 2;
 
             //Mostrar cartas repartidas ronda 0
@@ -145,7 +145,7 @@ public class Main {
             for (int i = 0; i < numPlayers; i++) {
                 if (crupierLose && jugadores[i][1][1] <= 21) {
                     jugadores[i][1][4] = 1;
-                } else if (blackjackCrupier && jugadores[i][1][2] == 1) {
+                } else if ((blackjackCrupier && jugadores[i][1][2] == 1) || (jugadores[i][1][2] == 1 && !blackjackCrupier)) {
                     jugadores[i][1][4] = 1;
                 } else if (jugadores[i][1][1] > scoreCrupier && jugadores[i][1][1] <= 21) {
                     jugadores[i][1][4] = 1;

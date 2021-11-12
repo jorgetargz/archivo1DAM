@@ -34,11 +34,12 @@ public class CardActions {
         }
         for (int i = 0; i < 6; i++) {
             if (players[player][0][i] == 1 && score + 10 <= 21) {
-                    score += 10;
-                }
+                score += 10;
             }
+        }
         return score;
     }
+
     public int getScoreCrupier(int[] player) {
         int score = 0;
         for (int i = 0; i < player.length; i++) {
@@ -56,7 +57,7 @@ public class CardActions {
         return score;
     }
 
-    public int giveCards( int[] deck, int player,  int[][][] players, int posDeck, int posPlayerDeck, int numCards) {
+    public int giveCards(int[] deck, int player, int[][][] players, int posDeck, int posPlayerDeck, int numCards) {
         while (numCards > 0) {
             players[player][0][posPlayerDeck] = deck[posDeck];
             posDeck++;
@@ -65,7 +66,8 @@ public class CardActions {
         }
         return posDeck;
     }
-    public int giveCardsCrupier( int[] deck, int[] player, int posDeck, int posPlayerDeck, int numCards) {
+
+    public int giveCardsCrupier(int[] deck, int[] player, int posDeck, int posPlayerDeck, int numCards) {
         while (numCards > 0) {
             player[posPlayerDeck] = deck[posDeck];
             posDeck++;
