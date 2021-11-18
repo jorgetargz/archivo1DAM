@@ -27,7 +27,7 @@ public class Main {
             //jugadores[i][1][3] (Se ha plantado)
             //jugadores[i][1][4] (Ha ganado)
 
-            int numPlayers = 2;
+            int numPlayers = sc.nextInt();
             int[][][] jugadores = new int[numPlayers][2][7];
 
             //Crupier
@@ -52,7 +52,6 @@ public class Main {
                 System.out.println(Constants.LINE);
                 System.out.println(Constants.PLAYER + (i + 1) + ":");
                 showCards.showCards(i, jugadores);
-
             }
             System.out.println(Constants.LINE);
             System.out.println(Constants.CRUPIER);
