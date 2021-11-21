@@ -17,4 +17,5 @@ public class Constantes {
     public static final String HURRA = "hurra";
 
     public static final String DARTH_SE_PARTE_LA_CAJA = "Darth se parte la caja";
+    public static final String DARTH_MOULA = "Darth Moula ";
 }

@@ -10,21 +10,25 @@ public class Ejercicio1 {
     public static void main(String[] args) {
         Random r = new Random();
         int jugadores = r.nextInt(2) + 3;
-        int[] baraja = generateShuffledDeck(r);
+        int[] baraja = nuevaBaraja(r);
         int indiceBaraja;
         int[] cartas = new int[jugadores];
         int[] vecesPerdidas = new int[jugadores];
-        int posDarth = (r.nextInt(jugadores) + 1);
+        int posDarth = (r.nextInt(jugadores));
         int[] vectoresMentales = new int[jugadores];
         for (int i = 0; i < vectoresMentales.length; i++) {
             vectoresMentales[i] = r.nextInt(101);
         }
-        System.out.println(Constantes.DARTH_JUEGA_EN_LA_POSICION + (posDarth));
+        System.out.println(Constantes.DARTH_JUEGA_EN_LA_POSICION + (posDarth+1));
         for (int j = 0; j < jugadores; j++) {
             System.out.println();
             System.out.println(Constantes.LINE);
-            System.out.println(Constantes.JUGADOR + (j + 1) + Constantes.REPARTE);
-            shuffle(r, baraja);
+            if (j == posDarth) {
+                System.out.println(Constantes.DARTH_MOULA + Constantes.REPARTE);
+            } else {
+                System.out.println(Constantes.JUGADOR + (j + 1) + Constantes.REPARTE);
+            }
+            barajear(r, baraja);
             indiceBaraja = 0;
             for (int i = 0; i < jugadores; i++) {
                 cartas[i] = baraja[indiceBaraja];
@@ -33,7 +37,11 @@ public class Ejercicio1 {
             for (int i = j; i < (jugadores - 1 + j); i++) {
                 System.out.println();
                 int jugador = ((i + 1) % jugadores + 1);
-                System.out.println(Constantes.JUGADOR + (jugador));
+                if (jugador == (posDarth+1)) {
+                    System.out.println(Constantes.DARTH_MOULA);
+                } else {
+                    System.out.println(Constantes.JUGADOR + (jugador));
+                }
                 System.out.println(Constantes.TU_CARTA_ES + mostrarCarta(cartas, jugador));
                 if (cartas[jugador % jugadores] == 10) {
                     System.out.println(Constantes.NO_PUEDES_CAMBIAR_LA_CARTA_EL_SIGUIENTE_JUGADOR_TIENE_UN_REY);
@@ -70,7 +78,11 @@ public class Ejercicio1 {
                 }
             }
             System.out.println();
-            System.out.println(Constantes.JUGADOR + (j + 1));
+            if (j == posDarth) {
+                System.out.println(Constantes.DARTH_MOULA);
+            } else {
+                System.out.println(Constantes.JUGADOR + (j + 1));
+            }
             System.out.println(Constantes.TU_CARTA_ES + mostrarCarta(cartas, (j + 1)));
             if (cartas[j] != 10) {
                 System.out.println(Constantes.QUIERES_COGER_UNA_CARTA_DE_LA_BARAJA_1_SI_0_NO);
@@ -85,26 +97,24 @@ public class Ejercicio1 {
                             decision = 0;
                         }
                     }
-                }
-                switch (decision) {
-                    case 0:
-                        System.out.println(Constantes.NO);
-                        break;
-                    case 1:
-                        if (j == posDarth) {
-                            cartas[j] = 9;
-                        } else {
+                    switch (decision) {
+                        case 0:
+                            System.out.println(Constantes.NO);
+                            break;
+                        case 1:
                             System.out.println(Constantes.SI);
                             cartas[j] = baraja[indiceBaraja];
-                        }
-                        System.out.println(Constantes.TU_CARTA_ES + mostrarCarta(cartas, (j + 1)));
-                        break;
-                    default:
-                        System.out.println(Constantes.ERROR);
-                        break;
-                }
-                if (cartas[j] == 10) {
-                    cartas[j] = 0;
+                            System.out.println(Constantes.TU_CARTA_ES + mostrarCarta(cartas, (j + 1)));
+                            break;
+                        default:
+                            System.out.println(Constantes.ERROR);
+                            break;
+                    }
+                    if (cartas[j] == 10) {
+                        cartas[j] = 0;
+                    }
+                } else {
+                    cartas[j] = 9;
                 }
             }
             int posValorMenor = 0;
@@ -116,8 +126,12 @@ public class Ejercicio1 {
             for (int i = 0; i < cartas.length; i++) {
                 if (cartas[i] == cartas[posValorMenor]) {
                     System.out.println();
-                    System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HA_PERDIDO_ESTA_RONDA);
-                    vecesPerdidas[i] += 1;
+                    if (i == posDarth) {
+                        System.out.println(Constantes.DARTH_MOULA + Constantes.HA_PERDIDO_ESTA_RONDA);
+                    } else {
+                        System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HA_PERDIDO_ESTA_RONDA);
+                        vecesPerdidas[i] += 1;
+                    }
                 }
             }
         }
@@ -130,10 +144,17 @@ public class Ejercicio1 {
         }
         for (int i = 0; i < vecesPerdidas.length; i++) {
             if (vecesPerdidas[i] == vecesPerdidas[posValorMenor]) {
-                System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HA_GANADO);
-                System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HURRA);
-                System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HURRA);
-                System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HURRA);
+                if (i == posDarth) {
+                    System.out.println(Constantes.DARTH_MOULA + Constantes.HA_GANADO);
+                    System.out.println(Constantes.DARTH_MOULA + Constantes.HURRA);
+                    System.out.println(Constantes.DARTH_MOULA + Constantes.HURRA);
+                    System.out.println(Constantes.DARTH_MOULA + Constantes.HURRA);
+                } else {
+                    System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HA_GANADO);
+                    System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HURRA);
+                    System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HURRA);
+                    System.out.println(Constantes.JUGADOR + (i + 1) + Constantes.HURRA);
+                }
             }
         }
     }
@@ -155,19 +176,19 @@ public class Ejercicio1 {
         return carta;
     }
 
-    public static int[] generateShuffledDeck(Random r) {
-        int[] deck = new int[40];
-        for (int i = 0; i < deck.length; i++) {
-            deck[i] = (i % 10) + 1;
+    public static int[] nuevaBaraja(Random r) {
+        int[] baraja = new int[40];
+        for (int i = 0; i < baraja.length; i++) {
+            baraja[i] = (i % 10) + 1;
         }
-        shuffle(r, deck);
-        return deck;
+        barajear(r, baraja);
+        return baraja;
     }
 
-    private static void shuffle(Random r, int[] deck) {
+    private static void barajear(Random r, int[] deck) {
         for (int i = 0; i < 100; i++) {
-            int pos1 = r.nextInt(39);
-            int pos2 = r.nextInt(39);
+            int pos1 = r.nextInt(40);
+            int pos2 = r.nextInt(40);
             int aux = deck[pos1];
             deck[pos1] = deck[pos2];
             deck[pos2] = aux;

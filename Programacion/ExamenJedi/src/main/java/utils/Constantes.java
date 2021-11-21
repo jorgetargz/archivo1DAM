@@ -19,4 +19,5 @@ public class Constantes {
     public static final String HAS_MUERTO = " Has muerto.";
     public static final String LINE = "---------------------------------";
     public static final String NO_PUEDES_CAMBIARLA_EL_SIGUIENTE_JUGADOR_A_MUERTO = "No puedes cambiarla el siguiente jugador a muerto";
+    public static final String CHEWBACCA = "Chewbacca ";
 }
