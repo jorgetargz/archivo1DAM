@@ -49,7 +49,7 @@ public class Ejercicio1 {
                 if (cartas[jugador - 1] != 10 && cartas[jugador % jugadores] != 10) {
                     System.out.println(Constantes.QUIERES_CAMBIARLA_1_SI_0_NO);
                     int decision = r.nextInt(2);
-                    if (jugador != posDarth) {
+                    if (jugador != (posDarth+1)) {
                         int poderDart = r.nextInt(101);
                         if (vectoresMentales[jugador - 1] < poderDart) {
                             System.out.println(Constantes.DARTH_SE_PARTE_LA_CAJA);
