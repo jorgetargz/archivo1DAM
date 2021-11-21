@@ -96,9 +96,8 @@ public class Ejercicio1 {
                         } else {
                             System.out.println(Constantes.SI);
                             cartas[j] = baraja[indiceBaraja];
-                            indiceBaraja++;
-                            System.out.println(Constantes.TU_CARTA_ES + mostrarCarta(cartas, (j + 1)));
                         }
+                        System.out.println(Constantes.TU_CARTA_ES + mostrarCarta(cartas, (j + 1)));
                         break;
                     default:
                         System.out.println(Constantes.ERROR);

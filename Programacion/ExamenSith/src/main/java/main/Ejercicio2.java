@@ -20,7 +20,7 @@ public class Ejercicio2 {
             int cantPositivos = 0;
             double mediaNegativos;
             int negativoMayor = 0;
-            int cuadradoMayorNegativo = 0;
+            int cuadradoMayorNegativo;
             int sumaPosImparesAbs = 0;
 
             for (int i = 0; i < vector.length; i++) {
