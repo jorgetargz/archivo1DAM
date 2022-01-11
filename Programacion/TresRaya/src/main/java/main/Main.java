@@ -38,5 +38,6 @@ public class Main {
                 System.out.println(dao.getTablero().toString());
             }
         } while (dao.getJugadas() < 9 && !dao.tresLinea());
+        System.out.println("Game Over");
     }
 }
