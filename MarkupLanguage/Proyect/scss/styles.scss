@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
+
+$font-stack: 'Bakbak One', cursive;
+$background-color: #f8f9fa;
+@mixin topLeftMargin($valor){
+  margin-top: $valor;
+  margin-left: $valor;
+}
+body {
+  font: 100% $font-stack;
+  background-color: $background-color;
+}
+#photoscarousel {
+  @include topLeftMargin(50px);
+}

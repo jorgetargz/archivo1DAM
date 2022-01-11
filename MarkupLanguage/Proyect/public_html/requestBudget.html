@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transporteur S.A.</title>
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles2.css">
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</head>
+<body>
+<div class="p-3 bg-light text-secondary rounded d-flex fade-in">
+    <img id="logo" src="images/logo.png" height="300" width="300" alt="logo"/>
+    <header class="d-none d-md-block">
+        <h1>International package transport.</h1>
+        <p>A company with more than 20 years of experience delivering goods around the world.</p>
+    </header>
+</div>
+<nav class="navbar m-2 sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Transporteur S.A.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sendPackage.html">Send a package</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="requestBudget.html">Request budget</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Help
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="faq.html">F.A.Q.</a></li>
+                        <li><a class="dropdown-item" href="contact.html">Contact us</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<form class="m-4" action="mailto:budget@transporteur.com" method="get">
+    <div class="form-outline mb-4">
+        <input type="text" id="fnamebudget" class="form-control"/>
+        <label class="form-label" for="fnamebudget">Full name</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="text" id="companyName" class="form-control"/>
+        <label class="form-label" for="companyName">Company name</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="email" id="emailbudget" class="form-control"/>
+        <label class="form-label" for="emailbudget">Email address</label>
+    </div>
+    <div class="form-outline mb-4">
+        <textarea class="form-control" id="bussiness" rows="4"></textarea>
+        <label class="form-label" for="bussiness">Describe the service that yours business requires</label>
+    </div>
+
+    <div class="form-check d-flex justify-content-center mb-4">
+        <input
+                class="form-check-input me-2"
+                type="checkbox"
+                value=""
+                id="copy"
+                checked
+        />
+        <label class="form-check-label" for="copy">
+            Send me a copy of this message
+        </label>
+    </div>
+    <button type="submit" data-bs-toggle="tooltip" title="Nos pondremos en contacto contigo!"
+            class="btn btn-success btn-block mb-4">Send
+    </button>
+</form>
+<footer class="bg-light text-center text-lg-start">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Services</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="sendPackage.html" class="text-dark"><img class="icon" src="images/package.png"
+                                                                          alt="icon"> Send a package</a>
+                    </li>
+                    <li>
+                        <a href="requestBudget.html" class="text-dark"><img class="icon" src="images/budget.png"
+                                                                            alt="icon"> Request budget</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Help</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="faq.html" class="text-dark"><img class="icon" src="images/faq.png" alt="icon"> F.A.Q.</a>
+                    </li>
+                    <li>
+                        <a href="contact.html" class="text-dark"><img class="icon" src="images/contact.png" alt="icon">
+                            Contact us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Social</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="https://www.facebook.com" class="text-dark me-1"><img class="icon"
+                                                                                       src="images/facebook.png"
+                                                                                       alt="icon"> Facebook</a>
+                    </li>
+                    <li>
+                        <a href="https://www.twitter.com" class="text-dark"><img class="icon" src="images/twitter.png"
+                                                                                 alt="icon"> Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com" class="text-dark me-1"><img class="icon"
+                                                                                        src="images/instagram.svg"
+                                                                                        alt="icon"> Instagram</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-0">Promoters</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://www.google.com" class="text-dark"><img class="icon" src="images/google.png"
+                                                                                alt="icon"> Google</a>
+                    </li>
+                    <li>
+                        <a href="https://www.microsoft.com" class="text-dark"><img class="icon"
+                                                                                   src="images/microsoft.png"
+                                                                                   alt="icon"> Microsoft</a>
+                    </li>
+                    <li>
+                        <a href="https://www.ibm.com" class="text-dark"><img class="icon" src="images/ibm.png"
+                                                                             alt="icon"> IBM</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3">
+        © 2022 Copyright:
+        <a class="text-dark" href="#">Transporteur S.A.</a>
+    </div>
+</footer>
+</body>
+</html>

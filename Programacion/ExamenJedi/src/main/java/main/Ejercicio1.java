@@ -69,7 +69,7 @@ public class Ejercicio1 {
                                 case 1:
                                     System.out.println(Constantes.SI);
                                     boolean esChiuSiguiente = false;
-                                    if (((i + 2) % jugadores + 1) == posChiu) {
+                                    if (((i + 2) % jugadores + 1) == (posChiu+1)) {
                                         esChiuSiguiente = true;
                                     }
                                     int swap = cartas[jugador % jugadores];

@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap");
+body {
+  font: 100% "Bakbak One", cursive;
+  background-color: #f8f9fa;
+}
+
+#photoscarousel {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+/*# sourceMappingURL=styles.css.map */
