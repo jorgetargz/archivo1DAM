@@ -8,9 +8,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         DaoTablero dao = new DaoTablero();
         System.out.println("Bienvenido al 3 en Raya");
-        System.out.println(dao.getTablero().toString());
+        System.out.println(dao.getTablero());
+        String valor = "";
         do {
-            String valor;
             for (int i = 0; i < 2 && !dao.tresLinea(); i++) {
                 dao.nuevaJugada();
                 if (i == 0) {
@@ -35,9 +35,12 @@ public class Main {
                     corY = sc.nextInt();
                     sc.nextLine();
                 }
-                System.out.println(dao.getTablero().toString());
+                System.out.println(dao.getTablero());
             }
         } while (dao.getJugadas() < 9 && !dao.tresLinea());
-        System.out.println("Game Over");
+        if (dao.tresLinea()) {
+            System.out.println("Gana "+valor);
+        }
+        System.out.println("Game over");
     }
 }

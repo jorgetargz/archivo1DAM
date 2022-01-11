@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Celda {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private String valor;
 
     public Celda(int x, int y) {

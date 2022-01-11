@@ -5,7 +5,7 @@ import modelo.Tablero;
 public class DaoTablero {
 
     //BD
-    private Tablero tablero;
+    private final Tablero tablero;
     private int jugadas;
 
     public DaoTablero() {
@@ -87,7 +87,7 @@ public class DaoTablero {
         valor = tablero.getCelda(0, 2);
         if (!valor.equals("-")) {
             coincidenciaDiagonalInversa = true;
-            for (int i = 1, j = 1; j < 3; i++, j--) {
+            for (int i = 1, j = 1; i < 3; i++, j--) {
                 if (!valor.equals(tablero.getCelda(i, j))) {
                     coincidenciaDiagonalInversa = false;
                 }
@@ -99,7 +99,7 @@ public class DaoTablero {
 
     }
 
-    public Tablero getTablero() {
-        return tablero;
+    public String getTablero() {
+        return tablero.toString();
     }
 }
