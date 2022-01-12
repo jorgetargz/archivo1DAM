@@ -14,7 +14,6 @@ public class Celda {
         this.valor = "-";
     }
 
-
     @Override
     public String toString() {
         return valor;

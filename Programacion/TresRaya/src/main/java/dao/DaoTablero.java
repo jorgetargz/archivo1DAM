@@ -38,7 +38,7 @@ public class DaoTablero {
 
     public boolean tresLinea() {
         String valor;
-        boolean tresLinea = false;
+        boolean tresRaya = false;
 
         boolean coincidenciaLineas;
         for (int i = 0; i < 3; i++) {
@@ -51,7 +51,7 @@ public class DaoTablero {
                     }
                 }
                 if (coincidenciaLineas)
-                    tresLinea = true;
+                    tresRaya = true;
             }
         }
 
@@ -66,7 +66,7 @@ public class DaoTablero {
                     }
                 }
                 if (coincidenciaColumnas)
-                    tresLinea = true;
+                    tresRaya = true;
             }
         }
 
@@ -80,7 +80,7 @@ public class DaoTablero {
                 }
             }
             if (coincidenciaDiagonal)
-                tresLinea = true;
+                tresRaya = true;
         }
 
         boolean coincidenciaDiagonalInversa;
@@ -93,10 +93,9 @@ public class DaoTablero {
                 }
             }
             if (coincidenciaDiagonalInversa)
-                tresLinea = true;
+                tresRaya = true;
         }
-        return tresLinea;
-
+        return tresRaya;
     }
 
     public String getTablero() {
