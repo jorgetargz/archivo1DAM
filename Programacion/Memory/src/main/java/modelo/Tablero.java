@@ -3,16 +3,16 @@ package modelo;
 import java.util.Random;
 
 public class Tablero {
-    private final Carta[][] tablero;
+    private final Carta[][] matrizTablero;
 
     public Tablero(int tamX, int tamY) {
         int valor;
         int aux = 0;
-        tablero = new Carta[tamX][tamY];
+        matrizTablero = new Carta[tamX][tamY];
         for (int i = 0; i < tamX; i++) {
             for (int j = 0; j < tamY; j++) {
                 valor = aux % ((tamX * tamY) / 2);
-                tablero[i][j] = new Carta(valor);
+                matrizTablero[i][j] = new Carta(valor);
                 aux++;
             }
         }
@@ -22,37 +22,37 @@ public class Tablero {
             int pos1Y = r.nextInt(tamY);
             int pos2X = r.nextInt(tamX);
             int pos2Y = r.nextInt(tamY);
-            Carta cartaAux = tablero[pos1X][pos1Y];
-            tablero[pos1X][pos1Y] = tablero[pos2X][pos2Y];
-            tablero[pos2X][pos2Y] = cartaAux;
+            Carta cartaAux = matrizTablero[pos1X][pos1Y];
+            matrizTablero[pos1X][pos1Y] = matrizTablero[pos2X][pos2Y];
+            matrizTablero[pos2X][pos2Y] = cartaAux;
         }
     }
 
     public int getValor(int x, int y){
-        return tablero[x][y].getValor();
+        return matrizTablero[x][y].getValor();
     }
 
     public boolean isLevantada(int x, int y) {
-        return tablero[x][y].isLevantada();
+        return matrizTablero[x][y].isLevantada();
     }
 
     public void levantarCarta(int x, int y){
-        tablero[x][y].setLevantada(true);
+        matrizTablero[x][y].setLevantada(true);
     }
 
     public void ocultarCarta(int x, int y){
-        tablero[x][y].setLevantada(false);
+        matrizTablero[x][y].setLevantada(false);
     }
 
     public String imprimirCarta(int x, int y) {
-        return tablero[x][y].toString();
+        return matrizTablero[x][y].toString();
     }
 
     public boolean quedanCartasOcultas(){
         boolean quedanCartas = false;
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[i].length; j++) {
-                if (!tablero[j][i].isLevantada()) {
+        for (int i = 0; i < matrizTablero.length; i++) {
+            for (int j = 0; j < matrizTablero[i].length; j++) {
+                if (!matrizTablero[j][i].isLevantada()) {
                     quedanCartas = true;
                     break;
                 }
@@ -64,8 +64,8 @@ public class Tablero {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[i].length; j++) {
+        for (int i = 0; i < matrizTablero.length; i++) {
+            for (int j = 0; j < matrizTablero[i].length; j++) {
                 sb.append(" ").append(imprimirCarta(j,i)).append(" ");
             }
             sb.append("\n");
