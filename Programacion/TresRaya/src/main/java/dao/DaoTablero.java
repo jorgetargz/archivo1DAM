@@ -4,7 +4,6 @@ import modelo.Tablero;
 
 public class DaoTablero {
 
-    //BD
     private final Tablero tablero;
     private int jugadas;
 
@@ -95,6 +94,7 @@ public class DaoTablero {
             if (coincidenciaDiagonalInversa)
                 tresRaya = true;
         }
+
         return tresRaya;
     }
 

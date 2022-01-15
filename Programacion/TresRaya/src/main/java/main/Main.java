@@ -1,6 +1,7 @@
 package main;
 
 import dao.DaoTablero;
+
 import java.util.Scanner;
 
 public class Main {
@@ -39,7 +40,7 @@ public class Main {
             }
         } while (dao.getJugadas() < 9 && !dao.tresLinea());
         if (dao.tresLinea()) {
-            System.out.println("Gana "+valor);
+            System.out.println("Gana " + valor);
         }
         System.out.println("Game over");
     }

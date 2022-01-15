@@ -7,7 +7,7 @@ public class Tablero {
         celdas = new Celda[tamX][tamY];
         for (int i = 0; i < tamX; i++) {
             for (int j = 0; j < tamY; j++) {
-                celdas[i][j] = new Celda(i,j);
+                celdas[i][j] = new Celda(i, j);
             }
         }
     }
