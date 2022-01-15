@@ -39,4 +39,8 @@ public class DaoTablero {
     public boolean compararCartas(int x1, int y1, int x2, int y2){
         return tablero.getValor(x1, y1) == tablero.getValor(x2, y2);
     }
+
+    public boolean isLevantada(int corX, int corY) {
+        return tablero.isLevantada(corX, corY);
+    }
 }

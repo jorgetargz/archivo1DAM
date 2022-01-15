@@ -32,6 +32,10 @@ public class Tablero {
         return tablero[x][y].getValor();
     }
 
+    public boolean isLevantada(int x, int y) {
+        return tablero[x][y].isLevantada();
+    }
+
     public void levantarCarta(int x, int y){
         tablero[x][y].setLevantada(true);
     }
