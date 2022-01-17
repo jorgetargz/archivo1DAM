@@ -25,9 +25,11 @@ public class Main {
             int[] corCarta1 = elegirCarta(sc, dao);
             int[] corCarta2 = elegirCarta(sc, dao);
             if (!dao.compararCartas(corCarta1[0], corCarta1[1], corCarta2[0], corCarta2[1])) {
+                System.out.println("Has fallado");
                 dao.ocultarCarta(corCarta1[0], corCarta1[1]);
                 dao.ocultarCarta(corCarta2[0], corCarta2[1]);
             } else {
+                System.out.println("Has acertado");
                 puntuacionJugadores[turno]++;
                 turno--;
             }
@@ -41,6 +43,7 @@ public class Main {
     private static int[] elegirCarta(Scanner sc, DaoTablero dao) {
         int corX;
         int corY;
+        boolean estabaLevantada = false;
         do {
             System.out.println("Elige una carta :");
             System.out.print(Constantes.COORDENADA_X);
@@ -49,12 +52,13 @@ public class Main {
             System.out.print(Constantes.COORDENADA_Y);
             corY = sc.nextInt();
             sc.nextLine();
-            dao.levantarCarta(corX, corY);
-            System.out.println(dao.getTablero());
             if (dao.isLevantada(corX,corY)){
                 System.out.println("Carta levantada elige otra. ");
+                estabaLevantada = true;
             }
-        } while (dao.isLevantada(corX,corY));
+            dao.levantarCarta(corX, corY);
+            System.out.println(dao.getTablero());
+        } while (estabaLevantada);
         return new int[]{corX, corY};
     }
 }
