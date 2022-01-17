@@ -4,7 +4,7 @@ import modelo.Tablero;
 
 public class DaoTablero {
     private final Tablero tablero;
-    private int dificultad;
+    private final int dificultad;
 
     public DaoTablero(int dificultad) {
         switch (dificultad) {
