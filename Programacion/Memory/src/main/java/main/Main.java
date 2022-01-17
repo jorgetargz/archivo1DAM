@@ -44,7 +44,9 @@ public class Main {
         int corX;
         int corY;
         boolean estabaLevantada = false;
+        boolean coordenadaIncorrecta;
         do {
+            coordenadaIncorrecta = false;
             System.out.println("Elige una carta :");
             System.out.print(Constantes.COORDENADA_X);
             corX = sc.nextInt();
@@ -52,13 +54,19 @@ public class Main {
             System.out.print(Constantes.COORDENADA_Y);
             corY = sc.nextInt();
             sc.nextLine();
-            if (dao.isLevantada(corX,corY)){
-                System.out.println("Carta levantada elige otra. ");
-                estabaLevantada = true;
+            if (corX < 0 || corX > (dao.getTamanoTablero() - 1) || corY < 0 || corY > (dao.getTamanoTablero() - 1)) {
+                System.out.println("Coordenada incorrecta se empieza desde 0");
+                coordenadaIncorrecta = true;
+            } else {
+                if (dao.isLevantada(corX, corY)) {
+                    System.out.println("Carta levantada elige otra. ");
+                    estabaLevantada = true;
+                } else {
+                    dao.levantarCarta(corX, corY);
+                    System.out.println(dao.getTablero());
+                }
             }
-            dao.levantarCarta(corX, corY);
-            System.out.println(dao.getTablero());
-        } while (estabaLevantada);
+        } while (estabaLevantada || coordenadaIncorrecta);
         return new int[]{corX, corY};
     }
 }

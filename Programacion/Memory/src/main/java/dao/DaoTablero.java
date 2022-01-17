@@ -4,20 +4,41 @@ import modelo.Tablero;
 
 public class DaoTablero {
     private final Tablero tablero;
+    private int dificultad;
 
     public DaoTablero(int dificultad) {
         switch (dificultad) {
             case 2:
                 tablero = new Tablero(6, 6);
+                this.dificultad = dificultad;
                 break;
             case 3:
                 tablero = new Tablero(8, 8);
+                this.dificultad = dificultad;
                 break;
             case 1:
             default:
                 tablero = new Tablero(4, 4);
+                this.dificultad = dificultad;
                 break;
         }
+    }
+
+    public int getTamanoTablero() {
+        int tamanoTablero;
+        switch (dificultad) {
+            case 2:
+                tamanoTablero = 6;
+                break;
+            case 3:
+                tamanoTablero = 8;
+                break;
+            case 1:
+            default:
+                tamanoTablero = 4;
+                break;
+        }
+        return tamanoTablero;
     }
 
     public String getTablero() {
