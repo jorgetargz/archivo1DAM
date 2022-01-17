@@ -33,7 +33,7 @@ public class Main {
                 puntuacionJugadores[turno]++;
                 turno--;
             }
-            turno = (++turno) % jugadores;
+            turno = (1 + turno) % jugadores;
         } while (dao.quedanCartasOcultas());
         for (int i = 0; i < jugadores; i++) {
             System.out.println("Jugador " + (i + 1) + " puntuación: " + puntuacionJugadores[i]);
