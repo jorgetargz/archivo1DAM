@@ -1,4 +1,4 @@
-Feature: Iniciar sesion
+Feature: Como usuario quiero iniciar sesion para gestionar o comprar
   Scenario: Usuario inicia sesion con un nombre registrado
     Given Lista de usuarios: jaime, lucas, rodrigo.
     And Solicitar un nombre de inicio.
@@ -18,4 +18,3 @@ Feature: Iniciar sesion
     When Usuario elige registrar admin
     Then Se solicita una contraseñas
     And Si la contraseña es correcta se inicia sesion como gerente de la tienda
-

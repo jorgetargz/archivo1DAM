@@ -3,14 +3,21 @@ package modelo;
 import java.util.Objects;
 
 public class Producto {
-    private final int id;
-    private final String nombre;
+    private int id;
+    private String nombre;
     private double precio;
     private int stock;
 
-
-    public Producto(int id, String nombre, double precio, int stock) {
+    public Producto(int id) {
         this.id = id;
+    }
+
+    public Producto(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Producto(String nombre, double precio, int stock) {
+        this.id = 0;
         this.nombre = nombre.toUpperCase();
         this.precio = precio;
         this.stock = stock;
@@ -18,6 +25,10 @@ public class Producto {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -45,7 +56,7 @@ public class Producto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Producto producto = (Producto) o;
-        return nombre.equals(producto.nombre);
+        return (id == producto.getId()) || Objects.equals(nombre,producto.nombre);
     }
 
     @Override

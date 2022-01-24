@@ -1,6 +1,7 @@
 package pruebas;
 
 import dao.DaoProductos;
+import modelo.Producto;
 
 public class Prueba {
     public static void main(String[] args) {
@@ -11,23 +12,24 @@ public class Prueba {
         int stock = 3;
 
         System.out.println("Prueba añadir producto nuevo");
-        if (daoProductos.addProduct(nombre, precio, stock)) {
+        if (daoProductos.addProduct(new Producto(nombre, precio, stock))) {
             System.out.println("Prueba correcta producto añadido");
         }
         System.out.println();
 
         System.out.println("Prueba añadir producto ya existente");
-        if (!daoProductos.addProduct(nombre, precio, stock)) {
+        precio = 3;
+        if (!daoProductos.addProduct(new Producto(nombre, precio, stock))) {
             System.out.println("Prueba correcta producto no añadido");
         }
         System.out.println();
 
         System.out.println("Prueba mostrar todos los productos");
         //Añadimos mas productos
-        daoProductos.addProduct("Kitkat rojo", 1.2, 4);
-        daoProductos.addProduct("Kitkat azul", 1.4, 6);
-        daoProductos.addProduct("manzanilla", 1.4, 6);
-        daoProductos.addProduct("chocolates valor", 3, 0);
+        daoProductos.addProduct(new Producto("Kitkat rojo", 1.2, 4));
+        daoProductos.addProduct(new Producto("Kitkat azul", 1.4, 6));
+        daoProductos.addProduct(new Producto("manzanilla", 1.4, 6));
+        daoProductos.addProduct(new Producto("chocolates valor", 3, 0));
         //Mostramos los productos
         System.out.println("Subprueba motrar todos los productos para la gestion");
         System.out.println(daoProductos.getProductListAdmin());
@@ -58,10 +60,19 @@ public class Prueba {
         }
         System.out.println();
 
-        System.out.println("Prueba modificar stock");
-        int nuevoStock = 4;
-        if (daoProductos.setProductStock(1, nuevoStock)) {
-            if (daoProductos.getProductStock(1) == 4) {
+        System.out.println("Prueba añadir stock");
+        int nuevasUnidades = 4;
+        if (daoProductos.addProductStock(1,nuevasUnidades)) {
+            if (daoProductos.getProductStock(1) == 7) {
+                System.out.println("Prueba correcta");
+            }
+        }
+        System.out.println();
+
+        System.out.println("Prueba eliminar stock");
+        int unidadesCaducadas = 2;
+        if (daoProductos.deleteProductStock(1,unidadesCaducadas)) {
+            if (daoProductos.getProductStock(1) == 5) {
                 System.out.println("Prueba correcta");
             }
         }

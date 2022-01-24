@@ -8,17 +8,12 @@ public class DaoProductos {
     private final ArrayList<Producto> inventario = new ArrayList<>();
     private int idProduct;
 
-    public boolean addProduct(String nombre, double precio, int stock) {
+    public boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
-        boolean nombreRepetido = false;
-        for (int i = 0; i < inventario.size() && !nombreRepetido; i++) {
-            if (inventario.get(i).getNombre().equalsIgnoreCase(nombre)) {
-                nombreRepetido = true;
-            }
-        }
-        if (!nombreRepetido) {
+        if (!inventario.contains(new Producto(p.getNombre()))) {
             idProduct++;
-            inventario.add(new Producto(idProduct, nombre, precio, stock));
+            p.setId(idProduct);
+            inventario.add(p);
             operacionRealizada = true;
         }
         return operacionRealizada;
@@ -26,11 +21,11 @@ public class DaoProductos {
 
     public boolean deleteProduct(int id) {
         boolean operacionRealizada = false;
-        for (Producto producto : inventario) {
-            if (producto.getId() == id) {
-                inventario.remove(producto);
+        int posicion = inventario.indexOf(new Producto(id));
+        if (posicion >= 0) {
+            Producto p = inventario.get(posicion);
+            if (inventario.remove(p)) {
                 operacionRealizada = true;
-                break;
             }
         }
         return operacionRealizada;
@@ -66,42 +61,55 @@ public class DaoProductos {
     }
 
     public double getProductPrize(int id) {
-        for (Producto producto : inventario) {
-            if (producto.getId() == id) {
-                return producto.getPrecio();
-            }
+        int posicion = inventario.indexOf(new Producto(id));
+        if (posicion >= 0) {
+            Producto p = inventario.get(posicion);
+            return p.getPrecio();
         }
         return -1;
     }
 
     public int getProductStock(int id) {
-        for (Producto producto : inventario) {
-            if (producto.getId() == id) {
-                return producto.getStock();
-            }
+        int posicion = inventario.indexOf(new Producto(id));
+        if (posicion >= 0) {
+            Producto p = inventario.get(posicion);
+            return p.getStock();
         }
         return -1;
     }
 
     public boolean setProductPrize(int id, double precio) {
         boolean operacionRealizada = false;
-        for (Producto producto : inventario) {
-            if (producto.getId() == id) {
-                producto.setPrecio(precio);
-                operacionRealizada = true;
-                break;
-            }
+        int posicion = inventario.indexOf(new Producto(id));
+        if (posicion >= 0) {
+            Producto p = inventario.get(posicion);
+            p.setPrecio(precio);
+            operacionRealizada = true;
         }
         return operacionRealizada;
     }
 
-    public boolean setProductStock(int id, int stock) {
+
+    public boolean addProductStock(int id, int stock) {
         boolean operacionRealizada = false;
-        for (Producto producto : inventario) {
-            if (producto.getId() == id) {
-                producto.setStock(stock);
+        int posicion = inventario.indexOf(new Producto(id));
+        if (posicion >= 0) {
+            Producto p = inventario.get(posicion);
+            p.setStock(p.getStock() + stock);
+            operacionRealizada = true;
+        }
+        return operacionRealizada;
+    }
+
+    public boolean deleteProductStock(int id, int stock) {
+        boolean operacionRealizada = false;
+        int posicion = inventario.indexOf(new Producto(id));
+        if (posicion >= 0) {
+            Producto p = inventario.get(posicion);
+            int nuevoStock = p.getStock() - stock;
+            if (nuevoStock >= 0) {
+                p.setStock(nuevoStock);
                 operacionRealizada = true;
-                break;
             }
         }
         return operacionRealizada;

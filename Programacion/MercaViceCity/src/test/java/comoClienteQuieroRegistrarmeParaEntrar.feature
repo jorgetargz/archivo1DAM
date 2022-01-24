@@ -1,4 +1,4 @@
-Feature: Registrar nombre de usuario
+Feature: Como cliente quiero registrar un nombre para poder iniciar sesion
 
   Scenario: Registrar nombre nuevo
     Given Lista de usuarios: jaime, lucas, rodrigo.
@@ -18,4 +18,4 @@ Feature: Registrar nombre de usuario
     And Solicitar un nombre de registro.
     When Usuario elige registrar admin
     Then Mostrar mensaje de error no puedes registrar ese nombre
-    And Solicitar otro nombre
+    And Solicitar otro nombreorrecta se inicia sesion como gerente de la tienda
