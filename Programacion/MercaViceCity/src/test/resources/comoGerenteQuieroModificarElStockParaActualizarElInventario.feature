@@ -41,7 +41,7 @@ Feature: Como gerente quiero modifiacr el stock de un producto para actualizar e
     # 6. Modificar stock mediante ID
     When Gerente elige la opcion 6
     Then Solicitar un ID de producto
-    And Cliente elige añadir stock
+    And Cliente elige reducir stock
     And Solicitar cantidad de unidades a eliminnar
     And Modificar el stock en el inventario
     And Volver al menu
