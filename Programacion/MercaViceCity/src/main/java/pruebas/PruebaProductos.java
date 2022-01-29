@@ -3,7 +3,7 @@ package pruebas;
 import dao.DaoProductos;
 import modelo.Producto;
 
-public class Prueba {
+public class PruebaProductos {
     public static void main(String[] args) {
         DaoProductos daoProductos = new DaoProductos();
         //Datos de producto 1

@@ -1,4 +1,7 @@
 Feature: Como cliente quiero añadir un producto al carrito para comprarlo
+  Background:
+    Given Lista de productos
+    #Id 1, Nombre Kitkat, Precio 1, Stock 2;
 
   Scenario: Cliente quiere añadir un producto existente al carrito
     Given

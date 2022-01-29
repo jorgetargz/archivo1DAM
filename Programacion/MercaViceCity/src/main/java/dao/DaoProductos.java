@@ -5,8 +5,12 @@ import modelo.Producto;
 import java.util.ArrayList;
 
 public class DaoProductos {
-    private final ArrayList<Producto> inventario = new ArrayList<>();
+    private final ArrayList<Producto> inventario;
     private int idProduct;
+
+    public DaoProductos() {
+        this.inventario = new ArrayList<>();
+    }
 
     public boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
@@ -20,15 +24,8 @@ public class DaoProductos {
     }
 
     public boolean deleteProduct(int id) {
-        boolean operacionRealizada = false;
-        int posicion = inventario.indexOf(new Producto(id));
-        if (posicion >= 0) {
-            Producto p = inventario.get(posicion);
-            if (inventario.remove(p)) {
-                operacionRealizada = true;
-            }
-        }
-        return operacionRealizada;
+        Producto p = new Producto(id);
+        return inventario.remove(p);
     }
 
     public String getProductListAdmin() {
@@ -81,7 +78,7 @@ public class DaoProductos {
     public boolean setProductPrize(int id, double precio) {
         boolean operacionRealizada = false;
         int posicion = inventario.indexOf(new Producto(id));
-        if (posicion >= 0) {
+        if (posicion >= 0 && precio > 0) {
             Producto p = inventario.get(posicion);
             p.setPrecio(precio);
             operacionRealizada = true;
