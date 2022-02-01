@@ -1,6 +1,6 @@
 package ui;
 
-import common.Constantes;
+import ui.common.Constantes;
 import services.ServicesClientes;
 
 import java.util.Scanner;
@@ -21,7 +21,7 @@ public class UILogin {
 
     public void uiRegistrarCliente(Scanner sc) {
         String dni;
-        System.out.println(Constantes.REGISTRARSE_COMO_CLIENTE);
+        System.out.println();
         System.out.println(Constantes.INDICA_TU_DNI);
         dni = sc.nextLine();
         if (scClientes.registrarCliente(dni)) {
@@ -30,7 +30,7 @@ public class UILogin {
     }
 
     public void uiIniciarCliente(Scanner sc) {
-        System.out.println(Constantes.INICIAR_SESIÓN);
+        System.out.println();
         System.out.println(Constantes.INDICA_TU_DNI);
         String dni = sc.nextLine();
         if (scClientes.registrarCliente(dni)) {

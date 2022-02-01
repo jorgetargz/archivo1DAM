@@ -1,6 +1,6 @@
 package services;
 
-import common.Constantes;
+import ui.common.Constantes;
 import dao.DaoClientes;
 import modelo.Cliente;
 import ui.UIAdmin;

@@ -1,6 +1,6 @@
 package ui;
 
-import common.Constantes;
+import ui.common.Constantes;
 import services.ServicesClientes;
 import services.ServicesProductos;
 
@@ -16,14 +16,14 @@ public class UIAdmin {
         int opAdmin;
         do {
             System.out.println(Constantes.SALIR);
-            System.out.println(Constantes.AÑADIR_PRODUCTO);
+            System.out.println(Constantes.ANADIR_PRODUCTO);
             System.out.println(Constantes.ELIMINAR_PRODUCTO);
             System.out.println(Constantes.VER_PRODUCTOS);
             System.out.println(Constantes.BUSCAR_UN_PRODUCTO);
             System.out.println(Constantes.AUMENTAR_STOCK_PRODUCTO_POR_ID);
             System.out.println(Constantes.DISMINUIR_STOCK_PRODUCTO_POR_ID);
             System.out.println(Constantes.CAMBIAR_PRECIO_PRODUCTO_POR_ID);
-            System.out.println(Constantes.AÑADIR_CLIENTE);
+            System.out.println(Constantes.ANADIR_CLIENTE);
             System.out.println(Constantes.VER_LISTA_CLIENTES);
             System.out.println(Constantes.ELIMINAR_CLIENTE_POR_DNI);
             opAdmin = sc.nextInt();
@@ -62,7 +62,7 @@ public class UIAdmin {
                     this.uiEliminarCliente(sc);
                     break;
                 default:
-                    System.out.println("Error entrada no valida");
+                    System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
             }
         } while (opAdmin != 0);
     }
@@ -75,12 +75,12 @@ public class UIAdmin {
             System.out.print(Constantes.INTRODUCE_EL_PRECIO);
             double precio = sc.nextDouble();
             sc.nextLine();
-            System.out.println(Constantes.INTRODUCE_EL_STOCK);
+            System.out.print(Constantes.INTRODUCE_EL_STOCK);
             int stock = sc.nextInt();
             sc.nextLine();
             productoAnadido = scProductos.anadirProducto(nombre, precio, stock);
             if (!productoAnadido)
-                System.out.println(Constantes.PRODUCTO_NO_AÑADIDO_REVISA_LOS_DATOS);
+                System.out.println(Constantes.PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS);
         } while (!productoAnadido);
     }
 
@@ -113,7 +113,7 @@ public class UIAdmin {
         int nuevasUnidades = sc.nextInt();
         sc.nextLine();
         if (scProductos.aumentarStock(idProducto, nuevasUnidades)) {
-            System.out.println(Constantes.UNIDADES_AÑADIDAS);
+            System.out.println(Constantes.UNIDADES_ANADIDAS);
         } else {
             System.out.println(Constantes.CANTIDAD_DE_UNIDADES_O_ID_NO_VALIDO);
         }
@@ -155,15 +155,14 @@ public class UIAdmin {
 
     private void uiRegistrarCliente(Scanner sc) {
         String dni;
-        System.out.println(Constantes.REGISTRARSE_COMO_CLIENTE);
-        System.out.println(Constantes.INDICA_TU_DNI);
+        System.out.println(Constantes.REGISTRAR_NUEVO_CLIENTE);
+        System.out.print(Constantes.INDICA_DNI_DEL_CLIENTE);
         dni = sc.nextLine();
         if (scClientes.registrarCliente(dni)) {
-            System.out.println(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
+            System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
             scClientes.setNombre(dni, nombre);
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
-
     }
 
     public void uiEliminarCliente(Scanner sc) {

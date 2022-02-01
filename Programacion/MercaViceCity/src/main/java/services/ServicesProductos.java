@@ -1,6 +1,6 @@
 package services;
 
-import dao.DaoClientes;
+
 import dao.DaoProductos;
 import modelo.Producto;
 
@@ -65,7 +65,7 @@ public class ServicesProductos {
 
     public boolean disminuirStock(int idProducto, int unidadesAEliminar) {
         if (unidadesAEliminar > 0)
-            return daoProductos.addProductStock(idProducto, unidadesAEliminar);
+            return daoProductos.deleteProductStock(idProducto, unidadesAEliminar);
         return false;
     }
 

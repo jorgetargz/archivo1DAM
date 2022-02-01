@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.common.Constantes;
+
 import java.util.Objects;
 
 public class Producto {
@@ -16,12 +18,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Producto(String nombre, double precio, int stock) {
-        this.id = 0;
-        this.nombre = nombre.toUpperCase();
-        this.precio = precio;
-        this.stock = stock;
-    }
 
     public int getId() {
         return id;
@@ -63,10 +59,10 @@ public class Producto {
     public String toString() {
         String nombreMostrar = nombre.toLowerCase();
         nombreMostrar = nombreMostrar.substring(0,1).toUpperCase().concat(nombreMostrar.substring(1));
-        return id + ". " +
-                nombreMostrar + " " +
-                "(" + precio +
-                "€)" + " Cantidad disponible: " + stock;
+        return id + Constantes.PUNTO +
+                nombreMostrar + Constantes.ESPACIO +
+                Constantes.PARENTESIS_IZQUIERDO + precio +
+                Constantes.EURO + Constantes.CANTIDAD_DISPONIBLE + stock;
     }
 
     @Override

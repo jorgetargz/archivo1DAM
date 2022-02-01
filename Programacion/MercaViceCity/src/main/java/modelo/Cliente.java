@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.common.Constantes;
+
 import java.util.Objects;
 
 public class Cliente {
@@ -19,13 +21,10 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-
     @Override
     public String toString() {
-        return "Cliente{" +
-                "dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return Constantes.NOMBRE + nombre + Constantes.ESPACIO +
+                Constantes.DNI + dni;
     }
 
     @Override
