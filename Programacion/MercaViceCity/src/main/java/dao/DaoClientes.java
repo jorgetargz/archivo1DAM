@@ -2,14 +2,12 @@ package dao;
 
 import modelo.Cliente;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DaoClientes {
-    private LinkedHashSet<Cliente> clientes;
-
-    public DaoClientes() {
-        clientes = new LinkedHashSet<>();
-    }
+    private final HashSet<Cliente> clientes = new HashSet<>();
 
     public boolean addCliente(Cliente cliente) {
         return clientes.add(cliente);
@@ -19,34 +17,11 @@ public class DaoClientes {
         cliente.setNombre(nombre);
     }
 
-    public boolean deleteDatosCLiente(Cliente cliente) {
-        if (cliente.getMonedero() == 0) {
-            cliente.deleteDni();
-            cliente.setNombre(null);
-            cliente.setMonedero(0);
-            return true;
-        }
-        return false;
+    public boolean deleteCLiente(Cliente cliente) {
+        return clientes.remove(cliente);
     }
 
-    public String getClientList() {
-        StringBuilder listaCLientes = new StringBuilder();
-        clientes.forEach(cliente -> listaCLientes.append(cliente.toString()).append("\n"));
-        return listaCLientes.toString();
+    public List<Cliente> getClientList() {
+        return clientes.stream().collect(Collectors.toUnmodifiableList());
     }
-
-    public boolean addDinero(Cliente cliente, double cantidad) {
-        boolean cantidadCorrecta = cantidad > 0;
-        if (cantidadCorrecta) cliente.setMonedero(cliente.getMonedero() + cantidad);
-        return cantidadCorrecta;
-    }
-
-    public boolean restarDinero(Cliente cliente, double cantidad) {
-        double saldoFinal = cliente.getMonedero() - cantidad;
-        boolean cantidadCorrecta = cantidad > 0 && saldoFinal >= 0;
-        if (cantidadCorrecta) cliente.setMonedero(saldoFinal);
-        return cantidadCorrecta;
-    }
-
-
 }

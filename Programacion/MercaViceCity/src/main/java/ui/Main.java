@@ -1,8 +1,7 @@
 package ui;
 
-import dao.DaoClientes;
-import dao.DaoProductos;
-import modelo.Cliente;
+
+import common.Constantes;
 
 import java.util.Scanner;
 
@@ -12,17 +11,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         UILogin uiLogin = new UILogin();
-        DaoClientes daoClientes = new DaoClientes();
-        DaoProductos daoProductos = new DaoProductos();
 
-        Cliente usuario = uiLogin.menuLogin(sc, daoClientes);
-
-        if (uiLogin.isAdmin(usuario)) {
-            UIAdmin uiAdmin = new UIAdmin();
-            uiAdmin.menuAdmin(sc, daoClientes, daoProductos);
-        } else {
-            UICliente uiCliente = new UICliente();
-        }
-
+        System.out.println(Constantes.ASCII_ART);
+        System.out.println(Constantes.BIENVENIDO_A_MERCA_VICE_CITY);
+        uiLogin.menuLogin(sc);
     }
 }

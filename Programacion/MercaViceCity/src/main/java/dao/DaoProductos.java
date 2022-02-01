@@ -3,14 +3,12 @@ package dao;
 import modelo.Producto;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DaoProductos {
-    private final ArrayList<Producto> inventario;
+    private final ArrayList<Producto> inventario = new ArrayList<>();
     private int idProduct;
-
-    public DaoProductos() {
-        this.inventario = new ArrayList<>();
-    }
 
     public boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
@@ -18,8 +16,7 @@ public class DaoProductos {
             idProduct++;
             p.setId(idProduct);
             inventario.add(p);
-            operacionRealizada = true;
-        }
+            operacionRealizada = true;}
         return operacionRealizada;
     }
 
@@ -28,22 +25,8 @@ public class DaoProductos {
         return inventario.remove(p);
     }
 
-    public String getProductListAdmin() {
-        StringBuilder productList = new StringBuilder();
-        for (Producto producto : inventario) {
-            productList.append(producto).append("\n");
-        }
-        return productList.toString();
-    }
-
-    public String getProductListClient() {
-        StringBuilder productList = new StringBuilder();
-        for (Producto producto : inventario) {
-            if (producto.getStock() > 0) {
-                productList.append(producto).append("\n");
-            }
-        }
-        return productList.toString();
+    public List<Producto> getProductList() {
+        return inventario.stream().collect(Collectors.toUnmodifiableList());
     }
 
     public String buscarProducto(String nombre) {

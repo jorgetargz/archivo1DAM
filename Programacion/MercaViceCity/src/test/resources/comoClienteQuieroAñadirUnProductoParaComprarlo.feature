@@ -1,7 +1,10 @@
 Feature: Como cliente quiero añadir un producto al carrito para comprarlo
   Background:
     Given Lista de productos
-    #Id 1, Nombre Kitkat, Precio 1, Stock 2;
+    #Id 1, Nombre Kitkat normal, Precio 1, Stock 2;
+    #Id 1, Nombre Kitkat blanco, Precio 1.2, Stock 3;
+    #Id 1, Nombre Kitkat negro, Precio 1.4, Stock 5;
+
 
   Scenario: Cliente quiere añadir un producto existente al carrito
     Given

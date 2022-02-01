@@ -6,18 +6,9 @@ public class Cliente {
 
     private String dni;
     private String nombre;
-    private double monedero = 0;
 
     public Cliente(String dni){
         this.dni = dni;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void deleteDni() {
-        this.dni = null;
     }
 
     public String getNombre() {
@@ -28,20 +19,12 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public double getMonedero() {
-        return monedero;
-    }
-
-    public void setMonedero(double monedero) {
-        this.monedero = monedero;
-    }
 
     @Override
     public String toString() {
         return "Cliente{" +
                 "dni='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", monedero=" + monedero +
                 '}';
     }
 
