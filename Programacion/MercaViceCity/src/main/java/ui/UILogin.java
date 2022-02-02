@@ -22,21 +22,24 @@ public class UILogin {
     public void uiRegistrarCliente(Scanner sc) {
         String dni;
         System.out.println();
-        System.out.println(Constantes.INDICA_TU_DNI);
+        System.out.print(Constantes.INDICA_TU_DNI);
         dni = sc.nextLine();
         if (scClientes.registrarCliente(dni)) {
             uiSetNombreCliente(sc, dni);
+            System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
     }
 
     public void uiIniciarCliente(Scanner sc) {
         System.out.println();
-        System.out.println(Constantes.INDICA_TU_DNI);
+        System.out.print(Constantes.INDICA_TU_DNI);
         String dni = sc.nextLine();
         if (scClientes.registrarCliente(dni)) {
             System.out.println(Constantes.REGISTRARSE_COMO_CLIENTE);
             uiSetNombreCliente(sc, dni);
+            System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
         }
+        System.out.println(Constantes.SESION_INICIADA);
         UICliente uiCliente = new UICliente();
         uiCliente.menuCliente();
     }

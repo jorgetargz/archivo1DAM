@@ -29,6 +29,7 @@ public class ServicesClientes {
         daoClientes.setNombreCliente(cliente,nombre);
     }
 
+
     public List<Cliente> getClientList(){
         return daoClientes.getClientList();
     }

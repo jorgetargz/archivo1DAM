@@ -5,11 +5,18 @@ import modelo.common.Constantes;
 import java.util.Objects;
 
 public class Cliente {
+    public Cliente(String dni){
+        this.dni = dni;
+    }
 
     private String dni;
     private String nombre;
 
-    public Cliente(String dni){
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -23,7 +30,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return Constantes.NOMBRE + nombre + Constantes.ESPACIO +
+        return Constantes.NOMBRE + nombre +
                 Constantes.DNI + dni;
     }
 

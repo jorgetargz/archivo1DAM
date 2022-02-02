@@ -1,9 +1,9 @@
 package modelo.common;
 
 public class Constantes {
-    public Constantes(){}
+    private Constantes(){}
     public static final String NOMBRE = "Nombre: ";
-    public static final String DNI = "DNI: ";
+    public static final String DNI = " DNI: ";
     public static final String PUNTO = ". ";
     public static final String ESPACIO = " ";
     public static final String PARENTESIS_IZQUIERDO = "(";

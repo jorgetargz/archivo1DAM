@@ -1,11 +1,15 @@
 package ui.common;
 
 public class Constantes {
+    private Constantes() {
+    }
 
     public static final String INDICA_EL_NOMBRE_DEL_CLIENTE = "Indica el nombre del cliente: ";
+    public static final String REGISTRADO_CORRECTAMENTE = "Registrado correctamente";
+    public static final String SESION_INICIADA = "Sesion iniciada";
+    public static final String PRODUCTO_ANADIDO = "Producto añadido";
 
-    public Constantes() {
-    }
+    public static final String LISTA_DE_PRODUCTOS = "Lista de productos ";
 
 
     //Main

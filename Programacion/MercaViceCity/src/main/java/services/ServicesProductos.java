@@ -5,13 +5,12 @@ import dao.DaoProductos;
 import modelo.Producto;
 
 import java.util.List;
-import java.util.Scanner;
 
 
 public class ServicesProductos {
 
 
-    private final DaoProductos daoProductos = new DaoProductos();;
+    private final DaoProductos daoProductos = new DaoProductos();
 
 
     public boolean anadirProducto(String nombre, double precio, int stock) {
@@ -27,7 +26,7 @@ public class ServicesProductos {
         return operacionRealizada;
     }
 
-    public boolean eliminarProducto(Scanner sc, int idProducto) {
+    public boolean eliminarProducto(int idProducto) {
         return daoProductos.deleteProduct(idProducto);
     }
 
