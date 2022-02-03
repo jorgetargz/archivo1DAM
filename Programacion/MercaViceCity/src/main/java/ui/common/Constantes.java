@@ -1,6 +1,8 @@
 package ui.common;
 
 public class Constantes {
+    public static final String BIENVENIDO_DE_NUEVO = "Bienvenido de nuevo ";
+
     private Constantes() {
     }
 

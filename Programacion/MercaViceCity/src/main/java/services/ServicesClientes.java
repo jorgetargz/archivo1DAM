@@ -14,28 +14,34 @@ public class ServicesClientes {
 
 
     public boolean registrarCliente(String dni){
+        Cliente cliente = new Cliente(dni);
         if (dni.equals(Constantes.ADMIN)) {
             UIAdmin uiAdmin = new UIAdmin();
             uiAdmin.menuAdmin();
-        } else {
-            Cliente cliente = new Cliente(dni);
-            return daoClientes.addCliente(cliente);
+        } else if (!this.existeCliente(cliente)){
+            daoClientes.addCliente(cliente);
+            return true;
         }
         return false;
     }
 
     public void setNombre(String dni, String nombre){
-        Cliente cliente = new Cliente(dni);
-        daoClientes.setNombreCliente(cliente,nombre);
+        daoClientes.setNombreCliente(new Cliente(dni),nombre);
     }
-
 
     public List<Cliente> getClientList(){
         return daoClientes.getClientList();
     }
 
     public boolean eliminarCliente(String dni){
-        Cliente c = new Cliente(dni);
-        return daoClientes.deleteCLiente(c);
+        boolean criteriosCorrectos = this.existeCliente(new Cliente(dni));
+        if (criteriosCorrectos) {
+            daoClientes.deleteCLiente(dni);
+        }
+        return criteriosCorrectos;
+    }
+
+    public boolean existeCliente(Cliente c){
+        return daoClientes.getClientList().contains(c);
     }
 }

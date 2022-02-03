@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DaoProductos {
-    private final ArrayList<Producto> inventario = new ArrayList<>();
+    private static final ArrayList<Producto> inventario = new ArrayList<>();
     private int idProduct;
 
     public boolean addProduct(Producto p) {
@@ -16,7 +16,8 @@ public class DaoProductos {
             idProduct++;
             p.setId(idProduct);
             inventario.add(p);
-            operacionRealizada = true;}
+            operacionRealizada = true;
+        }
         return operacionRealizada;
     }
 
@@ -30,40 +31,21 @@ public class DaoProductos {
     }
 
 
-    public boolean setProductPrize(int id, double precio) {
-        boolean operacionRealizada = false;
-        int posicion = inventario.indexOf(new Producto(id));
-        if (posicion >= 0 && precio > 0) {
-            Producto p = inventario.get(posicion);
-            p.setPrecio(precio);
-            operacionRealizada = true;
-        }
-        return operacionRealizada;
+    public void setProductPrize(int id, double precio) {
+        Producto p = inventario.get(inventario.indexOf(new Producto(id)));
+        p.setPrecio(precio);
     }
 
 
-    public boolean addProductStock(int id, int stock) {
-        boolean operacionRealizada = false;
-        int posicion = inventario.indexOf(new Producto(id));
-        if (posicion >= 0) {
-            Producto p = inventario.get(posicion);
-            p.setStock(p.getStock() + stock);
-            operacionRealizada = true;
-        }
-        return operacionRealizada;
+    public void addProductStock(int id, int stock) {
+        Producto p = inventario.get(inventario.indexOf(new Producto(id)));
+        p.setStock(p.getStock() + stock);
+
     }
 
-    public boolean deleteProductStock(int id, int stock) {
-        boolean operacionRealizada = false;
-        int posicion = inventario.indexOf(new Producto(id));
-        if (posicion >= 0) {
-            Producto p = inventario.get(posicion);
-            int nuevoStock = p.getStock() - stock;
-            if (nuevoStock >= 0) {
-                p.setStock(nuevoStock);
-                operacionRealizada = true;
-            }
-        }
-        return operacionRealizada;
+    public void reduceProductStock(int id, int stock) {
+        Producto p = inventario.get(inventario.indexOf(new Producto(id)));
+        p.setStock(stock);
+
     }
 }

@@ -41,12 +41,12 @@ public class UILogin {
         }
         System.out.println(Constantes.SESION_INICIADA);
         UICliente uiCliente = new UICliente();
-        uiCliente.menuCliente();
+        uiCliente.menuCliente(dni);
     }
 
     private void uiSetNombreCliente(Scanner sc, String dni) {
         String nombre;
-        System.out.println(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
+        System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
         nombre = sc.nextLine();
         scClientes.setNombre(dni, nombre);
     }

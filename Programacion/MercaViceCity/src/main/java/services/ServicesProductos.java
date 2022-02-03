@@ -34,7 +34,7 @@ public class ServicesProductos {
         return daoProductos.getProductList();
     }
 
-    public String getProductosDisponibles(){
+    public String getProductosDisponibles() {
         List<Producto> inventario = daoProductos.getProductList();
         StringBuilder productListFiltered = new StringBuilder();
         for (Producto producto : inventario) {
@@ -57,20 +57,30 @@ public class ServicesProductos {
     }
 
     public boolean aumentarStock(int idProducto, int nuevasUnidades) {
-        if (nuevasUnidades > 0)
-            return daoProductos.addProductStock(idProducto, nuevasUnidades);
-        return false;
+        boolean criteriosCorrectos = (nuevasUnidades > 0 && this.existeProducto(new Producto(idProducto)));
+        if (criteriosCorrectos) {
+            daoProductos.addProductStock(idProducto, nuevasUnidades);
+        }
+        return criteriosCorrectos;
     }
 
     public boolean disminuirStock(int idProducto, int unidadesAEliminar) {
-        if (unidadesAEliminar > 0)
-            return daoProductos.deleteProductStock(idProducto, unidadesAEliminar);
-        return false;
+        boolean criteriosCorrectos = (unidadesAEliminar > 0 && this.existeProducto(new Producto(idProducto)));
+        if (criteriosCorrectos) {
+            daoProductos.reduceProductStock(idProducto, unidadesAEliminar);
+        }
+        return criteriosCorrectos;
     }
 
-    public boolean setPrecioProducto(int idProducto, double precioProducto){
-        if (precioProducto > 0)
-            return daoProductos.setProductPrize(idProducto, precioProducto);
-        return false;
+    public boolean setPrecioProducto(int idProducto, double precioProducto) {
+        boolean criteriosCorrectos = (precioProducto > 0 && this.existeProducto(new Producto(idProducto)));
+        if (criteriosCorrectos) {
+            daoProductos.setProductPrize(idProducto, precioProducto);
+        }
+        return criteriosCorrectos;
+    }
+
+    public boolean existeProducto(Producto p) {
+        return daoProductos.getProductList().contains(p);
     }
 }

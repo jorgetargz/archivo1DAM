@@ -69,7 +69,7 @@ public class UIAdmin {
         } while (opAdmin != 0);
     }
 
-    public void uiAnadirProducto(Scanner sc) {
+    private void uiAnadirProducto(Scanner sc) {
         boolean productoAnadido;
         do {
             System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
@@ -86,7 +86,7 @@ public class UIAdmin {
         } while (!productoAnadido);
     }
 
-    public void uiEliminarProducto(Scanner sc) {
+    private void uiEliminarProducto(Scanner sc) {
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -97,18 +97,18 @@ public class UIAdmin {
         }
     }
 
-    public void uiMostrarProductos() {
+    private void uiMostrarProductos() {
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
         scProductos.getProductList().forEach(System.out::println);
     }
 
-    public void uiBuscarProducto(Scanner sc) {
+    private void uiBuscarProducto(Scanner sc) {
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
         System.out.println(scProductos.buscarProducto(nombre));
     }
 
-    public void uiAumentarStock(Scanner sc) {
+    private void uiAumentarStock(Scanner sc) {
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -122,7 +122,7 @@ public class UIAdmin {
         }
     }
 
-    public void uiDisminuirStock(Scanner sc) {
+    private void uiDisminuirStock(Scanner sc) {
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -136,7 +136,7 @@ public class UIAdmin {
         }
     }
 
-    public void uiSetPreciProducto(Scanner sc) {
+    private void uiSetPreciProducto(Scanner sc) {
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -150,9 +150,10 @@ public class UIAdmin {
         }
     }
 
-    public void uiClientList() {
+    private void uiClientList() {
         scClientes.getClientList().forEach(System.out::println);
     }
+
 
     private void uiRegistrarCliente(Scanner sc) {
         String dni;
@@ -167,7 +168,7 @@ public class UIAdmin {
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
     }
 
-    public void uiEliminarCliente(Scanner sc) {
+    private void uiEliminarCliente(Scanner sc) {
         System.out.print(Constantes.INTRODUCE_EL_DNI_DEL_CLIENTE_A_ELIMINAR);
         String dni = sc.nextLine();
         if (scClientes.eliminarCliente(dni)) {

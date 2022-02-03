@@ -2,32 +2,34 @@ package dao;
 
 import modelo.Cliente;
 
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 public class DaoClientes {
-    private final HashSet<Cliente> clientes = new HashSet<>();
 
-    public boolean addCliente(Cliente cliente) {
-        return clientes.add(cliente);
+    private static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
+
+    public void addCliente(Cliente cliente) {
+        clientes.put(cliente.getDni(),cliente);
+    }
+
+    public void deleteCLiente(String dni) {
+        clientes.remove(dni);
     }
 
     public void setNombreCliente(Cliente c, String nombre) {
-        clientes.forEach(cliente -> {
+        clientes.values().forEach(cliente -> {
             if (cliente.getDni().equalsIgnoreCase(c.getDni())) {
                 cliente.setNombre(nombre);
             }
         });
     }
 
-
-    public boolean deleteCLiente(Cliente cliente) {
-        return clientes.remove(cliente);
-    }
-
     public List<Cliente> getClientList() {
-        return clientes.stream().collect(Collectors.toUnmodifiableList());
+        return clientes.values().stream().
+                map(cliente -> new Cliente(cliente.getDni(),cliente.getNombre())).
+                collect(Collectors.toUnmodifiableList());
     }
 }
