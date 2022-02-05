@@ -28,26 +28,22 @@ public class DaoProductos {
 
     public List<Producto> getProductList() {
         return inventario.stream()
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(),producto.getStock()))
+                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
                 .collect(Collectors.toUnmodifiableList());
     }
-
 
     public void setProductPrize(int id, double precio) {
         Producto p = inventario.get(inventario.indexOf(new Producto(id)));
         p.setPrecio(precio);
     }
 
-
     public void addProductStock(int id, int stock) {
         Producto p = inventario.get(inventario.indexOf(new Producto(id)));
         p.setStock(p.getStock() + stock);
-
     }
 
     public void reduceProductStock(int id, int stock) {
         Producto p = inventario.get(inventario.indexOf(new Producto(id)));
-        p.setStock(stock);
-
+        p.setStock(p.getStock() - stock);
     }
 }

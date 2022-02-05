@@ -17,9 +17,11 @@ public class ServicesProductos {
     public boolean anadirProducto(String nombre, double precio, int stock) {
         Producto p = new Producto(nombre.toUpperCase());
         boolean operacionRealizada = false;
-        if (daoProductos.addProduct(p) &&
-                precio > 0 &&
-                stock > 0) {
+        if (precio > 0 &&
+                stock > 0 &&
+                !existeProducto(p)
+        ) {
+            daoProductos.addProduct(p);
             daoProductos.setProductPrize(p.getId(), precio);
             daoProductos.addProductStock(p.getId(), stock);
             operacionRealizada = true;
@@ -56,6 +58,7 @@ public class ServicesProductos {
         }
         return productListFiltered.toString();
     }
+
     public String buscarProducto(String nombre) {
         nombre = nombre.trim();
         StringBuilder productListFiltered = new StringBuilder();
@@ -76,9 +79,15 @@ public class ServicesProductos {
     }
 
     public boolean disminuirStock(int idProducto, int unidadesAEliminar) {
-        boolean criteriosCorrectos = (unidadesAEliminar > 0 && this.existeProducto(new Producto(idProducto)));
-        if (criteriosCorrectos) {
-            daoProductos.reduceProductStock(idProducto, unidadesAEliminar);
+        Producto p = new Producto(idProducto);
+        boolean criteriosCorrectos = false;
+        if (this.existeProducto(p)) {
+            int indexProduct = daoProductos.getProductList().indexOf(p);
+            int stockActual = daoProductos.getProductList().get(indexProduct).getStock();
+            criteriosCorrectos = (unidadesAEliminar > 0 && unidadesAEliminar <= stockActual);
+            if (criteriosCorrectos) {
+                daoProductos.reduceProductStock(idProducto, unidadesAEliminar);
+            }
         }
         return criteriosCorrectos;
     }
