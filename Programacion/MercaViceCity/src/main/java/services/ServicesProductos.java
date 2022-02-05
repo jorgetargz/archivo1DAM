@@ -46,6 +46,16 @@ public class ServicesProductos {
         return productListFiltered.toString();
     }
 
+    public String buscarProductoDisponible(String nombre) {
+        nombre = nombre.trim();
+        StringBuilder productListFiltered = new StringBuilder();
+        for (Producto producto : daoProductos.getProductList()) {
+            if (producto.getNombre().contains(nombre.toUpperCase()) && producto.getStock() > 0) {
+                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
+            }
+        }
+        return productListFiltered.toString();
+    }
     public String buscarProducto(String nombre) {
         nombre = nombre.trim();
         StringBuilder productListFiltered = new StringBuilder();

@@ -10,7 +10,9 @@ public class UICliente {
     private final ServicesClientes scClientes = new ServicesClientes();
 
     public void menuCliente(String dni) {
+        System.out.print(Constantes.BIENVENIDO_DE_NUEVO);
         uiClientName(dni);
+        System.out.println();
         Scanner sc = new Scanner(System.in);
         int opCliente;
         do {
@@ -31,7 +33,7 @@ public class UICliente {
     private void uiClientName(String dni) {
         scClientes.getClientList().forEach(cliente -> {
             if (cliente.getDni().equals(dni)) {
-                System.out.println(Constantes.BIENVENIDO_DE_NUEVO + cliente.getNombre());
+                System.out.print(cliente.getNombre());
             }
         });
     }

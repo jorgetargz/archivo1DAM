@@ -10,7 +10,7 @@ public class UILogin {
     private final ServicesClientes scClientes = new ServicesClientes();
 
     public void menuLogin(Scanner sc) {
-        int opLogin = 0;
+        int opLogin;
         do {
             System.out.println(Constantes.SALIR);
             System.out.println(Constantes.REGISTRARSE);

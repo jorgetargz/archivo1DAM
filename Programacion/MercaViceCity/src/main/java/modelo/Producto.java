@@ -18,6 +18,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public Producto(int id, String nombre, double precio, int stock) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
 
     public int getId() {
         return id;
@@ -61,8 +67,8 @@ public class Producto {
         nombreMostrar = nombreMostrar.substring(0, 1).toUpperCase().concat(nombreMostrar.substring(1));
         return id + Constantes.PUNTO +
                 nombreMostrar +
-                Constantes.PARENTESIS_IZQUIERDO + precio +
-                Constantes.EURO + Constantes.CANTIDAD_DISPONIBLE + stock;
+                Constantes.PRECIO + precio +
+                Constantes.CANTIDAD_DISPONIBLE + stock;
     }
 
     @Override

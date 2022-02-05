@@ -27,7 +27,9 @@ public class DaoProductos {
     }
 
     public List<Producto> getProductList() {
-        return inventario.stream().collect(Collectors.toUnmodifiableList());
+        return inventario.stream()
+                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(),producto.getStock()))
+                .collect(Collectors.toUnmodifiableList());
     }
 
 
