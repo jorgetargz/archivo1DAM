@@ -12,7 +12,7 @@ public class DaoClientes {
     private static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
 
     public void addCliente(Cliente cliente) {
-        clientes.put(cliente.getDni(),cliente);
+        clientes.put(cliente.getDni(), cliente);
     }
 
     public void deleteCLiente(String dni) {
@@ -29,7 +29,7 @@ public class DaoClientes {
 
     public List<Cliente> getClientList() {
         return clientes.values().stream().
-                map(cliente -> new Cliente(cliente.getDni(),cliente.getNombre())).
+                map(cliente -> new Cliente(cliente.getDni(), cliente.getNombre())).
                 collect(Collectors.toUnmodifiableList());
     }
 }

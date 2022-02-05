@@ -1,7 +1,7 @@
 package ui;
 
-import ui.common.Constantes;
 import services.ServicesClientes;
+import ui.common.Constantes;
 
 import java.util.Scanner;
 
@@ -10,13 +10,17 @@ public class UILogin {
     private final ServicesClientes scClientes = new ServicesClientes();
 
     public void menuLogin(Scanner sc) {
-        System.out.println(Constantes.REGISTRARSE);
-        System.out.println(Constantes.INICIAR_SESION);
-        System.out.print(Constantes.ELIGE_UNA_OPCION);
-        int opLogin = sc.nextInt();
-        sc.nextLine();
-        if (opLogin == 1) this.uiRegistrarCliente(sc);
-        if (opLogin == 2) this.uiIniciarCliente(sc);
+        int opLogin = 0;
+        do {
+            System.out.println(Constantes.SALIR);
+            System.out.println(Constantes.REGISTRARSE);
+            System.out.println(Constantes.INICIAR_SESION);
+            System.out.print(Constantes.ELIGE_UNA_OPCION);
+            opLogin = sc.nextInt();
+            sc.nextLine();
+            if (opLogin == 1) this.uiRegistrarCliente(sc);
+            if (opLogin == 2) this.uiIniciarCliente(sc);
+        } while (opLogin != 0);
     }
 
     public void uiRegistrarCliente(Scanner sc) {

@@ -9,7 +9,7 @@ public class UICliente {
 
     private final ServicesClientes scClientes = new ServicesClientes();
 
-    public void menuCliente(String dni){
+    public void menuCliente(String dni) {
         uiClientName(dni);
         Scanner sc = new Scanner(System.in);
         int opCliente;

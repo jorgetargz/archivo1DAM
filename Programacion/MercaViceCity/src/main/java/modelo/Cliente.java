@@ -5,14 +5,14 @@ import modelo.common.Constantes;
 import java.util.Objects;
 
 public class Cliente {
-    private String dni;
+    private final String dni;
     private String nombre;
 
-    public Cliente(String dni){
+    public Cliente(String dni) {
         this.dni = dni;
     }
 
-    public Cliente(String dni, String nombre){
+    public Cliente(String dni, String nombre) {
         this.dni = dni;
         this.nombre = nombre;
     }

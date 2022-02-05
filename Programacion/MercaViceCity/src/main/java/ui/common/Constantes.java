@@ -1,18 +1,8 @@
 package ui.common;
 
 public class Constantes {
-    public static final String BIENVENIDO_DE_NUEVO = "Bienvenido de nuevo ";
-
     private Constantes() {
     }
-
-    public static final String INDICA_EL_NOMBRE_DEL_CLIENTE = "Indica el nombre del cliente: ";
-    public static final String REGISTRADO_CORRECTAMENTE = "Registrado correctamente";
-    public static final String SESION_INICIADA = "Sesion iniciada";
-    public static final String PRODUCTO_ANADIDO = "Producto añadido";
-
-    public static final String LISTA_DE_PRODUCTOS = "Lista de productos ";
-
 
     //Main
     public static final String BIENVENIDO_A_MERCA_VICE_CITY = "Bienvenido a MercaViceCity. ";
@@ -33,6 +23,9 @@ public class Constantes {
     public static final String PORFAVOR_INDICA_TU_NOMBRE = "Porfavor indica tu nombre: ";
     public static final String REGISTRARSE = "1. Registrarse";
     public static final String INICIAR_SESION = "2. Iniciar sesión";
+    public static final String SESION_INICIADA = "Sesion iniciada";
+    public static final String REGISTRADO_CORRECTAMENTE = "Registrado correctamente";
+
 
     //UIAdmin
     public static final String SALIR = "0. Salir";
@@ -49,6 +42,7 @@ public class Constantes {
     public static final String ERROR_ENTRADA_DE_MENU_NO_VALIDA = "Error entrada de menu no valida";
     public static final String INTRODUCE_UN_ID_DE_PRODUCTO = "Introduce un ID de producto: ";
     public static final String INTRODUCE_UN_NOMBRE_DE_PRODUCTO = "Introduce un nombre de producto: ";
+    public static final String PRODUCTO_ANADIDO = "Producto añadido";
     public static final String PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS = "Producto no añadido revisa los datos";
     public static final String INTRODUCE_EL_PRECIO = "Introduce el precio: ";
     public static final String INTRODUCE_EL_STOCK = "Introduce el stock: ";
@@ -67,5 +61,11 @@ public class Constantes {
     public static final String CLIENTE_NO_ENCONTRADO = "Cliente no encontrado";
     public static final String REGISTRAR_NUEVO_CLIENTE = "Registrar nuevo cliente";
     public static final String INDICA_DNI_DEL_CLIENTE = "Indica DNI del cliente: ";
+    public static final String INDICA_EL_NOMBRE_DEL_CLIENTE = "Indica el nombre del cliente: ";
+    public static final String LISTA_DE_PRODUCTOS = "Lista de productos ";
+
+    //UICliente
+    public static final String BIENVENIDO_DE_NUEVO = "Bienvenido de nuevo ";
+
 
 }

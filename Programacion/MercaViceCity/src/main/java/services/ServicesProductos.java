@@ -3,6 +3,7 @@ package services;
 
 import dao.DaoProductos;
 import modelo.Producto;
+import services.common.Constantes;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ServicesProductos {
         StringBuilder productListFiltered = new StringBuilder();
         for (Producto producto : inventario) {
             if (producto.getStock() > 0) {
-                productListFiltered.append(producto).append("\n");
+                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
             }
         }
         return productListFiltered.toString();
@@ -50,7 +51,7 @@ public class ServicesProductos {
         StringBuilder productListFiltered = new StringBuilder();
         for (Producto producto : daoProductos.getProductList()) {
             if (producto.getNombre().contains(nombre.toUpperCase())) {
-                productListFiltered.append(producto).append("\n");
+                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
             }
         }
         return productListFiltered.toString();

@@ -52,15 +52,15 @@ public class Producto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Producto producto = (Producto) o;
-        return (id == producto.getId()) || Objects.equals(nombre,producto.nombre);
+        return (id == producto.getId()) || Objects.equals(nombre, producto.nombre);
     }
 
     @Override
     public String toString() {
         String nombreMostrar = nombre.toLowerCase();
-        nombreMostrar = nombreMostrar.substring(0,1).toUpperCase().concat(nombreMostrar.substring(1));
+        nombreMostrar = nombreMostrar.substring(0, 1).toUpperCase().concat(nombreMostrar.substring(1));
         return id + Constantes.PUNTO +
-                nombreMostrar + Constantes.ESPACIO +
+                nombreMostrar +
                 Constantes.PARENTESIS_IZQUIERDO + precio +
                 Constantes.EURO + Constantes.CANTIDAD_DISPONIBLE + stock;
     }
