@@ -1,106 +1,76 @@
 package services;
 
-
 import dao.DaoProductos;
 import modelo.Producto;
-import services.common.Constantes;
 
 import java.util.List;
 
-
 public class ServicesProductos {
 
-
-    private final DaoProductos daoProductos = new DaoProductos();
-
-
-    public boolean anadirProducto(String nombre, double precio, int stock) {
-        Producto p = new Producto(nombre.toUpperCase());
-        boolean operacionRealizada = false;
-        if (precio > 0 &&
-                stock > 0 &&
-                !existeProducto(p)
+    public boolean anadirProducto(Producto p) {
+        DaoProductos daoProductos = new DaoProductos();
+        if (p.getPrecio() > 0 &&
+                p.getStock() > 0 &&
+                daoProductos.existeProducto(p)
         ) {
-            daoProductos.addProduct(p);
-            daoProductos.setProductPrize(p.getId(), precio);
-            daoProductos.addProductStock(p.getId(), stock);
-            operacionRealizada = true;
+            return (daoProductos.addProduct(p) &&
+                    daoProductos.setProductPrize(p.getId(), p.getPrecio()) &&
+                    daoProductos.addProductStock(p.getId(), p.getStock()));
         }
-        return operacionRealizada;
+        return false;
     }
 
     public boolean eliminarProducto(int idProducto) {
+        DaoProductos daoProductos = new DaoProductos();
         return daoProductos.deleteProduct(idProducto);
     }
 
+    public boolean setPrecioProducto(int idProducto, double precioProducto) {
+        DaoProductos daoProductos = new DaoProductos();
+        boolean criteriosCorrectos = (precioProducto > 0 &&
+                daoProductos.existeProducto(new Producto(idProducto)));
+        return criteriosCorrectos &&
+                daoProductos.setProductPrize(idProducto, precioProducto);
+    }
+
+    public boolean aumentarStock(int idProducto, int nuevasUnidades) {
+        DaoProductos daoProductos = new DaoProductos();
+        boolean criteriosCorrectos = (nuevasUnidades > 0 &&
+                daoProductos.existeProducto(new Producto(idProducto)));
+        return  (criteriosCorrectos &&
+                daoProductos.addProductStock(idProducto, nuevasUnidades));
+    }
+
+    public boolean disminuirStock(int idProducto, int unidadesAEliminar) {
+        DaoProductos daoProductos = new DaoProductos();
+        Producto p = new Producto(idProducto);
+        if (daoProductos.existeProducto(p)) {
+            int stockActual = daoProductos.getStockProduct(idProducto);
+            boolean criteriosCorrectos = (unidadesAEliminar > 0 &&
+                    unidadesAEliminar <= stockActual);
+            return  (criteriosCorrectos &&
+                    daoProductos.reduceProductStock(idProducto, unidadesAEliminar));
+        }
+        return false;
+    }
+
     public List<Producto> getProductList() {
+        DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductList();
     }
 
     public String getProductosDisponibles() {
-        List<Producto> inventario = daoProductos.getProductList();
-        StringBuilder productListFiltered = new StringBuilder();
-        for (Producto producto : inventario) {
-            if (producto.getStock() > 0) {
-                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
-            }
-        }
-        return productListFiltered.toString();
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.getProductosDisponibles();
     }
 
-    public String buscarProductoDisponible(String nombre) {
-        nombre = nombre.trim();
-        StringBuilder productListFiltered = new StringBuilder();
-        for (Producto producto : daoProductos.getProductList()) {
-            if (producto.getNombre().contains(nombre.toUpperCase()) && producto.getStock() > 0) {
-                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
-            }
-        }
-        return productListFiltered.toString();
+    public String buscarProductoDisponibles(String nombre) {
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.buscarProductoDisponible(nombre);
     }
 
     public String buscarProducto(String nombre) {
-        nombre = nombre.trim();
-        StringBuilder productListFiltered = new StringBuilder();
-        for (Producto producto : daoProductos.getProductList()) {
-            if (producto.getNombre().contains(nombre.toUpperCase())) {
-                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
-            }
-        }
-        return productListFiltered.toString();
-    }
-
-    public boolean aumentarStock(int idProducto, int nuevasUnidades) {
-        boolean criteriosCorrectos = (nuevasUnidades > 0 && this.existeProducto(new Producto(idProducto)));
-        if (criteriosCorrectos) {
-            daoProductos.addProductStock(idProducto, nuevasUnidades);
-        }
-        return criteriosCorrectos;
-    }
-
-    public boolean disminuirStock(int idProducto, int unidadesAEliminar) {
-        Producto p = new Producto(idProducto);
-        boolean criteriosCorrectos = false;
-        if (this.existeProducto(p)) {
-            int indexProduct = daoProductos.getProductList().indexOf(p);
-            int stockActual = daoProductos.getProductList().get(indexProduct).getStock();
-            criteriosCorrectos = (unidadesAEliminar > 0 && unidadesAEliminar <= stockActual);
-            if (criteriosCorrectos) {
-                daoProductos.reduceProductStock(idProducto, unidadesAEliminar);
-            }
-        }
-        return criteriosCorrectos;
-    }
-
-    public boolean setPrecioProducto(int idProducto, double precioProducto) {
-        boolean criteriosCorrectos = (precioProducto > 0 && this.existeProducto(new Producto(idProducto)));
-        if (criteriosCorrectos) {
-            daoProductos.setProductPrize(idProducto, precioProducto);
-        }
-        return criteriosCorrectos;
-    }
-
-    public boolean existeProducto(Producto p) {
-        return daoProductos.getProductList().contains(p);
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.buscarProducto(nombre);
     }
 }

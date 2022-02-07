@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class UICliente {
 
-    private final ServicesClientes scClientes = new ServicesClientes();
 
     public void menuCliente(String dni) {
         System.out.print(Constantes.BIENVENIDO_DE_NUEVO);
@@ -31,6 +30,7 @@ public class UICliente {
     }
 
     private void uiClientName(String dni) {
+        ServicesClientes scClientes = new ServicesClientes();
         scClientes.getClientList().forEach(cliente -> {
             if (cliente.getDni().equals(dni)) {
                 System.out.print(cliente.getNombre());

@@ -9,6 +9,4 @@ public class Constantes {
     public static final String PUNTO = ". ";
     public static final String PRECIO = " (";
     public static final String CANTIDAD_DISPONIBLE = "€) Cantidad disponible: ";
-
-
 }

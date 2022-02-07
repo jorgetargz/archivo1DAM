@@ -10,38 +10,31 @@ import java.util.List;
 
 public class ServicesClientes {
 
-    private final DaoClientes daoClientes = new DaoClientes();
-
-
-    public boolean registrarCliente(String dni) {
-        Cliente cliente = new Cliente(dni);
-        if (dni.equals(Constantes.ADMIN)) {
+    public boolean registrarCliente(Cliente cliente) {
+        DaoClientes daoClientes = new DaoClientes();
+        if (cliente.getDni().equals(Constantes.ADMIN)) {
             UIAdmin uiAdmin = new UIAdmin();
             uiAdmin.menuAdmin();
-        } else if (!this.existeCliente(cliente)) {
-            daoClientes.addCliente(cliente);
-            return true;
-        }
+        } else return !daoClientes.existeCliente(cliente) &&
+                daoClientes.addCliente(cliente);
         return false;
     }
 
-    public void setNombre(String dni, String nombre) {
-        daoClientes.setNombreCliente(new Cliente(dni), nombre);
+    public boolean setNombre(String dni, String nombre) {
+        DaoClientes daoClientes = new DaoClientes();
+        return daoClientes.setNombreCliente(new Cliente(dni), nombre);
     }
 
     public boolean eliminarCliente(String dni) {
-        boolean criteriosCorrectos = this.existeCliente(new Cliente(dni));
-        if (criteriosCorrectos) {
-            daoClientes.deleteCLiente(dni);
-        }
-        return criteriosCorrectos;
+        DaoClientes daoClientes = new DaoClientes();
+        boolean criteriosCorrectos = daoClientes.existeCliente(new Cliente(dni));
+        return  (criteriosCorrectos &&
+                daoClientes.deleteCLiente(dni));
     }
 
     public List<Cliente> getClientList() {
+        DaoClientes daoClientes = new DaoClientes();
         return daoClientes.getClientList();
     }
 
-    public boolean existeCliente(Cliente c) {
-        return daoClientes.getClientList().contains(c);
-    }
 }

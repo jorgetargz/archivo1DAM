@@ -1,5 +1,7 @@
 package ui;
 
+import modelo.Cliente;
+import modelo.Producto;
 import services.ServicesClientes;
 import services.ServicesProductos;
 import ui.common.Constantes;
@@ -8,8 +10,6 @@ import java.util.Scanner;
 
 public class UIAdmin {
 
-    private final ServicesProductos scProductos = new ServicesProductos();
-    private final ServicesClientes scClientes = new ServicesClientes();
 
     public void menuAdmin() {
         Scanner sc = new Scanner(System.in);
@@ -52,7 +52,7 @@ public class UIAdmin {
                     this.uiDisminuirStock(sc);
                     break;
                 case 7:
-                    this.uiSetPreciProducto(sc);
+                    this.uiSetPrecioProducto(sc);
                     break;
                 case 8:
                     this.uiRegistrarCliente(sc);
@@ -70,6 +70,7 @@ public class UIAdmin {
     }
 
     private void uiAnadirProducto(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
         boolean productoAnadido;
         do {
             System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
@@ -80,13 +81,15 @@ public class UIAdmin {
             System.out.print(Constantes.INTRODUCE_EL_STOCK);
             int stock = sc.nextInt();
             sc.nextLine();
-            productoAnadido = scProductos.anadirProducto(nombre, precio, stock);
+            Producto producto = new Producto(nombre, precio, stock);
+            productoAnadido = scProductos.anadirProducto(producto);
             if (productoAnadido) System.out.println(Constantes.PRODUCTO_ANADIDO);
             else System.out.println(Constantes.PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS);
         } while (!productoAnadido);
     }
 
     private void uiEliminarProducto(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -98,17 +101,20 @@ public class UIAdmin {
     }
 
     private void uiMostrarProductos() {
+        ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
         scProductos.getProductList().forEach(System.out::println);
     }
 
     private void uiBuscarProducto(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
         System.out.println(scProductos.buscarProducto(nombre));
     }
 
     private void uiAumentarStock(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -123,6 +129,7 @@ public class UIAdmin {
     }
 
     private void uiDisminuirStock(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -136,7 +143,8 @@ public class UIAdmin {
         }
     }
 
-    private void uiSetPreciProducto(Scanner sc) {
+    private void uiSetPrecioProducto(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
@@ -151,24 +159,29 @@ public class UIAdmin {
     }
 
     private void uiClientList() {
+        ServicesClientes scClientes = new ServicesClientes();
         scClientes.getClientList().forEach(System.out::println);
     }
 
 
     private void uiRegistrarCliente(Scanner sc) {
+        ServicesClientes scClientes = new ServicesClientes();
         String dni;
         System.out.println(Constantes.REGISTRAR_NUEVO_CLIENTE);
         System.out.print(Constantes.INDICA_DNI_DEL_CLIENTE);
         dni = sc.nextLine();
-        if (scClientes.registrarCliente(dni)) {
+        Cliente cliente = new Cliente(dni);
+        if (scClientes.registrarCliente(cliente)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
-            scClientes.setNombre(dni, nombre);
-            System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
+            if (scClientes.setNombre(dni, nombre)) {
+                System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
+            }
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
     }
 
     private void uiEliminarCliente(Scanner sc) {
+        ServicesClientes scClientes = new ServicesClientes();
         System.out.print(Constantes.INTRODUCE_EL_DNI_DEL_CLIENTE_A_ELIMINAR);
         String dni = sc.nextLine();
         if (scClientes.eliminarCliente(dni)) {
