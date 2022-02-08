@@ -37,7 +37,7 @@ public class ServicesProductos {
         DaoProductos daoProductos = new DaoProductos();
         boolean criteriosCorrectos = (nuevasUnidades > 0 &&
                 daoProductos.existeProducto(new Producto(idProducto)));
-        return  (criteriosCorrectos &&
+        return (criteriosCorrectos &&
                 daoProductos.addProductStock(idProducto, nuevasUnidades));
     }
 
@@ -48,7 +48,7 @@ public class ServicesProductos {
             int stockActual = daoProductos.getStockProduct(idProducto);
             boolean criteriosCorrectos = (unidadesAEliminar > 0 &&
                     unidadesAEliminar <= stockActual);
-            return  (criteriosCorrectos &&
+            return (criteriosCorrectos &&
                     daoProductos.reduceProductStock(idProducto, unidadesAEliminar));
         }
         return false;

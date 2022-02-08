@@ -2,18 +2,28 @@ package modelo;
 
 import modelo.common.Constantes;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Cliente {
+
     private final String dni;
+    private final Set<Monedero> monederoCliente;
+    private List<Producto> compraActual;
+    private List<List<Producto>> comprasCliente;
     private String nombre;
 
     public Cliente(String dni) {
         this.dni = dni;
+        monederoCliente = new HashSet<>();
+        compraActual = new ArrayList<>();
+        comprasCliente = new ArrayList<>();
     }
 
-    public Cliente(String dni, String nombre) {
+    public Cliente(String dni, String nombre, Set<Monedero> monederoCliente, List<Producto> compraActual, List<List<Producto>> comprasCliente) {
         this.dni = dni;
+        this.monederoCliente = monederoCliente;
+        this.compraActual = compraActual;
+        this.comprasCliente = comprasCliente;
         this.nombre = nombre;
     }
 
@@ -27,6 +37,18 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Set<Monedero> getMonederosCliente() {
+        return monederoCliente;
+    }
+
+    public List<Producto> getCompraActual() {
+        return compraActual;
+    }
+
+    public List<List<Producto>> getComprasCliente() {
+        return comprasCliente;
     }
 
     @Override

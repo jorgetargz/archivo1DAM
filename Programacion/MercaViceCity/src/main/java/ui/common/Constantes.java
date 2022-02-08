@@ -1,6 +1,9 @@
 package ui.common;
 
 public class Constantes {
+    public static final String VER_PRODUCTOS_DISPONIBLES = "3. Ver productos disponibles";
+    public static final String BUSCAR_PRODUCTOS_DISPONIBLES_POR_NOMBRE = "4. Buscar productos disponibles por nombre";
+
     private Constantes() {
     }
 
