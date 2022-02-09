@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ServicesClientes {
 
-    public boolean registrarCliente(Cliente cliente) {
+    public boolean scRegistrarCliente(Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
         if (cliente.getDni().equals(Constantes.ADMIN)) {
             UIAdmin uiAdmin = new UIAdmin();
@@ -20,19 +20,19 @@ public class ServicesClientes {
         return false;
     }
 
-    public boolean setNombre(String dni, String nombre) {
+    public boolean scSetNombre(String dni, String nombre) {
         DaoClientes daoClientes = new DaoClientes();
-        return daoClientes.setNombreCliente(new Cliente(dni), nombre);
+        return daoClientes.setNombreCliente(dni, nombre);
     }
 
-    public boolean eliminarCliente(String dni) {
+    public boolean scEliminarCliente(String dni) {
         DaoClientes daoClientes = new DaoClientes();
         boolean criteriosCorrectos = daoClientes.existeCliente(new Cliente(dni));
         return  (criteriosCorrectos &&
                 daoClientes.deleteCLiente(dni));
     }
 
-    public List<Cliente> getClientList() {
+    public List<Cliente> scGetClientList() {
         DaoClientes daoClientes = new DaoClientes();
         return daoClientes.getClientList();
     }

@@ -30,7 +30,7 @@ public class UILogin {
         System.out.print(Constantes.INDICA_TU_DNI);
         dni = sc.nextLine();
         Cliente cliente = new Cliente(dni);
-        if (scClientes.registrarCliente(cliente)) {
+        if (scClientes.scRegistrarCliente(cliente)) {
             uiSetNombreCliente(sc, dni);
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
     }
@@ -41,7 +41,7 @@ public class UILogin {
         System.out.print(Constantes.INDICA_TU_DNI);
         String dni = sc.nextLine();
         Cliente cliente = new Cliente(dni);
-        if (scClientes.registrarCliente(cliente)) {
+        if (scClientes.scRegistrarCliente(cliente)) {
             System.out.println(Constantes.REGISTRARSE_COMO_CLIENTE);
             uiSetNombreCliente(sc, dni);
         }
@@ -55,7 +55,7 @@ public class UILogin {
         String nombre;
         System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
         nombre = sc.nextLine();
-        if (scClientes.setNombre(dni, nombre)){
+        if (scClientes.scSetNombre(dni, nombre)){
             System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
         }
     }

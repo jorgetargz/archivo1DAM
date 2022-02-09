@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.common.Constantes;
+
 import java.util.Objects;
 
 public class Monedero {
@@ -12,6 +14,10 @@ public class Monedero {
         this.importe = importe;
     }
 
+    public Monedero(int numeroMonedero) {
+        this.numeroMonedero = numeroMonedero;
+    }
+
     public int getNumeroMonedero() {
         return numeroMonedero;
     }
@@ -22,6 +28,12 @@ public class Monedero {
 
     public void setImporte(double importe) {
         this.importe = importe;
+    }
+
+    @Override
+    public String toString() {
+        return Constantes.NUMERO_MONEDERO + numeroMonedero +
+                Constantes.IMPORTE + importe;
     }
 
     @Override

@@ -32,6 +32,8 @@ public class UIAdmin {
             sc.nextLine();
             switch (opAdmin) {
                 case 0:
+                    UILogin uiLogin = new UILogin();
+                    uiLogin.menuLogin(sc);
                     break;
                 case 1:
                     this.uiAnadirProducto(sc);
@@ -82,7 +84,7 @@ public class UIAdmin {
             int stock = sc.nextInt();
             sc.nextLine();
             Producto producto = new Producto(nombre, precio, stock);
-            productoAnadido = scProductos.anadirProducto(producto);
+            productoAnadido = scProductos.scAnadirProducto(producto);
             if (productoAnadido) System.out.println(Constantes.PRODUCTO_ANADIDO);
             else System.out.println(Constantes.PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS);
         } while (!productoAnadido);
@@ -93,7 +95,7 @@ public class UIAdmin {
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
-        if (scProductos.eliminarProducto(idProducto)) {
+        if (scProductos.scEliminarProducto(idProducto)) {
             System.out.println(Constantes.PRODUCTO_ELIMINADO);
         } else {
             System.out.println(Constantes.PRODUCTO_NO_ENCONTRADO);
@@ -103,14 +105,14 @@ public class UIAdmin {
     private void uiMostrarProductos() {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        scProductos.getProductList().forEach(System.out::println);
+        scProductos.scGetProductList().forEach(System.out::println);
     }
 
     private void uiBuscarProducto(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        System.out.println(scProductos.buscarProducto(nombre));
+        System.out.println(scProductos.scBuscarProducto(nombre));
     }
 
     private void uiAumentarStock(Scanner sc) {
@@ -121,7 +123,7 @@ public class UIAdmin {
         System.out.print(Constantes.INDICAR_EL_NUMERO_DE_NUEVAS_UNIDADES);
         int nuevasUnidades = sc.nextInt();
         sc.nextLine();
-        if (scProductos.aumentarStock(idProducto, nuevasUnidades)) {
+        if (scProductos.scAumentarStock(idProducto, nuevasUnidades)) {
             System.out.println(Constantes.UNIDADES_ANADIDAS);
         } else {
             System.out.println(Constantes.CANTIDAD_DE_UNIDADES_O_ID_NO_VALIDO);
@@ -136,7 +138,7 @@ public class UIAdmin {
         System.out.print(Constantes.INTRODUCE_EL_NUMERO_DE_UNIDADES_A_RETIRAR);
         int unidadesAEliminar = sc.nextInt();
         sc.nextLine();
-        if (scProductos.disminuirStock(idProducto, unidadesAEliminar)) {
+        if (scProductos.scDisminuirStock(idProducto, unidadesAEliminar)) {
             System.out.println(Constantes.UNIDADES_RETIRADAS);
         } else {
             System.out.println(Constantes.CANTIDAD_DE_UNIDADES_O_ID_NO_VALIDO);
@@ -151,7 +153,7 @@ public class UIAdmin {
         System.out.print(Constantes.INTRODUCE_EL_NUEVO_PRECIO);
         double precio = sc.nextDouble();
         sc.nextLine();
-        if (scProductos.setPrecioProducto(idProducto, precio)) {
+        if (scProductos.scSetPrecioProducto(idProducto, precio)) {
             System.out.println(Constantes.PRECIO_MODIFICADO);
         } else {
             System.out.println(Constantes.PRECIO_O_ID_INVALIDO);
@@ -160,7 +162,7 @@ public class UIAdmin {
 
     private void uiClientList() {
         ServicesClientes scClientes = new ServicesClientes();
-        scClientes.getClientList().forEach(System.out::println);
+        scClientes.scGetClientList().forEach(System.out::println);
     }
 
 
@@ -171,10 +173,10 @@ public class UIAdmin {
         System.out.print(Constantes.INDICA_DNI_DEL_CLIENTE);
         dni = sc.nextLine();
         Cliente cliente = new Cliente(dni);
-        if (scClientes.registrarCliente(cliente)) {
+        if (scClientes.scRegistrarCliente(cliente)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
-            if (scClientes.setNombre(dni, nombre)) {
+            if (scClientes.scSetNombre(dni, nombre)) {
                 System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
             }
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
@@ -184,7 +186,7 @@ public class UIAdmin {
         ServicesClientes scClientes = new ServicesClientes();
         System.out.print(Constantes.INTRODUCE_EL_DNI_DEL_CLIENTE_A_ELIMINAR);
         String dni = sc.nextLine();
-        if (scClientes.eliminarCliente(dni)) {
+        if (scClientes.scEliminarCliente(dni)) {
             System.out.println(Constantes.CLIENTE_ELIMINADO);
         } else {
             System.out.println(Constantes.CLIENTE_NO_ENCONTRADO);

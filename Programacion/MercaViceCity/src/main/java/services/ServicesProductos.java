@@ -7,25 +7,43 @@ import java.util.List;
 
 public class ServicesProductos {
 
-    public boolean anadirProducto(Producto p) {
+    public boolean scAnadirProducto(Producto p) {
         DaoProductos daoProductos = new DaoProductos();
         if (p.getPrecio() > 0 &&
                 p.getStock() > 0 &&
-                daoProductos.existeProducto(p)
+                !daoProductos.existeProducto(p)
         ) {
-            return (daoProductos.addProduct(p) &&
-                    daoProductos.setProductPrize(p.getId(), p.getPrecio()) &&
-                    daoProductos.addProductStock(p.getId(), p.getStock()));
+            return DaoProductos.addProduct(p);
         }
         return false;
     }
 
-    public boolean eliminarProducto(int idProducto) {
+    public String scGetProductName(int idProduct){
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.getProductName(idProduct);
+    }
+
+    public double scGetProductPrize(int idProduct){
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.getProductPrize(idProduct);
+    }
+
+    public boolean scEliminarProducto(int idProducto) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.deleteProduct(idProducto);
     }
 
-    public boolean setPrecioProducto(int idProducto, double precioProducto) {
+    public boolean scExisteProducto(int idProducto){
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.existeProducto(new Producto(idProducto));
+    }
+
+    public int scGetProductStock(int idProducto){
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.getStockProduct(idProducto);
+    }
+
+    public boolean scSetPrecioProducto(int idProducto, double precioProducto) {
         DaoProductos daoProductos = new DaoProductos();
         boolean criteriosCorrectos = (precioProducto > 0 &&
                 daoProductos.existeProducto(new Producto(idProducto)));
@@ -33,7 +51,7 @@ public class ServicesProductos {
                 daoProductos.setProductPrize(idProducto, precioProducto);
     }
 
-    public boolean aumentarStock(int idProducto, int nuevasUnidades) {
+    public boolean scAumentarStock(int idProducto, int nuevasUnidades) {
         DaoProductos daoProductos = new DaoProductos();
         boolean criteriosCorrectos = (nuevasUnidades > 0 &&
                 daoProductos.existeProducto(new Producto(idProducto)));
@@ -41,7 +59,7 @@ public class ServicesProductos {
                 daoProductos.addProductStock(idProducto, nuevasUnidades));
     }
 
-    public boolean disminuirStock(int idProducto, int unidadesAEliminar) {
+    public boolean scDisminuirStock(int idProducto, int unidadesAEliminar) {
         DaoProductos daoProductos = new DaoProductos();
         Producto p = new Producto(idProducto);
         if (daoProductos.existeProducto(p)) {
@@ -54,22 +72,22 @@ public class ServicesProductos {
         return false;
     }
 
-    public List<Producto> getProductList() {
+    public List<Producto> scGetProductList() {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductList();
     }
 
-    public String getProductosDisponibles() {
+    public String scGetProductosDisponibles() {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductosDisponibles();
     }
 
-    public String buscarProductoDisponibles(String nombre) {
+    public String scBuscarProductoDisponibles(String nombre) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.buscarProductoDisponible(nombre);
     }
 
-    public String buscarProducto(String nombre) {
+    public String scBuscarProducto(String nombre) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.buscarProducto(nombre);
     }

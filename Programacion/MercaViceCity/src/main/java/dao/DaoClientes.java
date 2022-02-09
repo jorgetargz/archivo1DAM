@@ -20,14 +20,9 @@ public class DaoClientes {
         return BD.clientes.containsValue(c);
     }
 
-    public boolean setNombreCliente(Cliente c, String nombre) {
-        boolean clienteEncontrado = BD.clientes.containsValue(c);
-        BD.clientes.values().forEach(cliente -> {
-            if (cliente.getDni().equalsIgnoreCase(c.getDni())) {
-                cliente.setNombre(nombre);
-            }
-        });
-        return clienteEncontrado;
+    public boolean setNombreCliente(String dni, String nombre) {
+        BD.clientes.get(dni).setNombre(nombre);
+        return BD.clientes.get(dni) != null;
     }
 
     public List<Cliente> getClientList() {

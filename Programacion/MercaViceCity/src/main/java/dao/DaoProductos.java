@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 public class DaoProductos {
 
-    private int idProduct;
+    private static int idProduct;
 
-    public boolean addProduct(Producto p) {
+    public static boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
-        if (!BD.inventario.contains(new Producto(p.getNombre()))) {
+        if (!BD.inventario.contains(p)) {
             idProduct++;
             p.setId(idProduct);
             BD.inventario.add(p);
@@ -66,6 +66,26 @@ public class DaoProductos {
         if (productoEncontardo) {
             Producto p = BD.inventario.get(productIndex);
             return p.getStock();
+        }
+        return 0;
+    }
+
+    public String getProductName(int id) {
+        int productIndex = BD.inventario.indexOf(new Producto(id));
+        boolean productoEncontardo = productIndex != -1;
+        if (productoEncontardo) {
+            Producto p = BD.inventario.get(productIndex);
+            return p.getNombre();
+        }
+        return "";
+    }
+
+    public double getProductPrize(int id) {
+        int productIndex = BD.inventario.indexOf(new Producto(id));
+        boolean productoEncontardo = productIndex != -1;
+        if (productoEncontardo) {
+            Producto p = BD.inventario.get(productIndex);
+            return p.getPrecio();
         }
         return 0;
     }

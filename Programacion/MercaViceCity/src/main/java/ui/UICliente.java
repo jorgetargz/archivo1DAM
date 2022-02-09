@@ -1,6 +1,9 @@
 package ui;
 
+import modelo.Monedero;
 import services.ServicesClientes;
+import services.ServicesCompras;
+import services.ServicesMonederos;
 import services.ServicesProductos;
 import ui.common.Constantes;
 
@@ -18,12 +21,13 @@ public class UICliente {
         do {
             System.out.println();
             System.out.println(Constantes.SALIR);
-            System.out.println("1. Añadir monedero");
-            System.out.println("2. Añadir producto a compra");
+            System.out.println(Constantes.ANADIR_MONEDERO);
+            System.out.println(Constantes.ANADIR_PRODUCTO_AL_CARRITO_POR_ID);
             System.out.println(Constantes.VER_PRODUCTOS_DISPONIBLES);
             System.out.println(Constantes.BUSCAR_PRODUCTOS_DISPONIBLES_POR_NOMBRE);
-            System.out.println("5. Ver lista de la compra");
-            System.out.println("6. Realizar compra");
+            System.out.println(Constantes.VER_LISTA_DE_LA_COMPRA);
+            System.out.println(Constantes.VER_MONEDEROS);
+            System.out.println(Constantes.REALIZAR_COMPRA);
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opCliente = sc.nextInt();
             sc.nextLine();
@@ -31,8 +35,10 @@ public class UICliente {
                 case 0:
                     break;
                 case 1:
+                    this.uiAnadirMonedero(sc, dni);
                     break;
                 case 2:
+                    this.uiAnadirProductoCarrito(sc,dni);
                     break;
                 case 3:
                     this.uiMostrarProductosDisponibles();
@@ -41,8 +47,13 @@ public class UICliente {
                     this.uiBuscarProductoDisponible(sc);
                     break;
                 case 5:
+                    this.uiVerCarrito(dni);
                     break;
                 case 6:
+                    this.uiMostrarMonederosCliente(dni);
+                    break;
+                case 7:
+                    this.uiPagarCompra(dni);
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
@@ -52,7 +63,7 @@ public class UICliente {
 
     private void uiClientName(String dni) {
         ServicesClientes scClientes = new ServicesClientes();
-        scClientes.getClientList().forEach(cliente -> {
+        scClientes.scGetClientList().forEach(cliente -> {
             if (cliente.getDni().equals(dni)) {
                 System.out.print(cliente.getNombre());
             }
@@ -62,14 +73,71 @@ public class UICliente {
     private void uiMostrarProductosDisponibles() {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        System.out.println(scProductos.getProductosDisponibles());
+        System.out.println(scProductos.scGetProductosDisponibles());
     }
 
     private void uiBuscarProductoDisponible(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        System.out.println(scProductos.buscarProducto(nombre));
+        System.out.println(scProductos.scBuscarProductoDisponibles(nombre));
+    }
+
+    private void uiAnadirMonedero(Scanner sc, String dni) {
+        ServicesMonederos scMonederos = new ServicesMonederos();
+        System.out.print(Constantes.INTRODUCE_EL_NUMERO_DEL_MONEDERO);
+        int codMonedero = sc.nextInt();
+        sc.nextLine();
+        if (!scMonederos.scExisteMonedero(new Monedero(codMonedero))) {
+            System.out.print(Constantes.INTRODUCE_EL_IMPORTE_DEL_MONEDERO);
+            double importeMonedero = sc.nextDouble();
+            if (scMonederos.scAnadirMonedero(new Monedero(codMonedero, importeMonedero), dni)) {
+                System.out.println(Constantes.MONEDERO_ANADIDO);
+            } else {
+                System.out.println(Constantes.MONEDRO_NO_ANADIDO);
+            }
+        } else {
+            System.out.println(Constantes.MONEDRO_NO_ANADIDO);
+        }
+    }
+
+    private void uiMostrarMonederosCliente(String dni) {
+        ServicesMonederos scMonederos = new ServicesMonederos();
+        scMonederos.scGetListaMonederosCliente(dni).forEach(System.out::println);
+    }
+
+    private void uiAnadirProductoCarrito(Scanner sc, String dni) {
+        ServicesProductos scProductos = new ServicesProductos();
+        ServicesCompras scCompras = new ServicesCompras();
+        System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
+        int idProducto = sc.nextInt();
+        sc.nextLine();
+        if (scProductos.scExisteProducto(idProducto)) {
+            System.out.println(Constantes.CANTIDAD_DISPONIBLE + scProductos.scGetProductStock(idProducto));
+            System.out.print(Constantes.INTRODUCE_CANTIDAD);
+            int cantidad = sc.nextInt();
+            sc.nextLine();
+            if (scCompras.scAddProductoCompraCliente(dni,idProducto,cantidad)){
+                System.out.println(Constantes.PRODUCTO_ANADIDO_AL_CARRITO);
+            }
+        } else {
+            System.out.println(Constantes.PRODUCTO_NO_ANADIDO_AL_CARRITO);
+        }
+    }
+
+    private void uiVerCarrito(String dni){
+        ServicesCompras scCompras = new ServicesCompras();
+        scCompras.scGetCarrito(dni).forEach(System.out::println);
+    }
+
+    private void uiPagarCompra(String dni){
+        ServicesCompras scCompras = new ServicesCompras();
+        System.out.println(Constantes.INICIANDO_PROCESO_DE_PAGO);
+        if (scCompras.scPagarCompra(dni)){
+            System.out.println(Constantes.COMPRA_REALIZADA);
+        } else {
+            System.out.println(Constantes.NO_SE_HA_PODIDO_REALIZAR_LA_COMPRA);
+        }
     }
 
 }

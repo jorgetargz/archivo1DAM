@@ -1,9 +1,6 @@
 package ui.common;
 
 public class Constantes {
-    public static final String VER_PRODUCTOS_DISPONIBLES = "3. Ver productos disponibles";
-    public static final String BUSCAR_PRODUCTOS_DISPONIBLES_POR_NOMBRE = "4. Buscar productos disponibles por nombre";
-
     private Constantes() {
     }
 
@@ -43,32 +40,62 @@ public class Constantes {
     public static final String VER_LISTA_CLIENTES = "9. Ver lista clientes";
     public static final String ELIMINAR_CLIENTE_POR_DNI = "10. Eliminar cliente por DNI";
     public static final String ERROR_ENTRADA_DE_MENU_NO_VALIDA = "Error entrada de menu no valida";
+
     public static final String INTRODUCE_UN_ID_DE_PRODUCTO = "Introduce un ID de producto: ";
     public static final String INTRODUCE_UN_NOMBRE_DE_PRODUCTO = "Introduce un nombre de producto: ";
     public static final String PRODUCTO_ANADIDO = "Producto añadido";
     public static final String PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS = "Producto no añadido revisa los datos";
     public static final String INTRODUCE_EL_PRECIO = "Introduce el precio: ";
     public static final String INTRODUCE_EL_STOCK = "Introduce el stock: ";
+
     public static final String PRODUCTO_ELIMINADO = "Producto eliminado";
     public static final String PRODUCTO_NO_ENCONTRADO = "Producto no encontrado";
+
     public static final String CANTIDAD_DE_UNIDADES_O_ID_NO_VALIDO = "Cantidad de unidades o id no valido";
     public static final String INDICAR_EL_NUMERO_DE_NUEVAS_UNIDADES = "Indicar el numero de nuevas unidades: ";
     public static final String UNIDADES_ANADIDAS = "Unidades añadidas";
     public static final String INTRODUCE_EL_NUMERO_DE_UNIDADES_A_RETIRAR = "Introduce el numero de unidades a retirar: ";
     public static final String UNIDADES_RETIRADAS = "Unidades retiradas";
+
     public static final String INTRODUCE_EL_NUEVO_PRECIO = "Introduce el nuevo precio: ";
     public static final String PRECIO_MODIFICADO = "Precio modificado";
     public static final String PRECIO_O_ID_INVALIDO = "Precio o id invalido";
+
     public static final String INTRODUCE_EL_DNI_DEL_CLIENTE_A_ELIMINAR = "Introduce el dni del cliente a eliminar: ";
     public static final String CLIENTE_ELIMINADO = "Cliente eliminado";
     public static final String CLIENTE_NO_ENCONTRADO = "Cliente no encontrado";
+
     public static final String REGISTRAR_NUEVO_CLIENTE = "Registrar nuevo cliente";
     public static final String INDICA_DNI_DEL_CLIENTE = "Indica DNI del cliente: ";
     public static final String INDICA_EL_NOMBRE_DEL_CLIENTE = "Indica el nombre del cliente: ";
+
     public static final String LISTA_DE_PRODUCTOS = "Lista de productos ";
 
     //UICliente
     public static final String BIENVENIDO_DE_NUEVO = "Bienvenido de nuevo ";
 
+    public static final String VER_PRODUCTOS_DISPONIBLES = "3. Ver productos disponibles";
+    public static final String BUSCAR_PRODUCTOS_DISPONIBLES_POR_NOMBRE = "4. Buscar productos disponibles por nombre";
+
+    public static final String ANADIR_MONEDERO = "1. Añadir monedero";
+    public static final String INTRODUCE_EL_NUMERO_DEL_MONEDERO = "Introduce el numero del monedero: ";
+    public static final String INTRODUCE_EL_IMPORTE_DEL_MONEDERO = "Introduce el importe del monedero: ";
+    public static final String MONEDERO_ANADIDO = "Monedero añadido";
+    public static final String MONEDRO_NO_ANADIDO = "Monedro no añadido";
+
+    public static final String VER_MONEDEROS = "6. Ver monederos";
+
+    public static final String ANADIR_PRODUCTO_AL_CARRITO_POR_ID = "2. Añadir producto al carrito por ID";
+    public static final String CANTIDAD_DISPONIBLE = "Cantidad disponible: ";
+    public static final String INTRODUCE_CANTIDAD = "Introduce cantidad: ";
+    public static final String PRODUCTO_ANADIDO_AL_CARRITO = "Producto añadido al carrito";
+    public static final String PRODUCTO_NO_ANADIDO_AL_CARRITO = "Producto no añadido al carrito";
+
+    public static final String VER_LISTA_DE_LA_COMPRA = "5. Ver lista de la compra";
+
+    public static final String REALIZAR_COMPRA = "7. Realizar compra";
+    public static final String INICIANDO_PROCESO_DE_PAGO = "Iniciando proceso de pago.";
+    public static final String COMPRA_REALIZADA = "Compra realizada";
+    public static final String NO_SE_HA_PODIDO_REALIZAR_LA_COMPRA = "No se ha podido realizar la compra";
 
 }
