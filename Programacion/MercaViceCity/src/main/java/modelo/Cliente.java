@@ -8,8 +8,8 @@ public class Cliente {
 
     private final String dni;
     private final Set<Monedero> monederoCliente;
-    private List<Producto> compraActual;
-    private List<List<Producto>> comprasCliente;
+    private final List<Producto> compraActual;
+    private final List<List<Producto>> comprasCliente;
     private String nombre;
 
     public Cliente(String dni) {
