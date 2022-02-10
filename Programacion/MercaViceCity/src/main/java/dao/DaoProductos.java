@@ -1,20 +1,18 @@
 package dao;
 
 import modelo.Producto;
-import services.common.Constantes;
+import dao.common.Constantes;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DaoProductos {
 
-    private static int idProduct;
-
     public static boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
         if (!BD.inventario.contains(p)) {
-            idProduct++;
-            p.setId(idProduct);
+            BD.idProduct++;
+            p.setId(BD.idProduct);
             BD.inventario.add(p);
             operacionRealizada = true;
         }
@@ -77,7 +75,7 @@ public class DaoProductos {
             Producto p = BD.inventario.get(productIndex);
             return p.getNombre();
         }
-        return "";
+        return Constantes.NULL;
     }
 
     public double getProductPrize(int id) {
@@ -96,35 +94,28 @@ public class DaoProductos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public String getProductosDisponibles() {
-        StringBuilder productListFiltered = new StringBuilder();
-        for (Producto producto : BD.inventario) {
-            if (producto.getStock() > 0) {
-                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
-            }
-        }
-        return productListFiltered.toString();
+    public List<Producto> getProductosDisponibles() {
+       return BD.inventario.stream()
+                .filter(producto -> producto.getStock() > 0)
+                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public String buscarProductoDisponible(String nombre) {
+    public List<Producto> buscarProductoDisponible(String nombre) {
         nombre = nombre.trim();
-        StringBuilder productListFiltered = new StringBuilder();
-        for (Producto producto : BD.inventario) {
-            if (producto.getNombre().contains(nombre.toUpperCase()) && producto.getStock() > 0) {
-                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
-            }
-        }
-        return productListFiltered.toString();
+        String finalNombre = nombre;
+        return BD.inventario.stream()
+                .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()) && producto.getStock() > 0)
+                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public String buscarProducto(String nombre) {
+    public List<Producto> buscarProducto(String nombre) {
         nombre = nombre.trim();
-        StringBuilder productListFiltered = new StringBuilder();
-        for (Producto producto : BD.inventario) {
-            if (producto.getNombre().contains(nombre.toUpperCase())) {
-                productListFiltered.append(producto).append(Constantes.SALTO_LINEA);
-            }
-        }
-        return productListFiltered.toString();
+        String finalNombre = nombre;
+        return BD.inventario.stream()
+                .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()))
+                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -27,6 +27,7 @@ public class UIAdmin {
             System.out.println(Constantes.ANADIR_CLIENTE);
             System.out.println(Constantes.VER_LISTA_CLIENTES);
             System.out.println(Constantes.ELIMINAR_CLIENTE_POR_DNI);
+            System.out.println(Constantes.CAMBIAR_NOMBRE_CLIENTE);
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opAdmin = sc.nextInt();
             sc.nextLine();
@@ -62,6 +63,9 @@ public class UIAdmin {
                     break;
                 case 10:
                     this.uiEliminarCliente(sc);
+                    break;
+                case 11:
+                    this.uiCambiarNombreCliente(sc);
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
@@ -110,7 +114,7 @@ public class UIAdmin {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        System.out.println(scProductos.scBuscarProducto(nombre));
+        scProductos.scBuscarProducto(nombre).forEach(System.out::println);
     }
 
     private void uiAumentarStock(Scanner sc) {
@@ -188,6 +192,17 @@ public class UIAdmin {
             System.out.println(Constantes.CLIENTE_ELIMINADO);
         } else {
             System.out.println(Constantes.CLIENTE_NO_ENCONTRADO);
+        }
+    }
+
+    private void uiCambiarNombreCliente(Scanner sc) {
+        ServicesClientes scClientes = new ServicesClientes();
+        System.out.println(Constantes.INDICA_DNI_DEL_CLIENTE);
+        String dni = sc.nextLine();
+        if (scClientes.scExisteCliente(dni)) {
+            System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
+            String nombre = sc.nextLine();
+            scClientes.scSetNombre(dni, nombre);
         }
     }
 }

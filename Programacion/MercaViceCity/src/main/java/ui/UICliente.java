@@ -28,6 +28,7 @@ public class UICliente {
             System.out.println(Constantes.VER_LISTA_DE_LA_COMPRA);
             System.out.println(Constantes.VER_MONEDEROS);
             System.out.println(Constantes.REALIZAR_COMPRA);
+            System.out.println(Constantes.CAMBIAR_NOMBRE);
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opCliente = sc.nextInt();
             sc.nextLine();
@@ -55,6 +56,9 @@ public class UICliente {
                 case 7:
                     this.uiPagarCompra(dni);
                     break;
+                case 8:
+                    this.uiCambiarNombre(sc,dni);
+                    break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
             }
@@ -73,14 +77,14 @@ public class UICliente {
     private void uiMostrarProductosDisponibles() {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        System.out.println(scProductos.scGetProductosDisponibles());
+        scProductos.scGetProductosDisponibles().forEach(System.out::println);
     }
 
     private void uiBuscarProductoDisponible(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        System.out.println(scProductos.scBuscarProductoDisponibles(nombre));
+        scProductos.scBuscarProductoDisponibles(nombre).forEach(System.out::println);
     }
 
     private void uiAnadirMonedero(Scanner sc, String dni) {
@@ -138,6 +142,13 @@ public class UICliente {
         } else {
             System.out.println(Constantes.NO_SE_HA_PODIDO_REALIZAR_LA_COMPRA);
         }
+    }
+
+    private void uiCambiarNombre(Scanner sc, String dni) {
+        ServicesClientes scClientes = new ServicesClientes();
+        System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
+        String nombre = sc.nextLine();
+        scClientes.scSetNombre(dni,nombre);
     }
 
 }

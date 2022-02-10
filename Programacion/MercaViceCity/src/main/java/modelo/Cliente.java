@@ -7,9 +7,9 @@ import java.util.*;
 public class Cliente {
 
     private final String dni;
-    private final Set<Monedero> monederoCliente;
-    private final List<Producto> compraActual;
-    private final List<List<Producto>> comprasCliente;
+    private Set<Monedero> monederoCliente = null;
+    private List<Producto> compraActual = null;
+    private List<List<Producto>> comprasCliente = null;
     private String nombre;
 
     public Cliente(String dni) {
@@ -19,11 +19,8 @@ public class Cliente {
         comprasCliente = new ArrayList<>();
     }
 
-    public Cliente(String dni, String nombre, Set<Monedero> monederoCliente, List<Producto> compraActual, List<List<Producto>> comprasCliente) {
+    public Cliente(String dni, String nombre) {
         this.dni = dni;
-        this.monederoCliente = monederoCliente;
-        this.compraActual = compraActual;
-        this.comprasCliente = comprasCliente;
         this.nombre = nombre;
     }
 

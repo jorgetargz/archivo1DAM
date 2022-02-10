@@ -27,7 +27,7 @@ public class DaoClientes {
 
     public List<Cliente> getClientList() {
         return BD.clientes.values().stream().
-                map(cliente -> new Cliente(cliente.getDni(), cliente.getNombre(),cliente.getMonederosCliente(),cliente.getCompraActual(),cliente.getComprasCliente())).
+                map(cliente -> new Cliente(cliente.getDni(), cliente.getNombre())).
                 collect(Collectors.toUnmodifiableList());
     }
 }

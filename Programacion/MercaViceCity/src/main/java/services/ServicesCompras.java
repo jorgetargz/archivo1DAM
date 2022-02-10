@@ -14,21 +14,21 @@ public class ServicesCompras {
             scProductos.scDisminuirStock(idProducto, cantidad);
             String nombreProducto = scProductos.scGetProductName(idProducto);
             double precioProducto = scProductos.scGetProductPrize(idProducto);
-            return daoCompras.addProductoCompra(new Producto(idProducto,nombreProducto,precioProducto,cantidad),dni);
+            return daoCompras.addProductoCompra(new Producto(idProducto, nombreProducto, precioProducto, cantidad), dni);
         }
         return false;
     }
 
-    public boolean scPagarCompra(String dni){
+    public boolean scPagarCompra(String dni) {
         DaoCompras daoCompras = new DaoCompras();
         ServicesMonederos scMonederos = new ServicesMonederos();
-        if (scMonederos.scGetSaldoTotal(dni) >= daoCompras.getCosteCompra(dni)){
+        if (scMonederos.scGetSaldoTotal(dni) >= daoCompras.getCosteCompra(dni)) {
             return daoCompras.pagarCompra(dni);
         }
         return false;
     }
 
-    public List<Producto> scGetCarrito(String dni){
+    public List<Producto> scGetCarrito(String dni) {
         DaoCompras daoCompras = new DaoCompras();
         return daoCompras.getCarrito(dni);
     }

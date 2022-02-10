@@ -1,6 +1,10 @@
 package ui.common;
 
 public class Constantes {
+    public static final String CAMBIAR_NOMBRE = "8. Cambiar nombre";
+    public static final String CAMBIAR_NOMBRE_CLIENTE = "11. Cambiar nombre cliente.";
+
+
     private Constantes() {
     }
 

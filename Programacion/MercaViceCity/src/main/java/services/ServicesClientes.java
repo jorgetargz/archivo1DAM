@@ -18,7 +18,12 @@ public class ServicesClientes {
         return false;
     }
 
-    public boolean scIsAdmin(Cliente cliente){
+    public boolean scExisteCliente(String dni){
+        DaoClientes daoClientes = new DaoClientes();
+        return daoClientes.existeCliente(new Cliente(dni));
+    }
+
+    public boolean scIsAdmin(Cliente cliente) {
         return cliente.getDni().equals(Constantes.ADMIN);
     }
 
@@ -30,7 +35,7 @@ public class ServicesClientes {
     public boolean scEliminarCliente(String dni) {
         DaoClientes daoClientes = new DaoClientes();
         boolean criteriosCorrectos = daoClientes.existeCliente(new Cliente(dni));
-        return  (criteriosCorrectos &&
+        return (criteriosCorrectos &&
                 daoClientes.deleteCLiente(dni));
     }
 

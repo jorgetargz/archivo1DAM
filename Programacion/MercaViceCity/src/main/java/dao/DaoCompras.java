@@ -32,7 +32,7 @@ public class DaoCompras {
         return false;
     }
 
-    public List<Producto> getCarrito(String dni){
+    public List<Producto> getCarrito(String dni) {
         Cliente cliente = BD.clientes.get(dni);
         return cliente.getCompraActual().stream()
                 .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))

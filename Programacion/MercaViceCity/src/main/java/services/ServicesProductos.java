@@ -18,12 +18,12 @@ public class ServicesProductos {
         return false;
     }
 
-    public String scGetProductName(int idProduct){
+    public String scGetProductName(int idProduct) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductName(idProduct);
     }
 
-    public double scGetProductPrize(int idProduct){
+    public double scGetProductPrize(int idProduct) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductPrize(idProduct);
     }
@@ -33,12 +33,12 @@ public class ServicesProductos {
         return daoProductos.deleteProduct(idProducto);
     }
 
-    public boolean scExisteProducto(int idProducto){
+    public boolean scExisteProducto(int idProducto) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.existeProducto(new Producto(idProducto));
     }
 
-    public int scGetProductStock(int idProducto){
+    public int scGetProductStock(int idProducto) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getStockProduct(idProducto);
     }
@@ -77,18 +77,18 @@ public class ServicesProductos {
         return daoProductos.getProductList();
     }
 
-    public String scGetProductosDisponibles() {
+    public List<Producto> scGetProductosDisponibles() {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductosDisponibles();
     }
 
-    public String scBuscarProductoDisponibles(String nombre) {
-        DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.buscarProductoDisponible(nombre);
-    }
-
-    public String scBuscarProducto(String nombre) {
+    public List<Producto> scBuscarProducto(String nombre) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.buscarProducto(nombre);
+    }
+
+    public List<Producto> scBuscarProductoDisponibles(String nombre) {
+        DaoProductos daoProductos = new DaoProductos();
+        return daoProductos.buscarProductoDisponible(nombre);
     }
 }

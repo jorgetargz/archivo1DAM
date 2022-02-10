@@ -22,7 +22,7 @@ public class ServicesMonederos {
         return false;
     }
 
-    public double scGetSaldoTotal(String dni){
+    public double scGetSaldoTotal(String dni) {
         DaoMonederos daoMonederos = new DaoMonederos();
         return daoMonederos.getSaldoTotal(dni);
     }

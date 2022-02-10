@@ -12,10 +12,10 @@ Feature: Como cliente quiero eliminar un producto del carrito para no comprarlo
     #Id 3, Nombre Kitkat negro, Precio 1.4, Stock 5;
     And Cliente ha iniciado sesion
 
-    Scenario: Cliente quiere eliminar unidades validas de un producto que tiene en la lista
-      When Cliente elige eliminar producto Id 2
-      And  Cliente elige eliminar una unidad de su compra
-      Then Eliminar kitkat blanco de la lista compra
+  Scenario: Cliente quiere eliminar unidades validas de un producto que tiene en la lista
+    When Cliente elige eliminar producto Id 2
+    And  Cliente elige eliminar una unidad de su compra
+    Then Eliminar kitkat blanco de la lista compra
 
 
   Scenario: Cliente quiere eliminar unidades no validas de un producto que tiene en la lista
