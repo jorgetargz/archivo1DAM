@@ -38,7 +38,7 @@ public class UICliente {
                     this.uiAnadirMonedero(sc, dni);
                     break;
                 case 2:
-                    this.uiAnadirProductoCarrito(sc,dni);
+                    this.uiAnadirProductoCarrito(sc, dni);
                     break;
                 case 3:
                     this.uiMostrarProductosDisponibles();
@@ -117,7 +117,7 @@ public class UICliente {
             System.out.print(Constantes.INTRODUCE_CANTIDAD);
             int cantidad = sc.nextInt();
             sc.nextLine();
-            if (scCompras.scAddProductoCompraCliente(dni,idProducto,cantidad)){
+            if (scCompras.scAddProductoCompraCliente(dni, idProducto, cantidad)) {
                 System.out.println(Constantes.PRODUCTO_ANADIDO_AL_CARRITO);
             }
         } else {
@@ -125,15 +125,15 @@ public class UICliente {
         }
     }
 
-    private void uiVerCarrito(String dni){
+    private void uiVerCarrito(String dni) {
         ServicesCompras scCompras = new ServicesCompras();
         scCompras.scGetCarrito(dni).forEach(System.out::println);
     }
 
-    private void uiPagarCompra(String dni){
+    private void uiPagarCompra(String dni) {
         ServicesCompras scCompras = new ServicesCompras();
         System.out.println(Constantes.INICIANDO_PROCESO_DE_PAGO);
-        if (scCompras.scPagarCompra(dni)){
+        if (scCompras.scPagarCompra(dni)) {
             System.out.println(Constantes.COMPRA_REALIZADA);
         } else {
             System.out.println(Constantes.NO_SE_HA_PODIDO_REALIZAR_LA_COMPRA);

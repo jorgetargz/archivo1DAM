@@ -70,7 +70,7 @@ public class Producto {
         return id + Constantes.PUNTO +
                 nombreMostrar +
                 Constantes.PRECIO + precio +
-                Constantes.CANTIDAD_DISPONIBLE + stock;
+                Constantes.CANTIDAD + stock;
     }
 
     @Override

@@ -2,7 +2,6 @@ package services;
 
 import dao.DaoClientes;
 import modelo.Cliente;
-import ui.UIAdmin;
 import ui.common.Constantes;
 
 import java.util.List;
@@ -12,12 +11,15 @@ public class ServicesClientes {
 
     public boolean scRegistrarCliente(Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
-        if (cliente.getDni().equals(Constantes.ADMIN)) {
-            UIAdmin uiAdmin = new UIAdmin();
-            uiAdmin.menuAdmin();
-        } else return !daoClientes.existeCliente(cliente) &&
-                daoClientes.addCliente(cliente);
+        if (!cliente.getDni().equals(Constantes.ADMIN)) {
+            return !daoClientes.existeCliente(cliente) &&
+                    daoClientes.addCliente(cliente);
+        }
         return false;
+    }
+
+    public boolean scIsAdmin(Cliente cliente){
+        return cliente.getDni().equals(Constantes.ADMIN);
     }
 
     public boolean scSetNombre(String dni, String nombre) {

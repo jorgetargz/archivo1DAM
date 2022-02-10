@@ -32,8 +32,6 @@ public class UIAdmin {
             sc.nextLine();
             switch (opAdmin) {
                 case 0:
-                    UILogin uiLogin = new UILogin();
-                    uiLogin.menuLogin(sc);
                     break;
                 case 1:
                     this.uiAnadirProducto(sc);
