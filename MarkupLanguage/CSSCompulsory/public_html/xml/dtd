@@ -1,0 +1,17 @@
+<!ELEMENT personal (trabajador)*>
+        <!ELEMENT trabajador (nombre, apellidos, dni, fechaNacimiento,antiguedadEnEmpresa ,direccion ,telefonos)>
+        <!ELEMENT nombre (#PCDATA)>
+        <!ELEMENT apellidos (#PCDATA)>
+        <!ELEMENT dni (#PCDATA)>
+        <!ELEMENT fechaNacimiento (#PCDATA)>
+        <!ELEMENT antiguedadEnEmpresa (#PCDATA)>
+        <!ELEMENT direccion (codigoPostal, ciudad, calle?)>
+        <!ELEMENT codigoPostal (#PCDATA)>
+        <!ELEMENT ciudad (#PCDATA)>
+        <!ELEMENT calle (#PCDATA)>
+        <!ELEMENT telefonos (telefonoFijo|telefonoMovil|(telefonoFijo,telefonoMovil))>
+        <!ELEMENT telefonoMovil (#PCDATA)>
+        <!ELEMENT telefonoFijo (#PCDATA)>
+
+        <!ATTLIST direccion
+                numero CDATA #REQUIRED>

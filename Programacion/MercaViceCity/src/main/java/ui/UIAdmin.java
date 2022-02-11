@@ -202,7 +202,11 @@ public class UIAdmin {
         if (scClientes.scExisteCliente(dni)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
-            scClientes.scSetNombre(dni, nombre);
+            if (scClientes.scSetNombre(dni, nombre)){
+                System.out.println(Constantes.NOMBRE_CAMBIADO_CORRECTAMENTE);
+            } else {
+                System.out.println(Constantes.NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE);
+            }
         }
     }
 }

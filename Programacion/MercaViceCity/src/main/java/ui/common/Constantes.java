@@ -3,6 +3,8 @@ package ui.common;
 public class Constantes {
     public static final String CAMBIAR_NOMBRE = "8. Cambiar nombre";
     public static final String CAMBIAR_NOMBRE_CLIENTE = "11. Cambiar nombre cliente.";
+    public static final String NOMBRE_CAMBIADO_CORRECTAMENTE = "Nombre cambiado correctamente";
+    public static final String NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE = "No se ha podido cambiar el nombre";
 
 
     private Constantes() {

@@ -30,7 +30,7 @@ public class BD {
         idProduct++;
         inventario.add(new Producto(idProduct, "LACASITOS", 12, 11));
         idProduct++;
-        inventario.add(new Producto(idProduct, "HARINA", 60, 100));
+        inventario.add(new Producto(idProduct, "HARINA", 25, 100));
         idProduct++;
         inventario.add(new Producto(idProduct, "HIERBA BUENA", 1.3, 10));
         idProduct++;

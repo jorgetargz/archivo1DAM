@@ -19,17 +19,13 @@ public class DaoCompras {
                 stream().mapToDouble(producto -> (producto.getPrecio() * producto.getStock())).sum();
     }
 
-    public boolean pagarCompra(String dni) {
-        DaoMonederos daoMonederos = new DaoMonederos();
+    public boolean realizarCompra(String dni) {
         Cliente cliente = BD.clientes.get(dni);
-        if (daoMonederos.restarDineroMonederos(dni, getCosteCompra(dni))) {
-            List<Producto> ticket = cliente.getCompraActual().stream()
-                    .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
-                    .collect(Collectors.toUnmodifiableList());
-            cliente.getCompraActual().clear();
-            return cliente.getComprasCliente().add(ticket);
-        }
-        return false;
+        List<Producto> ticket = cliente.getCompraActual().stream()
+                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
+                .collect(Collectors.toUnmodifiableList());
+        cliente.getCompraActual().clear();
+        return cliente.getComprasCliente().add(ticket);
     }
 
     public List<Producto> getCarrito(String dni) {

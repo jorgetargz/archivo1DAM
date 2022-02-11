@@ -119,6 +119,8 @@ public class UICliente {
             sc.nextLine();
             if (scCompras.scAddProductoCompraCliente(dni, idProducto, cantidad)) {
                 System.out.println(Constantes.PRODUCTO_ANADIDO_AL_CARRITO);
+            } else {
+                System.out.println(Constantes.PRODUCTO_NO_ANADIDO_AL_CARRITO);
             }
         } else {
             System.out.println(Constantes.PRODUCTO_NO_ANADIDO_AL_CARRITO);
@@ -144,7 +146,11 @@ public class UICliente {
         ServicesClientes scClientes = new ServicesClientes();
         System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
         String nombre = sc.nextLine();
-        scClientes.scSetNombre(dni, nombre);
+        if (scClientes.scSetNombre(dni, nombre)){
+            System.out.println(Constantes.NOMBRE_CAMBIADO_CORRECTAMENTE);
+        } else {
+            System.out.println(Constantes.NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE);
+        }
     }
 
 }
