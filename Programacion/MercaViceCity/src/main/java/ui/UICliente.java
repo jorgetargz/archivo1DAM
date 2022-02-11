@@ -13,10 +13,10 @@ public class UICliente {
 
 
     public void menuCliente(String dni) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
         System.out.print(Constantes.BIENVENIDO_DE_NUEVO);
         uiClientName(dni);
-        System.out.println();
-        Scanner sc = new Scanner(System.in);
         int opCliente;
         do {
             System.out.println();
@@ -57,7 +57,7 @@ public class UICliente {
                     this.uiPagarCompra(dni);
                     break;
                 case 8:
-                    this.uiCambiarNombre(sc,dni);
+                    this.uiCambiarNombre(sc, dni);
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
@@ -67,11 +67,7 @@ public class UICliente {
 
     private void uiClientName(String dni) {
         ServicesClientes scClientes = new ServicesClientes();
-        scClientes.scGetClientList().forEach(cliente -> {
-            if (cliente.getDni().equals(dni)) {
-                System.out.print(cliente.getNombre());
-            }
-        });
+        System.out.println(scClientes.scGetNombre(dni));
     }
 
     private void uiMostrarProductosDisponibles() {
@@ -148,7 +144,7 @@ public class UICliente {
         ServicesClientes scClientes = new ServicesClientes();
         System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
         String nombre = sc.nextLine();
-        scClientes.scSetNombre(dni,nombre);
+        scClientes.scSetNombre(dni, nombre);
     }
 
 }

@@ -18,7 +18,7 @@ public class ServicesClientes {
         return false;
     }
 
-    public boolean scExisteCliente(String dni){
+    public boolean scExisteCliente(String dni) {
         DaoClientes daoClientes = new DaoClientes();
         return daoClientes.existeCliente(new Cliente(dni));
     }
@@ -30,6 +30,11 @@ public class ServicesClientes {
     public boolean scSetNombre(String dni, String nombre) {
         DaoClientes daoClientes = new DaoClientes();
         return daoClientes.setNombreCliente(dni, nombre);
+    }
+
+    public String scGetNombre(String dni) {
+        DaoClientes daoClientes = new DaoClientes();
+        return daoClientes.getNombreCliente(dni);
     }
 
     public boolean scEliminarCliente(String dni) {

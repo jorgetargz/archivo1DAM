@@ -25,6 +25,10 @@ public class DaoClientes {
         return BD.clientes.get(dni) != null;
     }
 
+    public String getNombreCliente(String dni) {
+        return BD.clientes.get(dni).getNombre();
+    }
+
     public List<Cliente> getClientList() {
         return BD.clientes.values().stream().
                 map(cliente -> new Cliente(cliente.getDni(), cliente.getNombre())).

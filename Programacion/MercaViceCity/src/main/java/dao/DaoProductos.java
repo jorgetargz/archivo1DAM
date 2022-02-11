@@ -1,7 +1,7 @@
 package dao;
 
-import modelo.Producto;
 import dao.common.Constantes;
+import modelo.Producto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -95,7 +95,7 @@ public class DaoProductos {
     }
 
     public List<Producto> getProductosDisponibles() {
-       return BD.inventario.stream()
+        return BD.inventario.stream()
                 .filter(producto -> producto.getStock() > 0)
                 .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
                 .collect(Collectors.toUnmodifiableList());
