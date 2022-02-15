@@ -21,9 +21,7 @@ public class DaoCompras {
 
     public boolean realizarCompra(String dni) {
         Cliente cliente = BD.clientes.get(dni);
-        List<Producto> ticket = cliente.getCompraActual().stream()
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
-                .collect(Collectors.toUnmodifiableList());
+        List<Producto> ticket = getCarrito(dni);
         cliente.getCompraActual().clear();
         return cliente.getComprasCliente().add(ticket);
     }

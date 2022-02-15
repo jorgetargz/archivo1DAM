@@ -2,7 +2,9 @@ package dao;
 
 import dao.common.Constantes;
 import modelo.Producto;
+import modelo.ProductoPerecedero;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -94,8 +96,18 @@ public class DaoProductos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Producto> getProductosDisponibles() {
+
+    public List<Producto> getProductosDisponiblesNoCaducados() {
         return BD.inventario.stream()
+                .filter(producto -> {
+                    boolean valido;
+                    if (producto instanceof ProductoPerecedero) {
+                        valido = ((ProductoPerecedero) producto).getCaducidad().isAfter(LocalDateTime.now());
+                    } else {
+                        valido = true;
+                    }
+                    return valido;
+                })
                 .filter(producto -> producto.getStock() > 0)
                 .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
                 .collect(Collectors.toUnmodifiableList());
@@ -105,6 +117,15 @@ public class DaoProductos {
         nombre = nombre.trim();
         String finalNombre = nombre;
         return BD.inventario.stream()
+                .filter(producto -> {
+                    boolean valido;
+                    if (producto instanceof ProductoPerecedero) {
+                        valido = ((ProductoPerecedero) producto).getCaducidad().isAfter(LocalDateTime.now());
+                    } else {
+                        valido = true;
+                    }
+                    return valido;
+                })
                 .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()) && producto.getStock() > 0)
                 .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
                 .collect(Collectors.toUnmodifiableList());

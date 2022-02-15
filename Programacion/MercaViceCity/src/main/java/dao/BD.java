@@ -2,7 +2,9 @@ package dao;
 
 import modelo.Cliente;
 import modelo.Producto;
+import modelo.ProductoPerecedero;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -28,9 +30,9 @@ public class BD {
         clientes.get("126").setNombre("Federico García Lorca");
 
         idProduct++;
-        inventario.add(new Producto(idProduct, "LACASITOS", 12, 11));
+        inventario.add(new ProductoPerecedero(idProduct, "LACASITOS", 12, 11, LocalDateTime.parse("2022-02-16T16:40:00")));
         idProduct++;
-        inventario.add(new Producto(idProduct, "HARINA", 25, 100));
+        inventario.add(new ProductoPerecedero(idProduct, "HARINA", 25, 100, LocalDateTime.parse("2021-02-13T16:30:00")));
         idProduct++;
         inventario.add(new Producto(idProduct, "HIERBA BUENA", 1.3, 10));
         idProduct++;

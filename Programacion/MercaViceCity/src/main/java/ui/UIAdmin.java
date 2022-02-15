@@ -2,10 +2,12 @@ package ui;
 
 import modelo.Cliente;
 import modelo.Producto;
+import modelo.ProductoPerecedero;
 import services.ServicesClientes;
 import services.ServicesProductos;
 import ui.common.Constantes;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class UIAdmin {
@@ -76,20 +78,29 @@ public class UIAdmin {
     private void uiAnadirProducto(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         boolean productoAnadido;
-        do {
-            System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
-            String nombre = sc.nextLine();
-            System.out.print(Constantes.INTRODUCE_EL_PRECIO);
-            double precio = sc.nextDouble();
-            sc.nextLine();
-            System.out.print(Constantes.INTRODUCE_EL_STOCK);
-            int stock = sc.nextInt();
-            sc.nextLine();
-            Producto producto = new Producto(nombre, precio, stock);
-            productoAnadido = scProductos.scAnadirProducto(producto);
-            if (productoAnadido) System.out.println(Constantes.PRODUCTO_ANADIDO);
-            else System.out.println(Constantes.PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS);
-        } while (!productoAnadido);
+        System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
+        String nombre = sc.nextLine();
+        System.out.print(Constantes.INTRODUCE_EL_PRECIO);
+        double precio = sc.nextDouble();
+        sc.nextLine();
+        System.out.print(Constantes.INTRODUCE_EL_STOCK);
+        int stock = sc.nextInt();
+        sc.nextLine();
+        boolean perecedero = true;
+        System.out.print(Constantes.INDICA_FECHA_DE_CADUCIDAD);
+        String caducidad = sc.nextLine();
+        if (caducidad.equals("")) {
+            perecedero = false;
+        }
+        Producto producto;
+        if (perecedero) {
+            producto = new ProductoPerecedero(nombre, precio, stock, LocalDateTime.parse(caducidad));
+        } else {
+            producto = new Producto(nombre, precio, stock);
+        }
+        productoAnadido = scProductos.scAnadirProducto(producto);
+        if (productoAnadido) System.out.println(Constantes.PRODUCTO_ANADIDO);
+        else System.out.println(Constantes.PRODUCTO_NO_ANADIDO);
     }
 
     private void uiEliminarProducto(Scanner sc) {
@@ -202,7 +213,7 @@ public class UIAdmin {
         if (scClientes.scExisteCliente(dni)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
-            if (scClientes.scSetNombre(dni, nombre)){
+            if (scClientes.scSetNombre(dni, nombre)) {
                 System.out.println(Constantes.NOMBRE_CAMBIADO_CORRECTAMENTE);
             } else {
                 System.out.println(Constantes.NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE);

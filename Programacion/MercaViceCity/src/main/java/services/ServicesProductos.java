@@ -2,16 +2,23 @@ package services;
 
 import dao.DaoProductos;
 import modelo.Producto;
+import modelo.ProductoPerecedero;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ServicesProductos {
 
     public boolean scAnadirProducto(Producto p) {
         DaoProductos daoProductos = new DaoProductos();
+        boolean caducado = false;
+        if (p instanceof ProductoPerecedero){
+            caducado = ((ProductoPerecedero) p).getCaducidad().isBefore(LocalDateTime.now());
+        }
         if (p.getPrecio() > 0 &&
                 p.getStock() > 0 &&
-                !daoProductos.existeProducto(p)
+                !daoProductos.existeProducto(p) &&
+                !caducado
         ) {
             return DaoProductos.addProduct(p);
         }
@@ -79,7 +86,7 @@ public class ServicesProductos {
 
     public List<Producto> scGetProductosDisponibles() {
         DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductosDisponibles();
+        return daoProductos.getProductosDisponiblesNoCaducados();
     }
 
     public List<Producto> scBuscarProducto(String nombre) {

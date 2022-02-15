@@ -1,12 +1,6 @@
 package ui.common;
 
 public class Constantes {
-    public static final String CAMBIAR_NOMBRE = "8. Cambiar nombre";
-    public static final String CAMBIAR_NOMBRE_CLIENTE = "11. Cambiar nombre cliente.";
-    public static final String NOMBRE_CAMBIADO_CORRECTAMENTE = "Nombre cambiado correctamente";
-    public static final String NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE = "No se ha podido cambiar el nombre";
-
-
     private Constantes() {
     }
 
@@ -18,7 +12,6 @@ public class Constantes {
             " | |  | |  __/ | | (_| (_| |   \\ V / | | (_|  __/ | (__| | |_| |_| |\n" +
             " |_|  |_|\\___|_|  \\___\\__,_|    \\_/  |_|\\___\\___|  \\___|_|\\__|\\__, |\n" +
             "                                                               |___/  ";
-
 
     //UILogin
     public static final String ELIGE_UNA_OPCION = "Elige una opcion: ";
@@ -32,7 +25,6 @@ public class Constantes {
     public static final String SESION_INICIADA = "Sesion iniciada";
     public static final String REGISTRADO_CORRECTAMENTE = "Registrado correctamente";
 
-
     //UIAdmin
     public static final String SALIR = "0. Salir";
     public static final String ANADIR_PRODUCTO = "1. Añadir producto";
@@ -45,14 +37,16 @@ public class Constantes {
     public static final String ANADIR_CLIENTE = "8. Añadir cliente";
     public static final String VER_LISTA_CLIENTES = "9. Ver lista clientes";
     public static final String ELIMINAR_CLIENTE_POR_DNI = "10. Eliminar cliente por DNI";
+    public static final String CAMBIAR_NOMBRE_CLIENTE = "11. Cambiar nombre cliente.";
     public static final String ERROR_ENTRADA_DE_MENU_NO_VALIDA = "Error entrada de menu no valida";
 
     public static final String INTRODUCE_UN_ID_DE_PRODUCTO = "Introduce un ID de producto: ";
     public static final String INTRODUCE_UN_NOMBRE_DE_PRODUCTO = "Introduce un nombre de producto: ";
     public static final String PRODUCTO_ANADIDO = "Producto añadido";
-    public static final String PRODUCTO_NO_ANADIDO_REVISA_LOS_DATOS = "Producto no añadido revisa los datos";
+    public static final String PRODUCTO_NO_ANADIDO = "Producto no añadido revisa los datos";
     public static final String INTRODUCE_EL_PRECIO = "Introduce el precio: ";
     public static final String INTRODUCE_EL_STOCK = "Introduce el stock: ";
+    public static final String INDICA_FECHA_DE_CADUCIDAD = "Indica fecha de caducidad [yyy-mm-ddThh:mm:ss]: ";
 
     public static final String PRODUCTO_ELIMINADO = "Producto eliminado";
     public static final String PRODUCTO_NO_ENCONTRADO = "Producto no encontrado";
@@ -104,4 +98,7 @@ public class Constantes {
     public static final String COMPRA_REALIZADA = "Compra realizada";
     public static final String NO_SE_HA_PODIDO_REALIZAR_LA_COMPRA = "No se ha podido realizar la compra";
 
+    public static final String CAMBIAR_NOMBRE = "8. Cambiar nombre";
+    public static final String NOMBRE_CAMBIADO_CORRECTAMENTE = "Nombre cambiado correctamente";
+    public static final String NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE = "No se ha podido cambiar el nombre";
 }
