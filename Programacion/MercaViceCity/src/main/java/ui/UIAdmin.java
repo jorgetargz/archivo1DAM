@@ -2,6 +2,7 @@ package ui;
 
 import dao.BD;
 import modelo.Cliente;
+import modelo.Ingrediente;
 import modelo.Producto;
 import modelo.ProductoPerecedero;
 import services.ServicesClientes;
@@ -9,6 +10,7 @@ import services.ServicesProductos;
 import ui.common.Constantes;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 
 public class UIAdmin {
@@ -16,6 +18,7 @@ public class UIAdmin {
 
     public void menuAdmin() {
         Scanner sc = new Scanner(System.in);
+        Cliente admin = new Cliente(Constantes.ADMIN);
         int opAdmin;
         do {
             System.out.println();
@@ -44,10 +47,10 @@ public class UIAdmin {
                     this.uiEliminarProducto(sc);
                     break;
                 case 3:
-                    this.uiMostrarProductos();
+                    this.uiMostrarProductos(admin);
                     break;
                 case 4:
-                    this.uiBuscarProducto(sc);
+                    this.uiBuscarProducto(admin,sc);
                     break;
                 case 5:
                     this.uiAumentarStock(sc);
@@ -94,15 +97,19 @@ public class UIAdmin {
             perecedero = false;
         }
         Producto producto;
+        UIIngredientes uiIngredientes = new UIIngredientes();
+        List<Ingrediente> ingredientes = uiIngredientes.uiListaIngredientes(sc);
         if (perecedero) {
-            producto = new ProductoPerecedero(nombre, precio, stock, LocalDateTime.parse(caducidad));
+            producto = new ProductoPerecedero(nombre, precio, stock, ingredientes, LocalDateTime.parse(caducidad));
         } else {
-            producto = new Producto(nombre, precio, stock);
+            producto = new Producto(nombre, precio, stock, ingredientes);
         }
         productoAnadido = scProductos.scAnadirProducto(producto);
-        if (productoAnadido) System.out.println(Constantes.PRODUCTO_ANADIDO);
-        else System.out.println(Constantes.PRODUCTO_NO_ANADIDO);
+        if (productoAnadido) {
+            System.out.println(Constantes.PRODUCTO_ANADIDO);
+        } else System.out.println(Constantes.PRODUCTO_NO_ANADIDO);
     }
+
 
     private void uiEliminarProducto(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
@@ -116,17 +123,17 @@ public class UIAdmin {
         }
     }
 
-    private void uiMostrarProductos() {
+    private void uiMostrarProductos(Cliente c) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        scProductos.scGetProductList().forEach(System.out::println);
+        scProductos.scGetProductList(c).forEach(System.out::println);
     }
 
-    private void uiBuscarProducto(Scanner sc) {
+    private void uiBuscarProducto(Cliente c, Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        scProductos.scBuscarProducto(nombre).forEach(System.out::println);
+        scProductos.scBuscarProducto(c, nombre).forEach(System.out::println);
     }
 
     private void uiAumentarStock(Scanner sc) {

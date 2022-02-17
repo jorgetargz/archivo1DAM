@@ -1,6 +1,7 @@
 package services;
 
 import dao.DaoProductos;
+import modelo.Cliente;
 import modelo.Producto;
 import modelo.ProductoPerecedero;
 
@@ -14,7 +15,7 @@ public class ServicesProductos {
         DaoProductos daoProductos = new DaoProductos();
         ServicesProductosPerecederos scProductosPerecederos = new ServicesProductosPerecederos();
         boolean caducado = false;
-        if (p instanceof ProductoPerecedero){
+        if (p instanceof ProductoPerecedero) {
             caducado = scProductosPerecederos.productoCaducado((ProductoPerecedero) p);
         }
         if (p.getPrecio() > 0 &&
@@ -25,16 +26,6 @@ public class ServicesProductos {
             return DaoProductos.addProduct(p);
         }
         return false;
-    }
-
-    public String scGetProductName(int idProduct) {
-        DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductName(idProduct);
-    }
-
-    public double scGetProductPrize(int idProduct) {
-        DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductPrize(idProduct);
     }
 
     public boolean scEliminarProducto(Producto p) {
@@ -80,14 +71,14 @@ public class ServicesProductos {
         return false;
     }
 
-    public List<Producto> scGetProductList() {
+    public List<Producto> scGetProductList(Cliente c) {
         DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductList();
+        return daoProductos.getProductList(c);
     }
 
-    public List<Producto> scGetProductosDisponiblesNoCaducados() {
+    public List<Producto> scGetProductosDisponiblesNoCaducados(Cliente cliente) {
         DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductList().stream()
+        return daoProductos.getProductList(cliente).stream()
                 .filter(producto -> {
                     boolean valido;
                     if (producto instanceof ProductoPerecedero) {
@@ -101,20 +92,20 @@ public class ServicesProductos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Producto> scBuscarProducto(String nombre) {
+    public List<Producto> scBuscarProducto(Cliente c, String nombre) {
         DaoProductos daoProductos = new DaoProductos();
         nombre = nombre.trim();
         String finalNombre = nombre;
-        return daoProductos.getProductList().stream()
+        return daoProductos.getProductList(c).stream()
                 .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Producto> scBuscarProductoDisponiblesNoCaducados(String nombre) {
+    public List<Producto> scBuscarProductoDisponiblesNoCaducados(Cliente c, String nombre) {
         DaoProductos daoProductos = new DaoProductos();
         nombre = nombre.trim();
         String finalNombre = nombre;
-        return daoProductos.getProductList().stream()
+        return daoProductos.getProductList(c).stream()
                 .filter(producto -> {
                     boolean valido;
                     if (producto instanceof ProductoPerecedero) {
@@ -126,6 +117,10 @@ public class ServicesProductos {
                 })
                 .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()) && producto.getStock() > 0)
                 .collect(Collectors.toUnmodifiableList());
+    }
+
+    public boolean scContieneAlergenos(Producto producto, Cliente cliente) {
+        return (producto.getIngredientes().stream().anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)));
     }
 
 }

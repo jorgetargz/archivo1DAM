@@ -5,8 +5,8 @@ import modelo.common.Constantes;
 
 public class LineaCompra implements Clonable<LineaCompra> {
 
-    private Producto producto;
-    private int cantidad;
+    private final Producto producto;
+    private final int cantidad;
 
     public LineaCompra(Producto producto, int cantidad) {
         this.producto = producto;
@@ -20,16 +20,8 @@ public class LineaCompra implements Clonable<LineaCompra> {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
     public int getCantidad() {
         return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     @Override
@@ -44,6 +36,6 @@ public class LineaCompra implements Clonable<LineaCompra> {
 
     @Override
     public LineaCompra clonar() {
-        return new LineaCompra(this.producto,this.cantidad);
+        return new LineaCompra(this.producto, this.cantidad);
     }
 }

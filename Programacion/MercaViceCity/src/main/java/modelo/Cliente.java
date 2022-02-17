@@ -10,6 +10,7 @@ public class Cliente implements Clonable<Cliente> {
     private Set<Monedero> monederoCliente = null;
     private List<LineaCompra> compraActual = null;
     private List<List<LineaCompra>> comprasCliente = null;
+    private List<Ingrediente> alergenos;
     private String nombre;
 
     public Cliente(String dni) {
@@ -17,6 +18,7 @@ public class Cliente implements Clonable<Cliente> {
         monederoCliente = new HashSet<>();
         compraActual = new ArrayList<>();
         comprasCliente = new ArrayList<>();
+        alergenos = new ArrayList<>();
     }
 
     public Cliente(String dni, String nombre) {
@@ -48,6 +50,10 @@ public class Cliente implements Clonable<Cliente> {
         return comprasCliente;
     }
 
+    public List<Ingrediente> getAlergenos() {
+        return alergenos;
+    }
+
     @Override
     public String toString() {
         return Constantes.NOMBRE + nombre +
@@ -69,6 +75,6 @@ public class Cliente implements Clonable<Cliente> {
 
     @Override
     public Cliente clonar() {
-        return new Cliente(this.dni,this.nombre);
+        return new Cliente(this.dni, this.nombre);
     }
 }

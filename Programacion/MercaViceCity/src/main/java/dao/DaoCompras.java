@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 public class DaoCompras {
 
     public boolean addProductoCompra(LineaCompra lineaCompra, Cliente cliente) {
-        return  BD.clientes.get(cliente.getDni()).getCompraActual().add(lineaCompra);
+        return BD.clientes.get(cliente.getDni()).getCompraActual().add(lineaCompra);
     }
 
     public double getCosteCompra(Cliente cliente) {
-        return  BD.clientes.get(cliente.getDni()).getCompraActual().
+        return BD.clientes.get(cliente.getDni()).getCompraActual().
                 stream().mapToDouble(lineaCompra -> lineaCompra.getProducto().getPrecio() * lineaCompra.getCantidad()).sum();
     }
 

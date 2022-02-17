@@ -1,6 +1,6 @@
 package dao;
 
-import dao.common.Constantes;
+import modelo.Cliente;
 import modelo.Producto;
 
 import java.util.List;
@@ -11,8 +11,8 @@ public class DaoProductos {
     public static boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
         if (!BD.inventario.contains(p)) {
-            BD.idProduct++;
-            p.setId(BD.idProduct);
+            BD.incrementarId();
+            p.setId(BD.getIdBD());
             BD.inventario.add(p);
             operacionRealizada = true;
         }
@@ -65,28 +65,10 @@ public class DaoProductos {
         return 0;
     }
 
-    public String getProductName(int id) {
-        int productIndex = BD.inventario.indexOf(new Producto(id));
-        boolean productoEncontardo = productIndex != -1;
-        if (productoEncontardo) {
-            Producto p = BD.inventario.get(productIndex);
-            return p.getNombre();
-        }
-        return Constantes.NULL;
-    }
-
-    public double getProductPrize(int id) {
-        int productIndex = BD.inventario.indexOf(new Producto(id));
-        boolean productoEncontardo = productIndex != -1;
-        if (productoEncontardo) {
-            Producto p = BD.inventario.get(productIndex);
-            return p.getPrecio();
-        }
-        return 0;
-    }
-
-    public List<Producto> getProductList() {
+    public List<Producto> getProductList(Cliente cliente) {
         return BD.inventario.stream()
+                .filter(producto -> producto.getIngredientes().stream()
+                        .anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)))
                 .map(Producto::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }

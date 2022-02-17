@@ -1,21 +1,30 @@
 package dao;
 
 import modelo.Cliente;
+import modelo.Ingrediente;
 import modelo.Producto;
 import modelo.ProductoPerecedero;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class BD {
 
-    private BD() {
-    }
+    private BD() {}
 
     public static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
     public static final ArrayList<Producto> inventario = new ArrayList<>();
-    public static int idProduct = 0;
+    private static int idProduct = 0;
+
+    public static void incrementarId() {
+        idProduct++;
+    }
+
+    public static int getIdBD() {
+        return idProduct;
+    }
 
 
     static {
@@ -30,13 +39,13 @@ public class BD {
         clientes.get("126").setNombre("Federico García Lorca");
 
         idProduct++;
-        inventario.add(new ProductoPerecedero(idProduct, "LACASITOS", 12, 11, LocalDateTime.parse("2022-02-16T16:40:00")));
+        inventario.add(new ProductoPerecedero(idProduct, "LACASITOS", 12, 11, List.of(new Ingrediente("CACAO")), LocalDateTime.parse("2022-02-16T16:40:00")));
         idProduct++;
-        inventario.add(new ProductoPerecedero(idProduct, "HARINA", 25, 100, LocalDateTime.parse("2021-02-13T16:30:00")));
+        inventario.add(new ProductoPerecedero(idProduct, "HARINA", 25, 100, List.of(new Ingrediente("HARINA")), LocalDateTime.parse("2021-02-13T16:30:00")));
         idProduct++;
-        inventario.add(new Producto(idProduct, "HIERBA BUENA", 1.3, 10));
+        inventario.add(new Producto(idProduct, "HIERBA BUENA", 1.3, 10, List.of(new Ingrediente("HIERBA BUENA"))));
         idProduct++;
-        inventario.add(new Producto(idProduct, "CHOCOLATE", 2.5, 15));
+        inventario.add(new Producto(idProduct, "CHOCOLATE", 2.5, 15, List.of(new Ingrediente("CACAO"))));
 
     }
 

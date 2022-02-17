@@ -1,6 +1,7 @@
 package dao;
 
 import modelo.Cliente;
+import modelo.Ingrediente;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,4 +35,9 @@ public class DaoClientes {
                 map(Cliente::clonar).
                 collect(Collectors.toUnmodifiableList());
     }
+
+    public boolean anadirAlergeno(Ingrediente alergeno, Cliente cliente) {
+        return BD.clientes.get(cliente.getDni()).getAlergenos().add(alergeno);
+    }
+
 }

@@ -2,31 +2,34 @@ package modelo;
 
 import modelo.common.Constantes;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Producto implements Clonable<Producto> {
+
     private int id;
     private String nombre;
     private double precio;
     private int stock;
-
+    private List<Ingrediente> ingredientes;
 
     public Producto(int id) {
         this.id = id;
-        this.nombre=" ";
     }
 
-    public Producto(String nombre, double precio, int stock) {
+    public Producto(String nombre, double precio, int stock, List<Ingrediente> ingredientes) {
         this.nombre = nombre.toUpperCase();
         this.precio = precio;
         this.stock = stock;
+        this.ingredientes = ingredientes;
     }
 
-    public Producto(int id, String nombre, double precio, int stock) {
+    public Producto(int id, String nombre, double precio, int stock, List<Ingrediente> ingredientes) {
         this.id = id;
         this.nombre = nombre.toUpperCase();
         this.precio = precio;
         this.stock = stock;
+        this.ingredientes = ingredientes;
     }
 
     public int getId() {
@@ -61,11 +64,15 @@ public class Producto implements Clonable<Producto> {
         this.stock = stock;
     }
 
+    public List<Ingrediente> getIngredientes() {
+        return ingredientes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if ( ( o == null || getClass() != o.getClass())
-                &&  !(o instanceof Producto)) return false;
+        if ((o == null || getClass() != o.getClass())
+                && !(o instanceof Producto)) return false;
         Producto producto = (Producto) o;
         return (id == producto.getId()) || Objects.equals(nombre, producto.nombre);
     }
@@ -87,6 +94,6 @@ public class Producto implements Clonable<Producto> {
 
     @Override
     public Producto clonar() {
-        return new Producto(this.id, this.nombre, this.precio, this.stock);
+        return new Producto(this.id, this.nombre, this.precio, this.stock, this.ingredientes);
     }
 }

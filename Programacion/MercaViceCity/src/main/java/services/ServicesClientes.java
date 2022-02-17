@@ -2,6 +2,7 @@ package services;
 
 import dao.DaoClientes;
 import modelo.Cliente;
+import modelo.Ingrediente;
 import ui.common.Constantes;
 
 import java.util.List;
@@ -49,4 +50,8 @@ public class ServicesClientes {
         return daoClientes.getClientList();
     }
 
+    public boolean scAnadirAlergeno(Ingrediente alergeno, Cliente cliente) {
+        DaoClientes daoClientes = new DaoClientes();
+        return daoClientes.anadirAlergeno(alergeno,cliente);
+    }
 }
