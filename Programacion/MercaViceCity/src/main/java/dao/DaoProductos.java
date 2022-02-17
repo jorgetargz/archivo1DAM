@@ -1,6 +1,5 @@
 package dao;
 
-import modelo.Cliente;
 import modelo.Producto;
 
 import java.util.List;
@@ -65,10 +64,8 @@ public class DaoProductos {
         return 0;
     }
 
-    public List<Producto> getProductList(Cliente cliente) {
+    public List<Producto> getProductList() {
         return BD.inventario.stream()
-                .filter(producto -> producto.getIngredientes().stream()
-                        .anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)))
                 .map(Producto::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }

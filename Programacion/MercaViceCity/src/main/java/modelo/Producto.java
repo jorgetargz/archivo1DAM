@@ -68,6 +68,10 @@ public class Producto implements Clonable<Producto> {
         return ingredientes;
     }
 
+    public void setIngredientes(List<Ingrediente> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

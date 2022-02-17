@@ -46,6 +46,8 @@ public class BD {
         inventario.add(new Producto(idProduct, "HIERBA BUENA", 1.3, 10, List.of(new Ingrediente("HIERBA BUENA"))));
         idProduct++;
         inventario.add(new Producto(idProduct, "CHOCOLATE", 2.5, 15, List.of(new Ingrediente("CACAO"))));
+        idProduct++;
+        inventario.add(new Producto(idProduct, "AVION TELEDIRIGIDO", 20.5, 15, new ArrayList<>()));
 
     }
 

@@ -21,7 +21,6 @@ public class ProductoPerecedero extends Producto {
         return caducidad;
     }
 
-
     @Override
     public String toString() {
         return super.toString() +

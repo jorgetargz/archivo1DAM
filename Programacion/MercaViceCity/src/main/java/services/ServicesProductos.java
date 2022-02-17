@@ -73,12 +73,16 @@ public class ServicesProductos {
 
     public List<Producto> scGetProductList(Cliente c) {
         DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductList(c);
+        return daoProductos.getProductList().stream().filter(producto -> {
+            boolean hayAlergenos = producto.getIngredientes().stream()
+                    .anyMatch(ingrediente -> c.getAlergenos().contains(ingrediente));
+                    return !hayAlergenos;
+                })
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public List<Producto> scGetProductosDisponiblesNoCaducados(Cliente cliente) {
-        DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductList(cliente).stream()
+        return this.scGetProductList(cliente).stream()
                 .filter(producto -> {
                     boolean valido;
                     if (producto instanceof ProductoPerecedero) {
@@ -92,20 +96,18 @@ public class ServicesProductos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Producto> scBuscarProducto(Cliente c, String nombre) {
-        DaoProductos daoProductos = new DaoProductos();
+    public List<Producto> scBuscarProducto(Cliente cliente, String nombre) {
         nombre = nombre.trim();
         String finalNombre = nombre;
-        return daoProductos.getProductList(c).stream()
+        return this.scGetProductList(cliente).stream()
                 .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public List<Producto> scBuscarProductoDisponiblesNoCaducados(Cliente c, String nombre) {
-        DaoProductos daoProductos = new DaoProductos();
+    public List<Producto> scBuscarProductoDisponiblesNoCaducados(Cliente cliente, String nombre) {
         nombre = nombre.trim();
         String finalNombre = nombre;
-        return daoProductos.getProductList(c).stream()
+        return this.scGetProductList(cliente).stream()
                 .filter(producto -> {
                     boolean valido;
                     if (producto instanceof ProductoPerecedero) {
@@ -120,7 +122,8 @@ public class ServicesProductos {
     }
 
     public boolean scContieneAlergenos(Producto producto, Cliente cliente) {
-        return (producto.getIngredientes().stream().anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)));
+        return (producto.getIngredientes().stream()
+                .anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)));
     }
 
 }

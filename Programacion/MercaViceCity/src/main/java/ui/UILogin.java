@@ -1,5 +1,6 @@
 package ui;
 
+import dao.BD;
 import modelo.Cliente;
 import services.ServicesClientes;
 import ui.common.Constantes;
@@ -41,17 +42,18 @@ public class UILogin {
         System.out.println();
         System.out.print(Constantes.INDICA_TU_DNI);
         String dni = sc.nextLine();
-        Cliente cliente = new Cliente(dni);
-        if (scClientes.scIsAdmin(cliente)) {
+        Cliente c = new Cliente(dni);
+        if (scClientes.scIsAdmin(c)) {
             UIAdmin uiAdmin = new UIAdmin();
             uiAdmin.menuAdmin();
         } else {
-            if (scClientes.scRegistrarCliente(cliente)) {
+            if (scClientes.scRegistrarCliente(c)) {
                 System.out.println(Constantes.REGISTRARSE_COMO_CLIENTE);
-                uiSetNombreCliente(sc, cliente);
+                uiSetNombreCliente(sc, c);
             }
             System.out.println(Constantes.SESION_INICIADA);
             UICliente uiCliente = new UICliente();
+            Cliente cliente = BD.clientes.get(c.getDni());
             uiCliente.menuCliente(cliente);
         }
     }
