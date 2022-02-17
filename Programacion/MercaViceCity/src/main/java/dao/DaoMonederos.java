@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class DaoMonederos {
 
-    public boolean addMonederoCliente(Monedero monedero, String dni) {
-        return BD.clientes.get(dni).getMonederosCliente().add(monedero);
+    public boolean addMonederoCliente(Monedero monedero, Cliente cliente) {
+        return cliente.getMonederosCliente().add(monedero);
     }
 
     public boolean existeMonedero(Monedero monedero) {
@@ -23,19 +23,18 @@ public class DaoMonederos {
         return existeMonedero;
     }
 
-    public double getSaldoTotal(String dni) {
-        return BD.clientes.get(dni).getMonederosCliente().stream().mapToDouble(Monedero::getImporte).sum();
+    public double getSaldoTotal(Cliente cliente) {
+        return cliente.getMonederosCliente().stream().mapToDouble(Monedero::getImporte).sum();
     }
 
-    public List<Monedero> getMonederosClienteList(String dni) {
-        return BD.clientes.get(dni).getMonederosCliente().stream()
+    public List<Monedero> getMonederosClienteList(Cliente cliente) {
+        return cliente.getMonederosCliente().stream()
                 .map(monedero -> new Monedero(monedero.getNumeroMonedero(), monedero.getImporte()))
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public boolean restarDineroMonederos(String dni, double importe) {
-        Cliente cliente = BD.clientes.get(dni);
-        if (getSaldoTotal(dni) >= importe) {
+    public boolean restarDineroMonederos(Cliente cliente, double importe) {
+        if (getSaldoTotal(cliente) >= importe) {
             for (Monedero monedero : cliente.getMonederosCliente()) {
                 if (monedero.getImporte() >= 0) {
                     monedero.setImporte(monedero.getImporte() - importe);

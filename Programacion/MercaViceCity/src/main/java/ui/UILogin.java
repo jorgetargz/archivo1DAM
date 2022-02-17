@@ -32,7 +32,7 @@ public class UILogin {
         dni = sc.nextLine();
         Cliente cliente = new Cliente(dni);
         if (scClientes.scRegistrarCliente(cliente)) {
-            uiSetNombreCliente(sc, dni);
+            uiSetNombreCliente(sc, cliente);
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
     }
 
@@ -48,20 +48,20 @@ public class UILogin {
         } else {
             if (scClientes.scRegistrarCliente(cliente)) {
                 System.out.println(Constantes.REGISTRARSE_COMO_CLIENTE);
-                uiSetNombreCliente(sc, dni);
+                uiSetNombreCliente(sc, cliente);
             }
             System.out.println(Constantes.SESION_INICIADA);
             UICliente uiCliente = new UICliente();
-            uiCliente.menuCliente(dni);
+            uiCliente.menuCliente(cliente);
         }
     }
 
-    private void uiSetNombreCliente(Scanner sc, String dni) {
+    private void uiSetNombreCliente(Scanner sc, Cliente cliente) {
         ServicesClientes scClientes = new ServicesClientes();
         String nombre;
         System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
         nombre = sc.nextLine();
-        if (scClientes.scSetNombre(dni, nombre)) {
+        if (scClientes.scSetNombre(cliente, nombre)) {
             System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
         }
     }

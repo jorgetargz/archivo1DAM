@@ -13,9 +13,9 @@ public class BD {
     private BD() {
     }
 
-    static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
-    static final ArrayList<Producto> inventario = new ArrayList<>();
-    static int idProduct = 0;
+    public static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
+    public static final ArrayList<Producto> inventario = new ArrayList<>();
+    public static int idProduct = 0;
 
 
     static {

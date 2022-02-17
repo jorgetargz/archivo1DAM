@@ -1,6 +1,7 @@
 package services;
 
 import dao.DaoMonederos;
+import modelo.Cliente;
 import modelo.Monedero;
 
 import java.util.List;
@@ -12,23 +13,23 @@ public class ServicesMonederos {
         return daoMonederos.existeMonedero(monedero);
     }
 
-    public boolean scAnadirMonedero(Monedero monedero, String dni) {
+    public boolean scAnadirMonedero(Monedero monedero, Cliente cliente) {
         DaoMonederos daoMonederos = new DaoMonederos();
         if (!daoMonederos.existeMonedero(monedero)
                 && monedero.getNumeroMonedero() > 0
                 && monedero.getImporte() > 0) {
-            return daoMonederos.addMonederoCliente(monedero, dni);
+            return daoMonederos.addMonederoCliente(monedero, cliente);
         }
         return false;
     }
 
-    public double scGetSaldoTotal(String dni) {
+    public double scGetSaldoTotal(Cliente cliente) {
         DaoMonederos daoMonederos = new DaoMonederos();
-        return daoMonederos.getSaldoTotal(dni);
+        return daoMonederos.getSaldoTotal(cliente);
     }
 
-    public List<Monedero> scGetListaMonederosCliente(String dni) {
+    public List<Monedero> scGetListaMonederosCliente(Cliente cliente) {
         DaoMonederos daoMonederos = new DaoMonederos();
-        return daoMonederos.getMonederosClienteList(dni);
+        return daoMonederos.getMonederosClienteList(cliente);
     }
 }

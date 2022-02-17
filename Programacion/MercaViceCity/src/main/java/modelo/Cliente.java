@@ -4,12 +4,12 @@ import modelo.common.Constantes;
 
 import java.util.*;
 
-public class Cliente {
+public class Cliente implements Clonable<Cliente> {
 
     private final String dni;
     private Set<Monedero> monederoCliente = null;
-    private List<Producto> compraActual = null;
-    private List<List<Producto>> comprasCliente = null;
+    private List<LineaCompra> compraActual = null;
+    private List<List<LineaCompra>> comprasCliente = null;
     private String nombre;
 
     public Cliente(String dni) {
@@ -40,11 +40,11 @@ public class Cliente {
         return monederoCliente;
     }
 
-    public List<Producto> getCompraActual() {
+    public List<LineaCompra> getCompraActual() {
         return compraActual;
     }
 
-    public List<List<Producto>> getComprasCliente() {
+    public List<List<LineaCompra>> getComprasCliente() {
         return comprasCliente;
     }
 
@@ -65,5 +65,10 @@ public class Cliente {
     @Override
     public int hashCode() {
         return Objects.hash(dni);
+    }
+
+    @Override
+    public Cliente clonar() {
+        return new Cliente(this.dni,this.nombre);
     }
 }

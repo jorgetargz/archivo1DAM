@@ -2,36 +2,45 @@ package services;
 
 import dao.DaoCompras;
 import dao.DaoMonederos;
-import modelo.Producto;
+import modelo.Cliente;
+import modelo.LineaCompra;
+import modelo.ProductoPerecedero;
 
 import java.util.List;
 
 public class ServicesCompras {
 
-    public boolean scAddProductoCompraCliente(String dni, int idProducto, int cantidad) {
+    public boolean scAddProductoCompraCliente(Cliente cliente, LineaCompra lineaCompra) {
         DaoCompras daoCompras = new DaoCompras();
         ServicesProductos scProductos = new ServicesProductos();
-        if (scProductos.scExisteProducto(idProducto )
-                && scProductos.scGetProductStock(idProducto) >= cantidad) {
-            scProductos.scDisminuirStock(idProducto, cantidad);
-            String nombreProducto = scProductos.scGetProductName(idProducto);
-            double precioProducto = scProductos.scGetProductPrize(idProducto);
-            return daoCompras.addProductoCompra(new Producto(idProducto, nombreProducto, precioProducto, cantidad), dni);
+        ServicesProductosPerecederos scProductosPerecederos = new ServicesProductosPerecederos();
+        boolean caducado = false;
+        if (lineaCompra.getProducto() instanceof ProductoPerecedero
+                && scProductosPerecederos.productoCaducado((ProductoPerecedero) lineaCompra.getProducto())) {
+            caducado = true;
+        }
+        if (scProductos.scExisteProducto(lineaCompra.getProducto())
+                && scProductos.scGetProductStock(lineaCompra.getProducto()) >= lineaCompra.getCantidad()
+                && !caducado) {
+            scProductos.scDisminuirStock(lineaCompra.getProducto(), lineaCompra.getCantidad());
+            return daoCompras.addProductoCompra(lineaCompra, cliente);
         }
         return false;
     }
 
-    public boolean scPagarCompra(String dni) {
+    public boolean scPagarCompra(Cliente cliente) {
         DaoCompras daoCompras = new DaoCompras();
         DaoMonederos daoMonederos = new DaoMonederos();
-        if (daoMonederos.restarDineroMonederos(dni,daoCompras.getCosteCompra(dni))) {
-            return daoCompras.realizarCompra(dni);
+        ServicesMonederos scMonederos = new ServicesMonederos();
+        if (scMonederos.scGetSaldoTotal(cliente) > daoCompras.getCosteCompra(cliente)) {
+            daoMonederos.restarDineroMonederos(cliente, daoCompras.getCosteCompra(cliente));
+            return daoCompras.realizarCompra(cliente);
         }
         return false;
     }
 
-    public List<Producto> scGetCarrito(String dni) {
+    public List<LineaCompra> scGetCarrito(Cliente cliente) {
         DaoCompras daoCompras = new DaoCompras();
-        return daoCompras.getCarrito(dni);
+        return daoCompras.getCarrito(cliente);
     }
 }

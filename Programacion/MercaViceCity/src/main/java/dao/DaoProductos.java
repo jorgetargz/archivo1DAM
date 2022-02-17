@@ -2,9 +2,7 @@ package dao;
 
 import dao.common.Constantes;
 import modelo.Producto;
-import modelo.ProductoPerecedero;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,8 +19,7 @@ public class DaoProductos {
         return operacionRealizada;
     }
 
-    public boolean deleteProduct(int id) {
-        Producto p = new Producto(id);
+    public boolean deleteProduct(Producto p) {
         return BD.inventario.remove(p);
     }
 
@@ -30,28 +27,26 @@ public class DaoProductos {
         return BD.inventario.contains(p);
     }
 
-    public boolean setProductPrize(int id, double precio) {
-        int productIndex = BD.inventario.indexOf(new Producto(id));
+    public boolean setProductPrize(Producto p, double precio) {
+        int productIndex = BD.inventario.indexOf(p);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
-            Producto p = BD.inventario.get(productIndex);
             p.setPrecio(precio);
         }
         return productoEncontardo;
     }
 
-    public boolean addProductStock(int id, int stock) {
-        int productIndex = BD.inventario.indexOf(new Producto(id));
+    public boolean addProductStock(Producto p, int stock) {
+        int productIndex = BD.inventario.indexOf(p);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
-            Producto p = BD.inventario.get(productIndex);
             p.setStock(p.getStock() + stock);
         }
         return productoEncontardo;
     }
 
-    public boolean reduceProductStock(int id, int stock) {
-        int productIndex = BD.inventario.indexOf(new Producto(id));
+    public boolean reduceProductStock(Producto producto, int stock) {
+        int productIndex = BD.inventario.indexOf(producto);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
             Producto p = BD.inventario.get(productIndex);
@@ -60,8 +55,8 @@ public class DaoProductos {
         return productoEncontardo;
     }
 
-    public int getStockProduct(int id) {
-        int productIndex = BD.inventario.indexOf(new Producto(id));
+    public int getStockProduct(Producto producto) {
+        int productIndex = BD.inventario.indexOf(producto);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
             Producto p = BD.inventario.get(productIndex);
@@ -92,51 +87,8 @@ public class DaoProductos {
 
     public List<Producto> getProductList() {
         return BD.inventario.stream()
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
+                .map(Producto::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-
-    public List<Producto> getProductosDisponiblesNoCaducados() {
-        return BD.inventario.stream()
-                .filter(producto -> {
-                    boolean valido;
-                    if (producto instanceof ProductoPerecedero) {
-                        valido = ((ProductoPerecedero) producto).getCaducidad().isAfter(LocalDateTime.now());
-                    } else {
-                        valido = true;
-                    }
-                    return valido;
-                })
-                .filter(producto -> producto.getStock() > 0)
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    public List<Producto> buscarProductoDisponible(String nombre) {
-        nombre = nombre.trim();
-        String finalNombre = nombre;
-        return BD.inventario.stream()
-                .filter(producto -> {
-                    boolean valido;
-                    if (producto instanceof ProductoPerecedero) {
-                        valido = ((ProductoPerecedero) producto).getCaducidad().isAfter(LocalDateTime.now());
-                    } else {
-                        valido = true;
-                    }
-                    return valido;
-                })
-                .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()) && producto.getStock() > 0)
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
-                .collect(Collectors.toUnmodifiableList());
-    }
-
-    public List<Producto> buscarProducto(String nombre) {
-        nombre = nombre.trim();
-        String finalNombre = nombre;
-        return BD.inventario.stream()
-                .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()))
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
-                .collect(Collectors.toUnmodifiableList());
-    }
 }

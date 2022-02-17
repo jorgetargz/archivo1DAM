@@ -18,30 +18,30 @@ public class ServicesClientes {
         return false;
     }
 
-    public boolean scExisteCliente(String dni) {
+    public boolean scExisteCliente(Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
-        return daoClientes.existeCliente(new Cliente(dni));
+        return daoClientes.existeCliente(cliente);
     }
 
     public boolean scIsAdmin(Cliente cliente) {
         return cliente.getDni().equals(Constantes.ADMIN);
     }
 
-    public boolean scSetNombre(String dni, String nombre) {
+    public boolean scSetNombre(Cliente cliente, String nombre) {
         DaoClientes daoClientes = new DaoClientes();
-        return daoClientes.setNombreCliente(dni, nombre);
+        return daoClientes.setNombreCliente(cliente, nombre);
     }
 
-    public String scGetNombre(String dni) {
+    public String scGetNombre(Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
-        return daoClientes.getNombreCliente(dni);
+        return daoClientes.getNombreCliente(cliente);
     }
 
-    public boolean scEliminarCliente(String dni) {
+    public boolean scEliminarCliente(Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
-        boolean criteriosCorrectos = daoClientes.existeCliente(new Cliente(dni));
+        boolean criteriosCorrectos = daoClientes.existeCliente(cliente);
         return (criteriosCorrectos &&
-                daoClientes.deleteCLiente(dni));
+                daoClientes.deleteCLiente(cliente));
     }
 
     public List<Cliente> scGetClientList() {

@@ -1,35 +1,31 @@
 package dao;
 
 import modelo.Cliente;
-import modelo.Producto;
+import modelo.LineaCompra;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DaoCompras {
 
-    public boolean addProductoCompra(Producto producto, String dni) {
-        Cliente cliente = BD.clientes.get(dni);
-        return cliente.getCompraActual().add(producto);
+    public boolean addProductoCompra(LineaCompra lineaCompra, Cliente cliente) {
+        return  BD.clientes.get(cliente.getDni()).getCompraActual().add(lineaCompra);
     }
 
-    public double getCosteCompra(String dni) {
-        Cliente cliente = BD.clientes.get(dni);
-        return cliente.getCompraActual().
-                stream().mapToDouble(producto -> (producto.getPrecio() * producto.getStock())).sum();
+    public double getCosteCompra(Cliente cliente) {
+        return  BD.clientes.get(cliente.getDni()).getCompraActual().
+                stream().mapToDouble(lineaCompra -> lineaCompra.getProducto().getPrecio() * lineaCompra.getCantidad()).sum();
     }
 
-    public boolean realizarCompra(String dni) {
-        Cliente cliente = BD.clientes.get(dni);
-        List<Producto> ticket = getCarrito(dni);
-        cliente.getCompraActual().clear();
+    public boolean realizarCompra(Cliente cliente) {
+        List<LineaCompra> ticket = getCarrito(cliente);
+        BD.clientes.get(cliente.getDni()).getCompraActual().clear();
         return cliente.getComprasCliente().add(ticket);
     }
 
-    public List<Producto> getCarrito(String dni) {
-        Cliente cliente = BD.clientes.get(dni);
-        return cliente.getCompraActual().stream()
-                .map(producto -> new Producto(producto.getId(), producto.getNombre(), producto.getPrecio(), producto.getStock()))
+    public List<LineaCompra> getCarrito(Cliente cliente) {
+        return BD.clientes.get(cliente.getDni()).getCompraActual().stream()
+                .map(LineaCompra::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }
 

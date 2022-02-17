@@ -1,5 +1,6 @@
 package ui;
 
+import dao.BD;
 import modelo.Cliente;
 import modelo.Producto;
 import modelo.ProductoPerecedero;
@@ -108,7 +109,7 @@ public class UIAdmin {
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
-        if (scProductos.scEliminarProducto(idProducto)) {
+        if (scProductos.scEliminarProducto(new Producto(idProducto))) {
             System.out.println(Constantes.PRODUCTO_ELIMINADO);
         } else {
             System.out.println(Constantes.PRODUCTO_NO_ENCONTRADO);
@@ -136,7 +137,7 @@ public class UIAdmin {
         System.out.print(Constantes.INDICAR_EL_NUMERO_DE_NUEVAS_UNIDADES);
         int nuevasUnidades = sc.nextInt();
         sc.nextLine();
-        if (scProductos.scAumentarStock(idProducto, nuevasUnidades)) {
+        if (scProductos.scAumentarStock(new Producto(idProducto), nuevasUnidades)) {
             System.out.println(Constantes.UNIDADES_ANADIDAS);
         } else {
             System.out.println(Constantes.CANTIDAD_DE_UNIDADES_O_ID_NO_VALIDO);
@@ -151,7 +152,7 @@ public class UIAdmin {
         System.out.print(Constantes.INTRODUCE_EL_NUMERO_DE_UNIDADES_A_RETIRAR);
         int unidadesAEliminar = sc.nextInt();
         sc.nextLine();
-        if (scProductos.scDisminuirStock(idProducto, unidadesAEliminar)) {
+        if (scProductos.scDisminuirStock(new Producto(idProducto), unidadesAEliminar)) {
             System.out.println(Constantes.UNIDADES_RETIRADAS);
         } else {
             System.out.println(Constantes.CANTIDAD_DE_UNIDADES_O_ID_NO_VALIDO);
@@ -166,7 +167,7 @@ public class UIAdmin {
         System.out.print(Constantes.INTRODUCE_EL_NUEVO_PRECIO);
         double precio = sc.nextDouble();
         sc.nextLine();
-        if (scProductos.scSetPrecioProducto(idProducto, precio)) {
+        if (scProductos.scSetPrecioProducto(new Producto(idProducto), precio)) {
             System.out.println(Constantes.PRECIO_MODIFICADO);
         } else {
             System.out.println(Constantes.PRECIO_O_ID_INVALIDO);
@@ -189,7 +190,7 @@ public class UIAdmin {
         if (scClientes.scRegistrarCliente(cliente)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
-            if (scClientes.scSetNombre(dni, nombre)) {
+            if (scClientes.scSetNombre(cliente, nombre)) {
                 System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
             }
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
@@ -199,7 +200,8 @@ public class UIAdmin {
         ServicesClientes scClientes = new ServicesClientes();
         System.out.print(Constantes.INTRODUCE_EL_DNI_DEL_CLIENTE_A_ELIMINAR);
         String dni = sc.nextLine();
-        if (scClientes.scEliminarCliente(dni)) {
+        Cliente cliente = BD.clientes.get(dni);
+        if (scClientes.scEliminarCliente(cliente)) {
             System.out.println(Constantes.CLIENTE_ELIMINADO);
         } else {
             System.out.println(Constantes.CLIENTE_NO_ENCONTRADO);
@@ -210,10 +212,11 @@ public class UIAdmin {
         ServicesClientes scClientes = new ServicesClientes();
         System.out.println(Constantes.INDICA_DNI_DEL_CLIENTE);
         String dni = sc.nextLine();
-        if (scClientes.scExisteCliente(dni)) {
+        Cliente cliente = BD.clientes.get(dni);
+        if (scClientes.scExisteCliente(cliente)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
-            if (scClientes.scSetNombre(dni, nombre)) {
+            if (scClientes.scSetNombre(cliente, nombre)) {
                 System.out.println(Constantes.NOMBRE_CAMBIADO_CORRECTAMENTE);
             } else {
                 System.out.println(Constantes.NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE);

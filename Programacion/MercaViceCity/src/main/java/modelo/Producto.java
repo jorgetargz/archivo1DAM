@@ -4,14 +4,16 @@ import modelo.common.Constantes;
 
 import java.util.Objects;
 
-public class Producto {
+public class Producto implements Clonable<Producto> {
     private int id;
     private String nombre;
     private double precio;
     private int stock;
 
+
     public Producto(int id) {
         this.id = id;
+        this.nombre=" ";
     }
 
     public Producto(String nombre, double precio, int stock) {
@@ -33,6 +35,10 @@ public class Producto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNombre() {
@@ -58,7 +64,8 @@ public class Producto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if ( ( o == null || getClass() != o.getClass())
+                &&  !(o instanceof Producto)) return false;
         Producto producto = (Producto) o;
         return (id == producto.getId()) || Objects.equals(nombre, producto.nombre);
     }
@@ -70,11 +77,16 @@ public class Producto {
         return id + Constantes.PUNTO +
                 nombreMostrar +
                 Constantes.PRECIO + precio +
-                Constantes.CANTIDAD + stock;
+                Constantes.STOCK + stock;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(nombre);
+    }
+
+    @Override
+    public Producto clonar() {
+        return new Producto(this.id, this.nombre, this.precio, this.stock);
     }
 }

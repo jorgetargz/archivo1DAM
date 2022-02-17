@@ -24,15 +24,17 @@ public class ProductoPerecedero extends Producto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if ( ( o == null || getClass() != o.getClass())
+                &&  !(o instanceof Producto)) return false;
         Producto producto = (Producto) o;
         return (super.getId() == producto.getId()) || Objects.equals(super.getNombre(), producto.getNombre());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.getNombre());
+        return super.hashCode();
     }
+
 
     @Override
     public String toString() {

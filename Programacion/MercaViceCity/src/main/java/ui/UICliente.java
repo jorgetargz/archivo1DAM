@@ -1,6 +1,9 @@
 package ui;
 
+import modelo.Cliente;
+import modelo.LineaCompra;
 import modelo.Monedero;
+import modelo.Producto;
 import services.ServicesClientes;
 import services.ServicesCompras;
 import services.ServicesMonederos;
@@ -12,11 +15,11 @@ import java.util.Scanner;
 public class UICliente {
 
 
-    public void menuCliente(String dni) {
+    public void menuCliente(Cliente cliente) {
         Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.print(Constantes.BIENVENIDO_DE_NUEVO);
-        uiClientName(dni);
+        uiClientName(cliente);
         int opCliente;
         do {
             System.out.println();
@@ -36,10 +39,10 @@ public class UICliente {
                 case 0:
                     break;
                 case 1:
-                    this.uiAnadirMonedero(sc, dni);
+                    this.uiAnadirMonedero(sc, cliente);
                     break;
                 case 2:
-                    this.uiAnadirProductoCarrito(sc, dni);
+                    this.uiAnadirProductoCarrito(sc, cliente);
                     break;
                 case 3:
                     this.uiMostrarProductosDisponibles();
@@ -48,16 +51,16 @@ public class UICliente {
                     this.uiBuscarProductoDisponible(sc);
                     break;
                 case 5:
-                    this.uiVerCarrito(dni);
+                    this.uiVerCarrito(cliente);
                     break;
                 case 6:
-                    this.uiMostrarMonederosCliente(dni);
+                    this.uiMostrarMonederosCliente(cliente);
                     break;
                 case 7:
-                    this.uiPagarCompra(dni);
+                    this.uiPagarCompra(cliente);
                     break;
                 case 8:
-                    this.uiCambiarNombre(sc, dni);
+                    this.uiCambiarNombre(sc, cliente);
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
@@ -65,25 +68,25 @@ public class UICliente {
         } while (opCliente != 0);
     }
 
-    private void uiClientName(String dni) {
+    private void uiClientName(Cliente c) {
         ServicesClientes scClientes = new ServicesClientes();
-        System.out.println(scClientes.scGetNombre(dni));
+        System.out.println(scClientes.scGetNombre(c));
     }
 
     private void uiMostrarProductosDisponibles() {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        scProductos.scGetProductosDisponibles().forEach(System.out::println);
+        scProductos.scGetProductosDisponiblesNoCaducados().forEach(System.out::println);
     }
 
     private void uiBuscarProductoDisponible(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        scProductos.scBuscarProductoDisponibles(nombre).forEach(System.out::println);
+        scProductos.scBuscarProductoDisponiblesNoCaducados(nombre).forEach(System.out::println);
     }
 
-    private void uiAnadirMonedero(Scanner sc, String dni) {
+    private void uiAnadirMonedero(Scanner sc, Cliente cliente) {
         ServicesMonederos scMonederos = new ServicesMonederos();
         System.out.print(Constantes.INTRODUCE_EL_NUMERO_DEL_MONEDERO);
         int codMonedero = sc.nextInt();
@@ -91,7 +94,7 @@ public class UICliente {
         if (!scMonederos.scExisteMonedero(new Monedero(codMonedero))) {
             System.out.print(Constantes.INTRODUCE_EL_IMPORTE_DEL_MONEDERO);
             double importeMonedero = sc.nextDouble();
-            if (scMonederos.scAnadirMonedero(new Monedero(codMonedero, importeMonedero), dni)) {
+            if (scMonederos.scAnadirMonedero(new Monedero(codMonedero, importeMonedero), cliente)) {
                 System.out.println(Constantes.MONEDERO_ANADIDO);
             } else {
                 System.out.println(Constantes.MONEDRO_NO_ANADIDO);
@@ -101,23 +104,24 @@ public class UICliente {
         }
     }
 
-    private void uiMostrarMonederosCliente(String dni) {
+    private void uiMostrarMonederosCliente(Cliente cliente) {
         ServicesMonederos scMonederos = new ServicesMonederos();
-        scMonederos.scGetListaMonederosCliente(dni).forEach(System.out::println);
+        scMonederos.scGetListaMonederosCliente(cliente).forEach(System.out::println);
     }
 
-    private void uiAnadirProductoCarrito(Scanner sc, String dni) {
+    private void uiAnadirProductoCarrito(Scanner sc, Cliente cliente) {
         ServicesProductos scProductos = new ServicesProductos();
         ServicesCompras scCompras = new ServicesCompras();
         System.out.print(Constantes.INTRODUCE_UN_ID_DE_PRODUCTO);
         int idProducto = sc.nextInt();
         sc.nextLine();
-        if (scProductos.scExisteProducto(idProducto)) {
-            System.out.println(Constantes.CANTIDAD_DISPONIBLE + scProductos.scGetProductStock(idProducto));
+        if (scProductos.scExisteProducto(new Producto(idProducto))) {
+            System.out.println(Constantes.CANTIDAD_DISPONIBLE + scProductos.scGetProductStock(new Producto(idProducto)));
             System.out.print(Constantes.INTRODUCE_CANTIDAD);
             int cantidad = sc.nextInt();
             sc.nextLine();
-            if (scCompras.scAddProductoCompraCliente(dni, idProducto, cantidad)) {
+            LineaCompra lineaCompra = new LineaCompra(new Producto(idProducto),cantidad);
+            if (scCompras.scAddProductoCompraCliente(cliente, lineaCompra)) {
                 System.out.println(Constantes.PRODUCTO_ANADIDO_AL_CARRITO);
             } else {
                 System.out.println(Constantes.PRODUCTO_NO_ANADIDO_AL_CARRITO);
@@ -127,26 +131,26 @@ public class UICliente {
         }
     }
 
-    private void uiVerCarrito(String dni) {
+    private void uiVerCarrito(Cliente cliente) {
         ServicesCompras scCompras = new ServicesCompras();
-        scCompras.scGetCarrito(dni).forEach(System.out::println);
+        scCompras.scGetCarrito(cliente).forEach(System.out::println);
     }
 
-    private void uiPagarCompra(String dni) {
+    private void uiPagarCompra(Cliente cliente) {
         ServicesCompras scCompras = new ServicesCompras();
         System.out.println(Constantes.INICIANDO_PROCESO_DE_PAGO);
-        if (scCompras.scPagarCompra(dni)) {
+        if (scCompras.scPagarCompra(cliente)) {
             System.out.println(Constantes.COMPRA_REALIZADA);
         } else {
             System.out.println(Constantes.NO_SE_HA_PODIDO_REALIZAR_LA_COMPRA);
         }
     }
 
-    private void uiCambiarNombre(Scanner sc, String dni) {
+    private void uiCambiarNombre(Scanner sc, Cliente cliente) {
         ServicesClientes scClientes = new ServicesClientes();
         System.out.print(Constantes.PORFAVOR_INDICA_TU_NOMBRE);
         String nombre = sc.nextLine();
-        if (scClientes.scSetNombre(dni, nombre)){
+        if (scClientes.scSetNombre(cliente, nombre)){
             System.out.println(Constantes.NOMBRE_CAMBIADO_CORRECTAMENTE);
         } else {
             System.out.println(Constantes.NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE);
