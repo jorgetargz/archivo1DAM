@@ -1,6 +1,7 @@
 package ui.common;
 
 public class Constantes {
+
     private Constantes() {
     }
 
@@ -47,6 +48,7 @@ public class Constantes {
     public static final String INTRODUCE_EL_PRECIO = "Introduce el precio: ";
     public static final String INTRODUCE_EL_STOCK = "Introduce el stock: ";
     public static final String INDICA_FECHA_DE_CADUCIDAD = "Indica fecha de caducidad [yyy-mm-ddThh:mm:ss]: ";
+    public static final String NADA = "";
 
     public static final String PRODUCTO_ELIMINADO = "Producto eliminado";
     public static final String PRODUCTO_NO_ENCONTRADO = "Producto no encontrado";
@@ -101,4 +103,14 @@ public class Constantes {
     public static final String CAMBIAR_NOMBRE = "8. Cambiar nombre";
     public static final String NOMBRE_CAMBIADO_CORRECTAMENTE = "Nombre cambiado correctamente";
     public static final String NO_SE_HA_PODIDO_CAMBIAR_EL_NOMBRE = "No se ha podido cambiar el nombre";
+
+    public static final String ANADIR_ALERGENO = "9. Añadir alergeno";
+    public static final String ALERGENO = "Alergeno ";
+    public static final String ANADIDO = " añadido";
+
+    //UIIngredientes
+    public static final String NO_ANADIR_MAS_INGREDIENTES = "0. No añadir mas ingredientes";
+    public static final String ANADIR_INGREDIENTE = "1. Añadir ingrediente";
+    public static final String INTRODUCE_UNA_OPCION = "Introduce una opcion: ";
+    public static final String INDICA_NOMBRE_DE_INGREDIENTE = "Indica nombre de ingrediente: ";
 }

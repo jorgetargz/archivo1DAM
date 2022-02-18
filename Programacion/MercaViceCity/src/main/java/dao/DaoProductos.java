@@ -32,7 +32,7 @@ public class DaoProductos {
         int productIndex = BD.inventario.indexOf(p);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
-            Producto productoBD = BD.inventario.get(BD.inventario.indexOf(p));
+            Producto productoBD = BD.inventario.get(productIndex);
             productoBD.setPrecio(precio);
         }
         return productoEncontardo;
@@ -42,7 +42,7 @@ public class DaoProductos {
         int productIndex = BD.inventario.indexOf(p);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
-            Producto productoBD = BD.inventario.get(BD.inventario.indexOf(p));
+            Producto productoBD = BD.inventario.get(productIndex);
             productoBD.setStock(this.getStockProduct(p) + stock);
         }
         return productoEncontardo;
@@ -74,7 +74,7 @@ public class DaoProductos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public LocalDateTime getCaducidad(ProductoPerecedero perecedero){
+    public LocalDateTime getCaducidad(ProductoPerecedero perecedero) {
         int productIndex = BD.inventario.indexOf(perecedero);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
@@ -83,6 +83,5 @@ public class DaoProductos {
         }
         return null;
     }
-
 
 }

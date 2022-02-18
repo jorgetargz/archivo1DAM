@@ -30,7 +30,7 @@ public class UICliente {
             System.out.println(Constantes.VER_MONEDEROS);
             System.out.println(Constantes.REALIZAR_COMPRA);
             System.out.println(Constantes.CAMBIAR_NOMBRE);
-            System.out.println("9. Añadir alergeno");
+            System.out.println(Constantes.ANADIR_ALERGENO);
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opCliente = sc.nextInt();
             sc.nextLine();
@@ -165,7 +165,7 @@ public class UICliente {
         List<Ingrediente> alergenos = uiIngredientes.uiListaIngredientes(sc);
         alergenos.forEach(ingrediente -> {
             if (scClientes.scAnadirAlergeno(ingrediente, cliente)) {
-                System.out.println("Alergeno " + ingrediente + " añadido");
+                System.out.println(Constantes.ALERGENO + ingrediente + Constantes.ANADIDO);
             }
         });
     }

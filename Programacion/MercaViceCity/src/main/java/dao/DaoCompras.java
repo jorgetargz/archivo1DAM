@@ -14,7 +14,11 @@ public class DaoCompras {
 
     public double getCosteCompra(Cliente cliente) {
         return BD.clientes.get(cliente.getDni()).getCompraActual().
-                stream().mapToDouble(lineaCompra -> lineaCompra.getProducto().getPrecio() * lineaCompra.getCantidad()).sum();
+                stream().mapToDouble(this::getCosteLineaCompra).sum();
+    }
+
+    public double getCosteLineaCompra(LineaCompra lineaCompra){
+        return lineaCompra.getProducto().getPrecio() * lineaCompra.getCantidad();
     }
 
     public boolean realizarCompra(Cliente cliente) {

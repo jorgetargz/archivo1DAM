@@ -75,8 +75,7 @@ public class Producto implements Clonable<Producto> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if ((o == null || getClass() != o.getClass())
-                && !(o instanceof Producto)) return false;
+        if (!(o instanceof Producto)) return false;
         Producto producto = (Producto) o;
         return (id == producto.getId()) || Objects.equals(nombre, producto.nombre);
     }

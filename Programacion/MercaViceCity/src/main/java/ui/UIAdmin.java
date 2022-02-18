@@ -18,7 +18,6 @@ public class UIAdmin {
 
     public void menuAdmin() {
         Scanner sc = new Scanner(System.in);
-        Cliente admin = new Cliente(Constantes.ADMIN);
         int opAdmin;
         do {
             System.out.println();
@@ -47,10 +46,10 @@ public class UIAdmin {
                     this.uiEliminarProducto(sc);
                     break;
                 case 3:
-                    this.uiMostrarProductos(admin);
+                    this.uiMostrarProductos();
                     break;
                 case 4:
-                    this.uiBuscarProducto(admin, sc);
+                    this.uiBuscarProducto(sc);
                     break;
                 case 5:
                     this.uiAumentarStock(sc);
@@ -93,7 +92,7 @@ public class UIAdmin {
         boolean perecedero = true;
         System.out.print(Constantes.INDICA_FECHA_DE_CADUCIDAD);
         String caducidad = sc.nextLine();
-        if (caducidad.equals("")) {
+        if (caducidad.equals(Constantes.NADA)) {
             perecedero = false;
         }
         Producto producto;
@@ -123,17 +122,17 @@ public class UIAdmin {
         }
     }
 
-    private void uiMostrarProductos(Cliente c) {
+    private void uiMostrarProductos() {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        scProductos.scGetProductList(c).forEach(System.out::println);
+        scProductos.scGetProductList().forEach(System.out::println);
     }
 
-    private void uiBuscarProducto(Cliente c, Scanner sc) {
+    private void uiBuscarProducto(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.print(Constantes.INTRODUCE_UN_NOMBRE_DE_PRODUCTO);
         String nombre = sc.nextLine();
-        scProductos.scBuscarProducto(c, nombre).forEach(System.out::println);
+        scProductos.scBuscarProducto(nombre).forEach(System.out::println);
     }
 
     private void uiAumentarStock(Scanner sc) {
