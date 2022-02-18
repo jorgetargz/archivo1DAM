@@ -5,7 +5,9 @@ import modelo.Cliente;
 import modelo.Ingrediente;
 import ui.common.Constantes;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ServicesClientes {
@@ -47,7 +49,9 @@ public class ServicesClientes {
 
     public List<Cliente> scGetClientList() {
         DaoClientes daoClientes = new DaoClientes();
-        return daoClientes.getClientList();
+        return daoClientes.getClientList()
+                .stream().sorted(Comparator.comparing(Cliente::getDni))
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public boolean scAnadirAlergeno(Ingrediente alergeno, Cliente cliente) {

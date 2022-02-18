@@ -125,7 +125,7 @@ public class UIAdmin {
     private void uiMostrarProductos() {
         ServicesProductos scProductos = new ServicesProductos();
         System.out.println(Constantes.LISTA_DE_PRODUCTOS);
-        scProductos.scGetProductList().forEach(System.out::println);
+        scProductos.scGetProductListSortName().forEach(System.out::println);
     }
 
     private void uiBuscarProducto(Scanner sc) {

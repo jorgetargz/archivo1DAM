@@ -86,8 +86,7 @@ public class ServicesProductos {
     }
 
     public List<Producto> scGetProductListAlergenos(Cliente c) {
-        DaoProductos daoProductos = new DaoProductos();
-        return daoProductos.getProductList()
+        return this.scGetProductListSortName()
                 .stream()
                 .filter(producto -> producto.getIngredientes()
                         .stream()
@@ -113,7 +112,7 @@ public class ServicesProductos {
     public List<Producto> scBuscarProducto(String nombre) {
         nombre = nombre.trim();
         String finalNombre = nombre;
-        return this.scGetProductList()
+        return this.scGetProductListSortName()
                 .stream()
                 .filter(producto -> producto.getNombre().contains(finalNombre.toUpperCase()))
                 .collect(Collectors.toUnmodifiableList());
