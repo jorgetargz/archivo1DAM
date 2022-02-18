@@ -12,7 +12,8 @@ import java.util.List;
 
 public class BD {
 
-    private BD() {}
+    private BD() {
+    }
 
     public static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
     public static final ArrayList<Producto> inventario = new ArrayList<>();

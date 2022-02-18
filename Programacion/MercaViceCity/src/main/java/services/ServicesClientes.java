@@ -52,6 +52,6 @@ public class ServicesClientes {
 
     public boolean scAnadirAlergeno(Ingrediente alergeno, Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
-        return daoClientes.anadirAlergeno(alergeno,cliente);
+        return daoClientes.anadirAlergeno(alergeno, cliente);
     }
 }

@@ -1,7 +1,9 @@
 package dao;
 
 import modelo.Producto;
+import modelo.ProductoPerecedero;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +32,8 @@ public class DaoProductos {
         int productIndex = BD.inventario.indexOf(p);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
-            p.setPrecio(precio);
+            Producto productoBD = BD.inventario.get(BD.inventario.indexOf(p));
+            productoBD.setPrecio(precio);
         }
         return productoEncontardo;
     }
@@ -39,7 +42,8 @@ public class DaoProductos {
         int productIndex = BD.inventario.indexOf(p);
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
-            p.setStock(p.getStock() + stock);
+            Producto productoBD = BD.inventario.get(BD.inventario.indexOf(p));
+            productoBD.setStock(this.getStockProduct(p) + stock);
         }
         return productoEncontardo;
     }
@@ -49,7 +53,7 @@ public class DaoProductos {
         boolean productoEncontardo = productIndex != -1;
         if (productoEncontardo) {
             Producto p = BD.inventario.get(productIndex);
-            p.setStock(p.getStock() - stock);
+            p.setStock(this.getStockProduct(p) - stock);
         }
         return productoEncontardo;
     }
@@ -69,5 +73,16 @@ public class DaoProductos {
                 .map(Producto::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+    public LocalDateTime getCaducidad(ProductoPerecedero perecedero){
+        int productIndex = BD.inventario.indexOf(perecedero);
+        boolean productoEncontardo = productIndex != -1;
+        if (productoEncontardo) {
+            ProductoPerecedero p = (ProductoPerecedero) BD.inventario.get(productIndex);
+            return p.getCaducidad();
+        }
+        return null;
+    }
+
 
 }

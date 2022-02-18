@@ -62,7 +62,7 @@ public class UICliente {
                     this.uiCambiarNombre(sc, cliente);
                     break;
                 case 9:
-                    this.uiAnadirAlergeno(sc,cliente);
+                    this.uiAnadirAlergeno(sc, cliente);
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);

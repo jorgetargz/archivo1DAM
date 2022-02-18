@@ -18,7 +18,7 @@ public class ServicesCompras {
                 && scProductosPerecederos.productoCaducado((ProductoPerecedero) lineaCompra.getProducto());
         if (scProductos.scExisteProducto(lineaCompra.getProducto())
                 && scProductos.scGetProductStock(lineaCompra.getProducto()) >= lineaCompra.getCantidad()
-                && !scProductos.scContieneAlergenos(lineaCompra.getProducto(),cliente)
+                && !scProductos.scContieneAlergenos(lineaCompra.getProducto(), cliente)
                 && !caducado) {
             scProductos.scDisminuirStock(lineaCompra.getProducto(), lineaCompra.getCantidad());
             return daoCompras.addProductoCompra(lineaCompra, cliente);

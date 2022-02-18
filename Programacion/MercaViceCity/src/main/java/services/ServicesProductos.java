@@ -74,8 +74,8 @@ public class ServicesProductos {
     public List<Producto> scGetProductList(Cliente c) {
         DaoProductos daoProductos = new DaoProductos();
         return daoProductos.getProductList().stream().filter(producto -> {
-            boolean hayAlergenos = producto.getIngredientes().stream()
-                    .anyMatch(ingrediente -> c.getAlergenos().contains(ingrediente));
+                    boolean hayAlergenos = producto.getIngredientes().stream()
+                            .anyMatch(ingrediente -> c.getAlergenos().contains(ingrediente));
                     return !hayAlergenos;
                 })
                 .collect(Collectors.toUnmodifiableList());

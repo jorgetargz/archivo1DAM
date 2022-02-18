@@ -50,7 +50,7 @@ public class UIAdmin {
                     this.uiMostrarProductos(admin);
                     break;
                 case 4:
-                    this.uiBuscarProducto(admin,sc);
+                    this.uiBuscarProducto(admin, sc);
                     break;
                 case 5:
                     this.uiAumentarStock(sc);

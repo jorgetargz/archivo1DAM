@@ -13,7 +13,8 @@ public class UIIngredientes {
         List<Ingrediente> ingredientes = new ArrayList<>();
         do {
             System.out.println("0. No añadir mas ingredientes");
-            System.out.println("1. Añadir otro ingrediente");
+            System.out.println("1. Añadir ingrediente");
+            System.out.print("Introduce una opcion: ");
             op = sc.nextInt();
             sc.nextLine();
             if (op == 1) {
