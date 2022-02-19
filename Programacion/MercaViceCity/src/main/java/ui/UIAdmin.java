@@ -34,7 +34,8 @@ public class UIAdmin {
             System.out.println(Constantes.VER_CLIENTES_ORDENADOS_POR_GASTO);
             System.out.println(Constantes.VER_PRODUCTOS_CON_INGREDIENTES_ADMIN);
             System.out.println("14. Cambiar porcentaje de descuento clientes espaciales");
-            System.out.println("15. Ver productos mas comprados");
+            System.out.println("15. Buscar producto por ingrediente");
+            System.out.println("16. Ver productos mas comprados");
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opAdmin = sc.nextInt();
             sc.nextLine();
@@ -84,6 +85,9 @@ public class UIAdmin {
                     this.uiCambiarPorcentajeDescuento(sc);
                     break;
                 case 15:
+                    this.uiGetProductByIngredient(sc);
+                    break;
+                case 16:
                     this.uiGetMostBuyedProducts();
                     break;
                 default:
@@ -271,6 +275,13 @@ public class UIAdmin {
         } else {
             System.out.println("Descuento introducido no valido ha de ser entre 5 y 90");
         }
+    }
+
+    private void uiGetProductByIngredient(Scanner sc) {
+        ServicesProductos scProductos = new ServicesProductos();
+        System.out.print("Introduce un nombre de ingrediente: ");
+        Ingrediente ingrediente = new Ingrediente(sc.nextLine().trim().toUpperCase());
+        scProductos.scGetProductListIngrediente(ingrediente).forEach(System.out::println);
     }
 
     private void uiGetMostBuyedProducts() {

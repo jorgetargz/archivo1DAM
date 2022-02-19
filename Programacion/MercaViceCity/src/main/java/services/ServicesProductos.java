@@ -2,6 +2,7 @@ package services;
 
 import dao.DaoProductos;
 import modelo.Cliente;
+import modelo.Ingrediente;
 import modelo.Producto;
 import modelo.ProductoPerecedero;
 
@@ -91,6 +92,15 @@ public class ServicesProductos {
                 .filter(producto -> producto.getIngredientes()
                         .stream()
                         .noneMatch(ingrediente -> c.getAlergenos().contains(ingrediente)))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Producto> scGetProductListIngrediente(Ingrediente ingredienteABuscar) {
+        return this.scGetProductsWithIngredientsAdmin()
+                .stream()
+                .filter(producto -> producto.getIngredientes()
+                        .stream()
+                        .anyMatch(ingrediente -> ingrediente.getNombre().equalsIgnoreCase(ingredienteABuscar.getNombre())))
                 .collect(Collectors.toUnmodifiableList());
     }
 

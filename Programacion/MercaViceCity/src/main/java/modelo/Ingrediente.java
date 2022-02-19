@@ -10,6 +10,10 @@ public class Ingrediente {
         this.nombre = nombre.toUpperCase();
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
