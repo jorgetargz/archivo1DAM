@@ -1,11 +1,9 @@
 package ui;
 
 import dao.BD;
-import modelo.Cliente;
-import modelo.Ingrediente;
-import modelo.Producto;
-import modelo.ProductoPerecedero;
+import modelo.*;
 import services.ServicesClientes;
+import services.ServicesClientesEspaciales;
 import services.ServicesProductos;
 import ui.common.Constantes;
 
@@ -33,6 +31,10 @@ public class UIAdmin {
             System.out.println(Constantes.VER_LISTA_CLIENTES);
             System.out.println(Constantes.ELIMINAR_CLIENTE_POR_DNI);
             System.out.println(Constantes.CAMBIAR_NOMBRE_CLIENTE);
+            System.out.println(Constantes.VER_CLIENTES_ORDENADOS_POR_GASTO);
+            System.out.println(Constantes.VER_PRODUCTOS_CON_INGREDIENTES_ADMIN);
+            System.out.println("14. Cambiar porcentaje de descuento clientes espaciales");
+            System.out.println("15. Ver productos mas comprados");
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opAdmin = sc.nextInt();
             sc.nextLine();
@@ -71,6 +73,18 @@ public class UIAdmin {
                     break;
                 case 11:
                     this.uiCambiarNombreCliente(sc);
+                    break;
+                case 12:
+                    this.uiClientListSortGatso();
+                    break;
+                case 13:
+                    this.uiGetProductsWithIngredients();
+                    break;
+                case 14:
+                    this.uiCambiarPorcentajeDescuento(sc);
+                    break;
+                case 15:
+                    this.uiGetMostBuyedProducts();
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
@@ -182,7 +196,12 @@ public class UIAdmin {
 
     private void uiClientList() {
         ServicesClientes scClientes = new ServicesClientes();
-        scClientes.scGetClientList().forEach(System.out::println);
+        scClientes.scGetClientListSortDni().forEach(System.out::println);
+    }
+
+    private void uiClientListSortGatso() {
+        ServicesClientes scClientes = new ServicesClientes();
+        scClientes.scGetClientListSortGasto().forEach(System.out::println);
     }
 
 
@@ -192,11 +211,18 @@ public class UIAdmin {
         System.out.println(Constantes.REGISTRAR_NUEVO_CLIENTE);
         System.out.print(Constantes.INDICA_DNI_DEL_CLIENTE);
         dni = sc.nextLine();
-        Cliente cliente = new Cliente(dni);
+        System.out.print("¿Cliente espacial? Introduce 1 si lo es: ");
+        Cliente cliente;
+        if (sc.nextLine().equals("1")) {
+            cliente = new ClienteEspacial(dni);
+        } else {
+            cliente = new Cliente(dni);
+        }
         if (scClientes.scRegistrarCliente(cliente)) {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
             if (scClientes.scSetNombre(cliente, nombre)) {
+
                 System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
             }
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);
@@ -229,4 +255,18 @@ public class UIAdmin {
             }
         }
     }
+
+    private void uiGetProductsWithIngredients() {
+        ServicesProductos scProductos = new ServicesProductos();
+        scProductos.scGetProductsWithIngredientsAdmin().forEach(System.out::println);
+    }
+
+    private void uiCambiarPorcentajeDescuento(Scanner sc) {
+        ServicesClientesEspaciales scClientesEspaciales = new ServicesClientesEspaciales();
+        System.out.print("Indica un nuevo porcentaje de descuento: ");
+        int descuento = sc.nextInt();
+        sc.nextLine();
+        scClientesEspaciales.scSetDescuentoClientesEspaciales(descuento);
+    }
+
 }

@@ -1,6 +1,7 @@
 package services;
 
 import dao.DaoClientes;
+import dao.DaoCompras;
 import modelo.Cliente;
 import modelo.Ingrediente;
 import ui.common.Constantes;
@@ -8,6 +9,7 @@ import ui.common.Constantes;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 
 public class ServicesClientes {
@@ -47,7 +49,7 @@ public class ServicesClientes {
                 daoClientes.deleteCLiente(cliente));
     }
 
-    public List<Cliente> scGetClientList() {
+    public List<Cliente> scGetClientListSortDni() {
         DaoClientes daoClientes = new DaoClientes();
         return daoClientes.getClientList()
                 .stream().sorted(Comparator.comparing(Cliente::getDni))
@@ -58,4 +60,18 @@ public class ServicesClientes {
         DaoClientes daoClientes = new DaoClientes();
         return daoClientes.anadirAlergeno(alergeno, cliente);
     }
+
+    public Double getCosteCompras(Cliente cliente){
+        DaoCompras daoCompras = new DaoCompras();
+        return cliente.getComprasCliente()
+                .stream().mapToDouble(lineaCompraList -> lineaCompraList
+                        .stream().mapToDouble(daoCompras::getCosteLineaCompra).sum()).sum();
+    }
+
+    public List<Cliente> scGetClientListSortGasto() {
+        return this.scGetClientListSortDni().stream()
+                .sorted((o1, o2) -> this.getCosteCompras(o2).compareTo(this.getCosteCompras(o1)))
+        .collect(Collectors.toUnmodifiableList());
+    }
+
 }

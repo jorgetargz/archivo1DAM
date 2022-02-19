@@ -31,6 +31,8 @@ public class UICliente {
             System.out.println(Constantes.REALIZAR_COMPRA);
             System.out.println(Constantes.CAMBIAR_NOMBRE);
             System.out.println(Constantes.ANADIR_ALERGENO);
+            System.out.println(Constantes.VER_GASTO_TOTAL_DE_TODAS_LAS_COMPRAS);
+            System.out.println(Constantes.VER_PRODUCTOS_CON_INGREDIENTES_CLIENT);
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opCliente = sc.nextInt();
             sc.nextLine();
@@ -63,6 +65,12 @@ public class UICliente {
                     break;
                 case 9:
                     this.uiAnadirAlergeno(sc, cliente);
+                    break;
+                case 10:
+                    this.uiVerGastoTotal(cliente);
+                    break;
+                case 11:
+                    this.uiVerProductosConIngredientes(cliente);
                     break;
                 default:
                     System.out.println(Constantes.ERROR_ENTRADA_DE_MENU_NO_VALIDA);
@@ -168,6 +176,17 @@ public class UICliente {
                 System.out.println(Constantes.ALERGENO + ingrediente + Constantes.ANADIDO);
             }
         });
+    }
+
+    private void uiVerGastoTotal(Cliente cliente) {
+        ServicesClientes scClientes = new ServicesClientes();
+        System.out.println(Constantes.SU_GASTO_TOTAL_ES_DE +
+                scClientes.getCosteCompras(cliente) + Constantes.EURO);
+    }
+
+    private void uiVerProductosConIngredientes(Cliente cliente) {
+        ServicesProductos scProductos = new ServicesProductos();
+        scProductos.scGetProductsWithIngredientsClient(cliente).forEach(System.out::println);
     }
 
 }

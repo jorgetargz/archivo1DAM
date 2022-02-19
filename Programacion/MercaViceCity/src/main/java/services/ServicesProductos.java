@@ -109,6 +109,18 @@ public class ServicesProductos {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public List<Producto> scGetProductsWithIngredientsClient(Cliente cliente) {
+        return this.scGetProductosDisponiblesNoCaducados(cliente).stream()
+                .filter(producto -> !producto.getIngredientes().isEmpty())
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<Producto> scGetProductsWithIngredientsAdmin() {
+        return this.scGetProductListSortName().stream()
+                .filter(producto -> !producto.getIngredientes().isEmpty())
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public List<Producto> scBuscarProducto(String nombre) {
         nombre = nombre.trim();
         String finalNombre = nombre;

@@ -1,8 +1,10 @@
 package services;
 
+import dao.DaoClientes;
 import dao.DaoCompras;
 import dao.DaoMonederos;
 import modelo.Cliente;
+import modelo.ClienteEspacial;
 import modelo.LineaCompra;
 import modelo.ProductoPerecedero;
 
@@ -29,15 +31,22 @@ public class ServicesCompras {
     public boolean scPagarCompra(Cliente cliente) {
         DaoCompras daoCompras = new DaoCompras();
         DaoMonederos daoMonederos = new DaoMonederos();
+        DaoClientes daoClientes = new DaoClientes();
         ServicesMonederos scMonederos = new ServicesMonederos();
-        return (scMonederos.scGetSaldoTotal(cliente) > daoCompras.getCosteCompra(cliente))
-                && daoMonederos.restarDineroMonederos(cliente, daoCompras.getCosteCompra(cliente))
+        double costeCompra;
+        if (cliente instanceof ClienteEspacial){
+            costeCompra = daoCompras.getCosteCompra(cliente)*((double)daoClientes.getDescuento()/100);
+        } else {
+            costeCompra = daoCompras.getCosteCompra(cliente);
+        }
+        return (scMonederos.scGetSaldoTotal(cliente) > costeCompra)
+                && daoMonederos.restarDineroMonederos(cliente, costeCompra)
                 && daoCompras.realizarCompra(cliente);
     }
-
 
     public List<LineaCompra> scGetCarrito(Cliente cliente) {
         DaoCompras daoCompras = new DaoCompras();
         return daoCompras.getCarrito(cliente);
     }
+
 }

@@ -1,9 +1,11 @@
 package dao;
 
 import modelo.Cliente;
+import modelo.ClienteEspacial;
 import modelo.Ingrediente;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 
@@ -38,6 +40,25 @@ public class DaoClientes {
 
     public boolean anadirAlergeno(Ingrediente alergeno, Cliente cliente) {
         return BD.clientes.get(cliente.getDni()).getAlergenos().add(alergeno);
+    }
+
+    public boolean setDescuento(int porcentajeDescuento){
+        BD.clientes.values().forEach(cliente -> {
+            if (cliente instanceof ClienteEspacial) {
+                ((ClienteEspacial) cliente).setPorcentajeDescuento(porcentajeDescuento);
+            }
+        });
+        return true;
+    }
+
+    public int getDescuento(){
+        AtomicInteger descuento = new AtomicInteger(0);
+        BD.clientes.values().forEach(cliente -> {
+            if (cliente instanceof ClienteEspacial) {
+                descuento.set(((ClienteEspacial) cliente).getPorcentajeDescuento());
+            }
+        });
+        return descuento.get();
     }
 
 }

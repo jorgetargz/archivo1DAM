@@ -39,6 +39,8 @@ public class Constantes {
     public static final String VER_LISTA_CLIENTES = "9. Ver lista clientes";
     public static final String ELIMINAR_CLIENTE_POR_DNI = "10. Eliminar cliente por DNI";
     public static final String CAMBIAR_NOMBRE_CLIENTE = "11. Cambiar nombre cliente.";
+    public static final String VER_CLIENTES_ORDENADOS_POR_GASTO = "12. Ver clientes ordenados por gasto.";
+    public static final String VER_PRODUCTOS_CON_INGREDIENTES_ADMIN = "13. Ver productos con ingredientes";
     public static final String ERROR_ENTRADA_DE_MENU_NO_VALIDA = "Error entrada de menu no valida";
 
     public static final String INTRODUCE_UN_ID_DE_PRODUCTO = "Introduce un ID de producto: ";
@@ -76,22 +78,22 @@ public class Constantes {
     //UICliente
     public static final String BIENVENIDO_DE_NUEVO = "Bienvenido de nuevo ";
 
-    public static final String VER_PRODUCTOS_DISPONIBLES = "3. Ver productos disponibles";
-    public static final String BUSCAR_PRODUCTOS_DISPONIBLES_POR_NOMBRE = "4. Buscar productos disponibles por nombre";
-
     public static final String ANADIR_MONEDERO = "1. Añadir monedero";
     public static final String INTRODUCE_EL_NUMERO_DEL_MONEDERO = "Introduce el numero del monedero: ";
     public static final String INTRODUCE_EL_IMPORTE_DEL_MONEDERO = "Introduce el importe del monedero: ";
     public static final String MONEDERO_ANADIDO = "Monedero añadido";
     public static final String MONEDRO_NO_ANADIDO = "Monedro no añadido";
 
-    public static final String VER_MONEDEROS = "6. Ver monederos";
-
     public static final String ANADIR_PRODUCTO_AL_CARRITO_POR_ID = "2. Añadir producto al carrito por ID";
     public static final String CANTIDAD_DISPONIBLE = "Cantidad disponible: ";
     public static final String INTRODUCE_CANTIDAD = "Introduce cantidad: ";
     public static final String PRODUCTO_ANADIDO_AL_CARRITO = "Producto añadido al carrito";
     public static final String PRODUCTO_NO_ANADIDO_AL_CARRITO = "Producto no añadido al carrito";
+
+    public static final String VER_PRODUCTOS_DISPONIBLES = "3. Ver productos disponibles";
+    public static final String BUSCAR_PRODUCTOS_DISPONIBLES_POR_NOMBRE = "4. Buscar productos disponibles por nombre";
+
+    public static final String VER_MONEDEROS = "6. Ver monederos";
 
     public static final String VER_LISTA_DE_LA_COMPRA = "5. Ver lista de la compra";
 
@@ -107,6 +109,12 @@ public class Constantes {
     public static final String ANADIR_ALERGENO = "9. Añadir alergeno";
     public static final String ALERGENO = "Alergeno ";
     public static final String ANADIDO = " añadido";
+
+    public static final String VER_GASTO_TOTAL_DE_TODAS_LAS_COMPRAS = "10. Ver gasto total de todas las compras";
+    public static final String SU_GASTO_TOTAL_ES_DE = "Su gasto total es de: ";
+    public static final String EURO = "€";
+
+    public static final String VER_PRODUCTOS_CON_INGREDIENTES_CLIENT = "11. Ver productos con ingredientes.";
 
     //UIIngredientes
     public static final String NO_ANADIR_MAS_INGREDIENTES = "0. No añadir mas ingredientes";

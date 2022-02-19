@@ -17,7 +17,7 @@ public class DaoCompras {
                 stream().mapToDouble(this::getCosteLineaCompra).sum();
     }
 
-    public double getCosteLineaCompra(LineaCompra lineaCompra){
+    public Double getCosteLineaCompra(LineaCompra lineaCompra){
         return lineaCompra.getProducto().getPrecio() * lineaCompra.getCantidad();
     }
 
@@ -32,5 +32,7 @@ public class DaoCompras {
                 .map(LineaCompra::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }
+
+
 
 }
