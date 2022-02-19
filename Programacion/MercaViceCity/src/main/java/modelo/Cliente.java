@@ -7,9 +7,9 @@ import java.util.*;
 public class Cliente implements Clonable<Cliente> {
 
     private final String dni;
-    private Set<Monedero> monederoCliente = null;
-    private List<LineaCompra> compraActual = null;
-    private List<List<LineaCompra>> comprasCliente = null;
+    private final Set<Monedero> monederoCliente;
+    private final List<LineaCompra> compraActual;
+    private final List<List<LineaCompra>> comprasCliente;
     private final List<Ingrediente> alergenos;
     private String nombre;
 

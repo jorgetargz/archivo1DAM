@@ -266,7 +266,15 @@ public class UIAdmin {
         System.out.print("Indica un nuevo porcentaje de descuento: ");
         int descuento = sc.nextInt();
         sc.nextLine();
-        scClientesEspaciales.scSetDescuentoClientesEspaciales(descuento);
+        if (scClientesEspaciales.scSetDescuentoClientesEspaciales(descuento)){
+            System.out.println("Descuento aplicado a todos los clientes espaciales");
+        } else {
+            System.out.println("Descuento introducido no valido ha de ser entre 5 y 90");
+        }
+    }
+
+    private void uiGetMostBuyedProducts() {
+
     }
 
 }
