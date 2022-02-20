@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
 public class ServicesClientes {
 
     public boolean scRegistrarCliente(Cliente cliente) {
@@ -61,7 +60,7 @@ public class ServicesClientes {
         return daoClientes.anadirAlergeno(alergeno, cliente);
     }
 
-    public Double getCosteCompras(Cliente cliente){
+    public Double getCosteCompras(Cliente cliente) {
         DaoCompras daoCompras = new DaoCompras();
         return cliente.getComprasCliente()
                 .stream().mapToDouble(lineaCompraList -> lineaCompraList
@@ -71,7 +70,7 @@ public class ServicesClientes {
     public List<Cliente> scGetClientListSortGasto() {
         return this.scGetClientListSortDni().stream()
                 .sorted((o1, o2) -> this.getCosteCompras(o2).compareTo(this.getCosteCompras(o1)))
-        .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
 }

@@ -33,8 +33,8 @@ public class UIAdmin {
             System.out.println(Constantes.CAMBIAR_NOMBRE_CLIENTE);
             System.out.println(Constantes.VER_CLIENTES_ORDENADOS_POR_GASTO);
             System.out.println(Constantes.VER_PRODUCTOS_CON_INGREDIENTES_ADMIN);
-            System.out.println("14. Cambiar porcentaje de descuento clientes espaciales");
-            System.out.println("15. Buscar producto por ingrediente");
+            System.out.println(Constantes.CAMBIAR_PORCENTAJE_DE_DESCUENTO_CLIENTES_ESPACIALES);
+            System.out.println(Constantes.BUSCAR_PRODUCTO_POR_INGREDIENTE);
             System.out.println("16. Ver productos mas comprados");
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opAdmin = sc.nextInt();
@@ -215,7 +215,7 @@ public class UIAdmin {
         System.out.println(Constantes.REGISTRAR_NUEVO_CLIENTE);
         System.out.print(Constantes.INDICA_DNI_DEL_CLIENTE);
         dni = sc.nextLine();
-        System.out.print("¿Cliente espacial? Introduce 1 si lo es: ");
+        System.out.print(Constantes.CLIENTE_ESPACIAL_INTRODUCE_1_SI_LO_ES);
         Cliente cliente;
         if (sc.nextLine().equals("1")) {
             cliente = new ClienteEspacial(dni);
@@ -267,19 +267,19 @@ public class UIAdmin {
 
     private void uiCambiarPorcentajeDescuento(Scanner sc) {
         ServicesClientesEspaciales scClientesEspaciales = new ServicesClientesEspaciales();
-        System.out.print("Indica un nuevo porcentaje de descuento: ");
+        System.out.print(Constantes.INDICA_UN_NUEVO_PORCENTAJE_DE_DESCUENTO);
         int descuento = sc.nextInt();
         sc.nextLine();
-        if (scClientesEspaciales.scSetDescuentoClientesEspaciales(descuento)){
-            System.out.println("Descuento aplicado a todos los clientes espaciales");
+        if (scClientesEspaciales.scSetDescuentoClientesEspaciales(descuento)) {
+            System.out.println(Constantes.DESCUENTO_APLICADO_A_TODOS_LOS_CLIENTES_ESPACIALES);
         } else {
-            System.out.println("Descuento introducido no valido ha de ser entre 5 y 90");
+            System.out.println(Constantes.DESCUENTO_INTRODUCIDO_NO_VALIDO);
         }
     }
 
     private void uiGetProductByIngredient(Scanner sc) {
         ServicesProductos scProductos = new ServicesProductos();
-        System.out.print("Introduce un nombre de ingrediente: ");
+        System.out.print(Constantes.INDICA_NOMBRE_DE_INGREDIENTE);
         Ingrediente ingrediente = new Ingrediente(sc.nextLine().trim().toUpperCase());
         scProductos.scGetProductListIngrediente(ingrediente).forEach(System.out::println);
     }

@@ -5,6 +5,7 @@ public class Constantes {
     private Constantes() {
     }
 
+
     //Main
     public static final String BIENVENIDO_A_MERCA_VICE_CITY = "Bienvenido a MercaViceCity. ";
     public static final String ASCII_ART = "  __  __                     __     ___                 _ _         \n" +
@@ -41,6 +42,8 @@ public class Constantes {
     public static final String CAMBIAR_NOMBRE_CLIENTE = "11. Cambiar nombre cliente.";
     public static final String VER_CLIENTES_ORDENADOS_POR_GASTO = "12. Ver clientes ordenados por gasto.";
     public static final String VER_PRODUCTOS_CON_INGREDIENTES_ADMIN = "13. Ver productos con ingredientes";
+    public static final String CAMBIAR_PORCENTAJE_DE_DESCUENTO_CLIENTES_ESPACIALES = "14. Cambiar porcentaje de descuento clientes espaciales";
+    public static final String BUSCAR_PRODUCTO_POR_INGREDIENTE = "15. Buscar producto por ingrediente";
     public static final String ERROR_ENTRADA_DE_MENU_NO_VALIDA = "Error entrada de menu no valida";
 
     public static final String INTRODUCE_UN_ID_DE_PRODUCTO = "Introduce un ID de producto: ";
@@ -72,8 +75,13 @@ public class Constantes {
     public static final String REGISTRAR_NUEVO_CLIENTE = "Registrar nuevo cliente";
     public static final String INDICA_DNI_DEL_CLIENTE = "Indica DNI del cliente: ";
     public static final String INDICA_EL_NOMBRE_DEL_CLIENTE = "Indica el nombre del cliente: ";
+    public static final String CLIENTE_ESPACIAL_INTRODUCE_1_SI_LO_ES = "¿Cliente espacial? Introduce 1 si lo es: ";
 
     public static final String LISTA_DE_PRODUCTOS = "Lista de productos ";
+
+    public static final String INDICA_UN_NUEVO_PORCENTAJE_DE_DESCUENTO = "Indica un nuevo porcentaje de descuento: ";
+    public static final String DESCUENTO_APLICADO_A_TODOS_LOS_CLIENTES_ESPACIALES = "Descuento aplicado a todos los clientes espaciales";
+    public static final String DESCUENTO_INTRODUCIDO_NO_VALIDO = "Descuento introducido no valido ha de ser entre 5 y 90";
 
     //UICliente
     public static final String BIENVENIDO_DE_NUEVO = "Bienvenido de nuevo ";

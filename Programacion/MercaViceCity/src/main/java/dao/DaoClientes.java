@@ -42,7 +42,7 @@ public class DaoClientes {
         return BD.clientes.get(cliente.getDni()).getAlergenos().add(alergeno);
     }
 
-    public boolean setDescuento(int porcentajeDescuento){
+    public boolean setDescuento(int porcentajeDescuento) {
         BD.clientes.values().forEach(cliente -> {
             if (cliente instanceof ClienteEspacial) {
                 ((ClienteEspacial) cliente).setPorcentajeDescuento(porcentajeDescuento);
@@ -51,7 +51,7 @@ public class DaoClientes {
         return true;
     }
 
-    public int getDescuento(){
+    public int getDescuento() {
         AtomicInteger descuento = new AtomicInteger(0);
         BD.clientes.values().forEach(cliente -> {
             if (cliente instanceof ClienteEspacial) {
