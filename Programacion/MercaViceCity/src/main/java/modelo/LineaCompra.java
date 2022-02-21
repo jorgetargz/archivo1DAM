@@ -12,7 +12,6 @@ public class LineaCompra implements Clonable<LineaCompra> {
     public LineaCompra(Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
-        this.producto.setId(BD.inventario.get(BD.inventario.indexOf(producto)).getId());
         this.producto.setNombre(BD.inventario.get(BD.inventario.indexOf(producto)).getNombre());
         this.producto.setPrecio(BD.inventario.get(BD.inventario.indexOf(producto)).getPrecio());
         this.producto.setIngredientes(BD.inventario.get(BD.inventario.indexOf(producto)).getIngredientes());

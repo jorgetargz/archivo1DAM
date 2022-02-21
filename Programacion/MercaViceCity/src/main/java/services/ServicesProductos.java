@@ -1,5 +1,7 @@
 package services;
 
+import dao.DaoClientes;
+import dao.DaoCompras;
 import dao.DaoProductos;
 import modelo.Cliente;
 import modelo.Ingrediente;
@@ -161,5 +163,13 @@ public class ServicesProductos {
         return (producto.getIngredientes().stream()
                 .anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)));
     }
+
+   public List<Producto> scGetListaProductosSortAmountBought() {
+//        DaoClientes daoClientes = new DaoClientes();
+//        DaoCompras daoCompras = new DaoCompras();
+//        daoClientes.getClientList().stream().flatMap(cliente -> cliente.getComprasCliente().stream())
+//                .collect(groupingBy());
+       return List.of(new Producto(1));
+   }
 
 }

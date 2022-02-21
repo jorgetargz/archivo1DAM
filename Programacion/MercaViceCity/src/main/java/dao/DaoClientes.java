@@ -42,6 +42,10 @@ public class DaoClientes {
         return BD.clientes.get(cliente.getDni()).getAlergenos().add(alergeno);
     }
 
+    public boolean tieneAlergia(Ingrediente alergeno, Cliente cliente) {
+        return BD.clientes.get(cliente.getDni()).getAlergenos().contains(alergeno);
+    }
+
     public boolean setDescuento(int porcentajeDescuento) {
         BD.clientes.values().forEach(cliente -> {
             if (cliente instanceof ClienteEspacial) {

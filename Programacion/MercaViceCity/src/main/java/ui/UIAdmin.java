@@ -285,7 +285,8 @@ public class UIAdmin {
     }
 
     private void uiGetMostBuyedProducts() {
-
+        ServicesProductos scProductos = new ServicesProductos();
+        scProductos.scGetListaProductosSortAmountBought().forEach(System.out::println);
     }
 
 }

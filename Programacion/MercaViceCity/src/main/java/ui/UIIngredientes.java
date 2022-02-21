@@ -20,7 +20,8 @@ public class UIIngredientes {
             sc.nextLine();
             if (op == 1) {
                 System.out.print(Constantes.INDICA_NOMBRE_DE_INGREDIENTE);
-                ingredientes.add(new Ingrediente(sc.nextLine()));
+                Ingrediente ingrediente = new Ingrediente(sc.nextLine());
+                if (!ingredientes.contains(ingrediente)) ingredientes.add(ingrediente);
             }
         } while (op != 0);
         return ingredientes;
