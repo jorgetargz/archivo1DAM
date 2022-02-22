@@ -4,9 +4,9 @@ import modelo.Cliente;
 import modelo.ClienteEspacial;
 import modelo.Ingrediente;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 
 public class DaoClientes {
@@ -33,9 +33,16 @@ public class DaoClientes {
     }
 
     public List<Cliente> getClientList() {
-        return BD.clientes.values().stream().
+        List<Cliente> clientes = new ArrayList<>();
+        BD.clientes.values().stream().
+                filter(cliente -> !(cliente instanceof ClienteEspacial)).
                 map(Cliente::clonar).
-                collect(Collectors.toUnmodifiableList());
+                forEach(clientes::add);
+        BD.clientes.values().stream().
+                filter(ClienteEspacial.class::isInstance).
+                map((cliente -> ((ClienteEspacial)cliente).clonar())).
+                forEach(clientes::add);
+        return clientes;
     }
 
     public boolean anadirAlergeno(Ingrediente alergeno, Cliente cliente) {

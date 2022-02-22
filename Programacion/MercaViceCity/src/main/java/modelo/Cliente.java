@@ -7,11 +7,11 @@ import java.util.*;
 public class Cliente implements Clonable<Cliente> {
 
     private final String dni;
+    private String nombre;
     private final Set<Monedero> monederoCliente;
     private final List<LineaCompra> compraActual;
     private final List<List<LineaCompra>> comprasCliente;
     private final List<Ingrediente> alergenos;
-    private String nombre;
 
     public Cliente(String dni) {
         this.dni = dni;

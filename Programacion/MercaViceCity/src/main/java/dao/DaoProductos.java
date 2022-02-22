@@ -4,8 +4,8 @@ import modelo.Producto;
 import modelo.ProductoPerecedero;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DaoProductos {
 
@@ -69,9 +69,12 @@ public class DaoProductos {
     }
 
     public List<Producto> getProductList() {
-        return BD.inventario.stream()
-                .map(Producto::clonar)
-                .collect(Collectors.toUnmodifiableList());
+        List<Producto> productos = new ArrayList<>();
+        BD.inventario.stream().filter(producto -> !(producto instanceof ProductoPerecedero))
+                .map(Producto::clonar).forEach(productos::add);
+        BD.inventario.stream().filter(ProductoPerecedero.class::isInstance)
+                .map(producto -> ((ProductoPerecedero)producto).clonar()).forEach(productos::add);
+        return productos;
     }
 
     public LocalDateTime getCaducidad(ProductoPerecedero perecedero) {

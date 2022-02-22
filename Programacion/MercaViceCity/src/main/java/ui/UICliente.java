@@ -172,7 +172,7 @@ public class UICliente {
         UIIngredientes uiIngredientes = new UIIngredientes();
         List<Ingrediente> alergenos = uiIngredientes.uiListaIngredientes(sc);
         alergenos.forEach(ingrediente -> {
-            if (!scClientes.scExisteAlergeno(ingrediente,cliente)
+            if (!scClientes.scExisteAlergeno(ingrediente, cliente)
                     && scClientes.scAnadirAlergeno(ingrediente, cliente)) {
                 System.out.println(Constantes.ALERGENO + ingrediente + Constantes.ANADIDO);
             }

@@ -73,7 +73,7 @@ public class ServicesClientes {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public boolean scExisteAlergeno(Ingrediente ingrediente, Cliente cliente){
+    public boolean scExisteAlergeno(Ingrediente ingrediente, Cliente cliente) {
         DaoClientes daoClientes = new DaoClientes();
         return daoClientes.tieneAlergia(ingrediente, cliente);
     }

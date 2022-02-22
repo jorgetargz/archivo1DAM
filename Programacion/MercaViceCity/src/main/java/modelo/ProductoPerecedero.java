@@ -3,7 +3,7 @@ package modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ProductoPerecedero extends Producto {
+public class ProductoPerecedero extends Producto  {
 
     private final LocalDateTime caducidad;
 
@@ -25,5 +25,10 @@ public class ProductoPerecedero extends Producto {
     public String toString() {
         return super.toString() +
                 " Caducidad=" + caducidad;
+    }
+
+    @Override
+    public ProductoPerecedero clonar() {
+        return new ProductoPerecedero(super.getNombre(),super.getPrecio(),super.getStock(),super.getIngredientes(),this.caducidad);
     }
 }
