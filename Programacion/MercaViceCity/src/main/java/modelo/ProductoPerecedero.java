@@ -29,6 +29,7 @@ public class ProductoPerecedero extends Producto  {
 
     @Override
     public ProductoPerecedero clonar() {
-        return new ProductoPerecedero(super.getNombre(),super.getPrecio(),super.getStock(),super.getIngredientes(),this.caducidad);
+        return new ProductoPerecedero(super.getId(),super.getNombre(),super.getPrecio(),
+                super.getStock(),super.getIngredientes(),this.caducidad);
     }
 }
