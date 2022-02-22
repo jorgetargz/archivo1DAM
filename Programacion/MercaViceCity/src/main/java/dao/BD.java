@@ -40,7 +40,7 @@ public class BD {
         clientes.get("126").setNombre("Federico García Lorca");
 
         idProduct++;
-        inventario.add(new ProductoPerecedero(idProduct, "LACASITOS", 12, 11, List.of(new Ingrediente("CACAO")), LocalDateTime.parse("2022-02-16T16:40:00")));
+        inventario.add(new ProductoPerecedero(idProduct, "LACASITOS", 12, 11, List.of(new Ingrediente("CACAO")), LocalDateTime.parse("2023-02-16T16:40:00")));
         idProduct++;
         inventario.add(new ProductoPerecedero(idProduct, "HARINA", 25, 100, List.of(new Ingrediente("HARINA")), LocalDateTime.parse("2021-02-13T16:30:00")));
         idProduct++;
