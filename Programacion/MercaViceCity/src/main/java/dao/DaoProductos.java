@@ -73,7 +73,7 @@ public class DaoProductos {
         BD.inventario.stream().filter(producto -> !(producto instanceof ProductoPerecedero))
                 .map(Producto::clonar).forEach(productos::add);
         BD.inventario.stream().filter(ProductoPerecedero.class::isInstance)
-                .map(producto -> ((ProductoPerecedero)producto).clonar()).forEach(productos::add);
+                .map(producto -> ((ProductoPerecedero) producto).clonar()).forEach(productos::add);
         return productos;
     }
 

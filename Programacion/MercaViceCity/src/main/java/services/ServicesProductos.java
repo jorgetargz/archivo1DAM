@@ -1,14 +1,14 @@
 package services;
 
+import dao.DaoClientes;
 import dao.DaoProductos;
-import modelo.Cliente;
-import modelo.Ingrediente;
-import modelo.Producto;
-import modelo.ProductoPerecedero;
+import modelo.*;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ServicesProductos {
@@ -162,12 +162,18 @@ public class ServicesProductos {
                 .anyMatch(ingrediente -> cliente.getAlergenos().contains(ingrediente)));
     }
 
-    public List<Producto> scGetListaProductosSortAmountBought() {
-//        DaoClientes daoClientes = new DaoClientes();
-//        DaoCompras daoCompras = new DaoCompras();
-//        daoClientes.getClientList().stream().flatMap(cliente -> cliente.getComprasCliente().stream())
-//                .collect(groupingBy());
-        return List.of(new Producto(1));
+    public List<String> scGetListaProductosSortAmountBought() {
+        DaoClientes daoClientes = new DaoClientes();
+        return daoClientes.getClientList().stream()
+                .flatMap(cliente -> cliente.getComprasCliente().stream())
+                .flatMap(Collection::stream)
+                .collect(Collectors
+                        .groupingBy(lineaCompra -> lineaCompra.getProducto().getNombre(),
+                                Collectors.summingDouble(LineaCompra::getCantidad)))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+                .map(productoDoubleEntry -> productoDoubleEntry.getKey() + " " + productoDoubleEntry.getValue())
+                .collect(Collectors.toUnmodifiableList());
     }
 
 }

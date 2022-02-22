@@ -40,7 +40,7 @@ public class DaoClientes {
                 forEach(clientes::add);
         BD.clientes.values().stream().
                 filter(ClienteEspacial.class::isInstance).
-                map((cliente -> ((ClienteEspacial)cliente).clonar())).
+                map((cliente -> ((ClienteEspacial) cliente).clonar())).
                 forEach(clientes::add);
         return clientes;
     }
@@ -53,13 +53,12 @@ public class DaoClientes {
         return BD.clientes.get(cliente.getDni()).getAlergenos().contains(alergeno);
     }
 
-    public boolean setDescuento(int porcentajeDescuento) {
+    public void setDescuento(int porcentajeDescuento) {
         BD.clientes.values().forEach(cliente -> {
             if (cliente instanceof ClienteEspacial) {
                 ((ClienteEspacial) cliente).setPorcentajeDescuento(porcentajeDescuento);
             }
         });
-        return true;
     }
 
     public int getDescuento() {

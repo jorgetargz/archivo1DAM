@@ -16,7 +16,7 @@ public class ClienteEspacial extends Cliente {
                            List<List<LineaCompra>> comprasCliente,
                            List<Ingrediente> alergenos,
                            int porcentajeDescuento) {
-        super(dni,nombre,monederoCliente,compraActual,comprasCliente,alergenos);
+        super(dni, nombre, monederoCliente, compraActual, comprasCliente, alergenos);
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
@@ -30,8 +30,8 @@ public class ClienteEspacial extends Cliente {
 
     @Override
     public ClienteEspacial clonar() {
-        return new ClienteEspacial(super.getDni(),super.getNombre(),super.getMonederosCliente(),
-                super.getCompraActual(),super.getComprasCliente(),
-                super.getAlergenos(),this.porcentajeDescuento);
+        return new ClienteEspacial(super.getDni(), super.getNombre(), super.getMonederosCliente(),
+                super.getCompraActual(), super.getComprasCliente(),
+                super.getAlergenos(), this.porcentajeDescuento);
     }
 }
