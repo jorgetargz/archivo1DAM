@@ -41,7 +41,7 @@ public class ServicesCompras {
         }
         return (scMonederos.scGetSaldoTotal(cliente) > costeCompra)
                 && daoMonederos.restarDineroMonederos(cliente, costeCompra)
-                && daoCompras.realizarCompra(cliente);
+                && daoCompras.guardarCompraLimpiarCarrito(cliente);
     }
 
     public List<LineaCompra> scGetCarrito(Cliente cliente) {

@@ -21,7 +21,7 @@ public class DaoCompras {
         return lineaCompra.getProducto().getPrecio() * lineaCompra.getCantidad();
     }
 
-    public boolean realizarCompra(Cliente cliente) {
+    public boolean guardarCompraLimpiarCarrito(Cliente cliente) {
         List<LineaCompra> ticket = getCarrito(cliente);
         BD.clientes.get(cliente.getDni()).getCompraActual().clear();
         return cliente.getComprasCliente().add(ticket);
