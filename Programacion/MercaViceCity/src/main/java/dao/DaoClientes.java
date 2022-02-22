@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class DaoClientes {
+public class DaoClientes extends DaoBase{
 
     public boolean addCliente(Cliente cliente) {
         return BD.clientes.put(cliente.getDni(), cliente) == null;
@@ -32,17 +32,10 @@ public class DaoClientes {
         return BD.clientes.get(c.getDni()).getNombre();
     }
 
+
+
     public List<Cliente> getClientList() {
-        List<Cliente> clientes = new ArrayList<>();
-        BD.clientes.values().stream().
-                filter(cliente -> !(cliente instanceof ClienteEspacial)).
-                map(Cliente::clonar).
-                forEach(clientes::add);
-        BD.clientes.values().stream().
-                filter(ClienteEspacial.class::isInstance).
-                map((cliente -> ((ClienteEspacial) cliente).clonar())).
-                forEach(clientes::add);
-        return clientes;
+        return dameListaInmutableClonada(BD.clientes.values());
     }
 
     public boolean anadirAlergeno(Ingrediente alergeno, Cliente cliente) {

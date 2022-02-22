@@ -4,10 +4,9 @@ import modelo.Producto;
 import modelo.ProductoPerecedero;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-public class DaoProductos {
+public class DaoProductos extends DaoBase{
 
     public static boolean addProduct(Producto p) {
         boolean operacionRealizada = false;
@@ -69,12 +68,7 @@ public class DaoProductos {
     }
 
     public List<Producto> getProductList() {
-        List<Producto> productos = new ArrayList<>();
-        BD.inventario.stream().filter(producto -> !(producto instanceof ProductoPerecedero))
-                .map(Producto::clonar).forEach(productos::add);
-        BD.inventario.stream().filter(ProductoPerecedero.class::isInstance)
-                .map(producto -> ((ProductoPerecedero) producto).clonar()).forEach(productos::add);
-        return productos;
+        return dameListaInmutableClonada(BD.inventario);
     }
 
     public LocalDateTime getCaducidad(ProductoPerecedero perecedero) {

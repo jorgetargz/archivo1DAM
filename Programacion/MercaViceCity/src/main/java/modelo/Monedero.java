@@ -4,7 +4,7 @@ import modelo.common.Constantes;
 
 import java.util.Objects;
 
-public class Monedero {
+public class Monedero implements Clonable<Monedero>{
 
     private final int numeroMonedero;
     private double importe;
@@ -47,5 +47,10 @@ public class Monedero {
     @Override
     public int hashCode() {
         return Objects.hash(numeroMonedero);
+    }
+
+    @Override
+    public Monedero clonar() {
+        return new Monedero(this.numeroMonedero,this.importe);
     }
 }

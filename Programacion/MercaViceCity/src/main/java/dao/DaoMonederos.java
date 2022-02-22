@@ -29,7 +29,7 @@ public class DaoMonederos {
 
     public List<Monedero> getMonederosClienteList(Cliente cliente) {
         return cliente.getMonederosCliente().stream()
-                .map(monedero -> new Monedero(monedero.getNumeroMonedero(), monedero.getImporte()))
+                .map(Monedero::clonar)
                 .collect(Collectors.toUnmodifiableList());
     }
 
