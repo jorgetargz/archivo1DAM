@@ -35,7 +35,8 @@ public class ServicesCompras {
         ServicesMonederos scMonederos = new ServicesMonederos();
         double costeCompra;
         if (cliente instanceof ClienteEspacial) {
-            costeCompra = daoCompras.getCosteCompra(cliente) * ((double) daoClientes.getDescuento() / 100);
+            costeCompra = daoCompras.getCosteCompra(cliente)
+                    - (((double) daoClientes.getDescuento() / 100) * daoCompras.getCosteCompra(cliente));
         } else {
             costeCompra = daoCompras.getCosteCompra(cliente);
         }

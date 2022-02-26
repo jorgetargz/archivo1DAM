@@ -172,7 +172,8 @@ public class ServicesProductos {
                                 Collectors.summingDouble(LineaCompra::getCantidad)))
                 .entrySet().stream()
                 .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
-                .map(productoDoubleEntry -> productoDoubleEntry.getKey() + " " + productoDoubleEntry.getValue())
+                .map(productoDoubleEntry -> productoDoubleEntry.getKey() +
+                        " " + productoDoubleEntry.getValue())
                 .collect(Collectors.toUnmodifiableList());
     }
 

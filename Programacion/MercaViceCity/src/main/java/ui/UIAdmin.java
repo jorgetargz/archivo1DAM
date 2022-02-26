@@ -226,7 +226,6 @@ public class UIAdmin {
             System.out.print(Constantes.INDICA_EL_NOMBRE_DEL_CLIENTE);
             String nombre = sc.nextLine();
             if (scClientes.scSetNombre(cliente, nombre)) {
-
                 System.out.println(Constantes.REGISTRADO_CORRECTAMENTE);
             }
         } else System.out.println(Constantes.DNI_YA_REGISTRADO);

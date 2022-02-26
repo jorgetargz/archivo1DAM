@@ -1,9 +1,7 @@
 package dao;
 
-import modelo.Cliente;
-import modelo.Ingrediente;
-import modelo.Producto;
-import modelo.ProductoPerecedero;
+import modelo.*;
+import services.ServicesClientesEspaciales;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,8 +34,6 @@ public class BD {
         clientes.get("124").setNombre("Francisco");
         clientes.put("125", new Cliente("125"));
         clientes.get("125").setNombre("Lucas");
-        clientes.put("126", new Cliente("126"));
-        clientes.get("126").setNombre("Federico García Lorca");
 
         idProduct++;
         inventario.add(new ProductoPerecedero(idProduct, "LACASITOS", 12, 11, List.of(new Ingrediente("CACAO")), LocalDateTime.parse("2023-02-16T16:40:00")));
@@ -50,6 +46,10 @@ public class BD {
         idProduct++;
         inventario.add(new Producto(idProduct, "AVION TELEDIRIGIDO", 20.5, 15, new ArrayList<>()));
 
+        clientes.put("126", new ClienteEspacial("126"));
+        clientes.get("126").setNombre("Federico García Lorca");
+        ServicesClientesEspaciales servicesClientesEspaciales = new ServicesClientesEspaciales();
+        servicesClientesEspaciales.scSetDescuentoClientesEspaciales(10);
     }
 
 }

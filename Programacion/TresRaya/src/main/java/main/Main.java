@@ -21,13 +21,13 @@ public class Main {
                     System.out.println("Jugador 2 (O)");
                     valor = "O";
                 }
-                System.out.print("Coordenada X: ");
+                System.out.print("Coordenada Y: ");
                 int corX = sc.nextInt();
                 sc.nextLine();
-                System.out.print("Coordenada Y: ");
+                System.out.print("Coordenada X: ");
                 int corY = sc.nextInt();
                 sc.nextLine();
-                while (!dao.setCelda(corX, corY, valor)) {
+                while (!dao.setCelda(corY, corX, valor)) {
                     System.out.println("Celda ocupada indica otra. ");
                     System.out.print("Coordenada X: ");
                     corX = sc.nextInt();
