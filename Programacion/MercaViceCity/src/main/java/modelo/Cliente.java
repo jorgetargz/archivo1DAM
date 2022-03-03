@@ -3,6 +3,7 @@ package modelo;
 import modelo.common.Constantes;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Cliente implements Clonable<Cliente> {
 
@@ -79,8 +80,13 @@ public class Cliente implements Clonable<Cliente> {
         return Objects.hash(dni);
     }
 
+    public Set<Monedero> getListaMonederosClonada(){
+        return this.monederoCliente.stream().map(Monedero::clonar)
+                .collect(Collectors.toUnmodifiableSet());
+    }
+
     @Override
     public Cliente clonar() {
-        return new Cliente(this.dni, this.nombre, this.monederoCliente, this.compraActual, this.comprasCliente, this.alergenos);
+        return new Cliente(this.dni, this.nombre, this.getListaMonederosClonada(), this.compraActual, this.comprasCliente, this.alergenos);
     }
 }

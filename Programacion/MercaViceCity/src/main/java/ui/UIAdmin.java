@@ -35,7 +35,7 @@ public class UIAdmin {
             System.out.println(Constantes.VER_PRODUCTOS_CON_INGREDIENTES_ADMIN);
             System.out.println(Constantes.CAMBIAR_PORCENTAJE_DE_DESCUENTO_CLIENTES_ESPACIALES);
             System.out.println(Constantes.BUSCAR_PRODUCTO_POR_INGREDIENTE);
-            System.out.println("16. Ver productos mas comprados");
+            System.out.println(Constantes.VER_PRODUCTOS_MAS_COMPRADOS);
             System.out.print(Constantes.ELIGE_UNA_OPCION);
             opAdmin = sc.nextInt();
             sc.nextLine();

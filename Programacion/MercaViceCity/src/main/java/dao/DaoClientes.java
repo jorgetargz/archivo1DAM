@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class DaoClientes extends DaoBase{
+public class DaoClientes extends DaoBase {
 
     public boolean addCliente(Cliente cliente) {
         return BD.clientes.put(cliente.getDni(), cliente) == null;
@@ -30,8 +30,6 @@ public class DaoClientes extends DaoBase{
     public String getNombreCliente(Cliente c) {
         return BD.clientes.get(c.getDni()).getNombre();
     }
-
-
 
     public List<Cliente> getClientList() {
         return dameListaInmutableClonada(BD.clientes.values());

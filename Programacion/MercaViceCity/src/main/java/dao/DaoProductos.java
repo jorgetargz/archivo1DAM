@@ -6,7 +6,7 @@ import modelo.ProductoPerecedero;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class DaoProductos extends DaoBase{
+public class DaoProductos extends DaoBase {
 
     public static boolean addProduct(Producto p) {
         boolean operacionRealizada = false;

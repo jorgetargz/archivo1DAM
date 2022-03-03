@@ -2,6 +2,8 @@ package ui.common;
 
 public class Constantes {
 
+    public static final String VER_PRODUCTOS_MAS_COMPRADOS = "16. Ver productos mas comprados";
+
     private Constantes() {
     }
 
