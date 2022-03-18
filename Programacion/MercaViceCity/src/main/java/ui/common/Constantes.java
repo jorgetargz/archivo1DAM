@@ -2,8 +2,6 @@ package ui.common;
 
 public class Constantes {
 
-    public static final String VER_PRODUCTOS_MAS_COMPRADOS = "16. Ver productos mas comprados";
-
     private Constantes() {
     }
 
@@ -46,6 +44,7 @@ public class Constantes {
     public static final String VER_PRODUCTOS_CON_INGREDIENTES_ADMIN = "13. Ver productos con ingredientes";
     public static final String CAMBIAR_PORCENTAJE_DE_DESCUENTO_CLIENTES_ESPACIALES = "14. Cambiar porcentaje de descuento clientes espaciales";
     public static final String BUSCAR_PRODUCTO_POR_INGREDIENTE = "15. Buscar producto por ingrediente";
+    public static final String VER_PRODUCTOS_MAS_COMPRADOS = "16. Ver productos mas comprados";
     public static final String ERROR_ENTRADA_DE_MENU_NO_VALIDA = "Error entrada de menu no valida";
 
     public static final String INTRODUCE_UN_ID_DE_PRODUCTO = "Introduce un ID de producto: ";

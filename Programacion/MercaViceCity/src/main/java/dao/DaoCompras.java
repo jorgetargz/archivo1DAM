@@ -4,9 +4,16 @@ import modelo.Cliente;
 import modelo.LineaCompra;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DaoCompras {
+
+    private Map<String, Cliente> clientes;
+
+    public DaoCompras(Map<String, Cliente> clientes) {
+        this.clientes = clientes;
+    }
 
     public boolean addProductoCompra(LineaCompra lineaCompra, Cliente cliente) {
         return BD.clientes.get(cliente.getDni()).getCompraActual().add(lineaCompra);

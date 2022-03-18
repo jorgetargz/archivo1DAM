@@ -1,5 +1,6 @@
 package services;
 
+import dao.BD;
 import dao.DaoClientes;
 import dao.DaoCompras;
 import modelo.Cliente;
@@ -61,7 +62,7 @@ public class ServicesClientes {
     }
 
     public Double getCosteCompras(Cliente cliente) {
-        DaoCompras daoCompras = new DaoCompras();
+        DaoCompras daoCompras = new DaoCompras(BD.clientes);
         return cliente.getComprasCliente()
                 .stream().mapToDouble(lineaCompraList -> lineaCompraList
                         .stream().mapToDouble(daoCompras::getCosteLineaCompra).sum()).sum();

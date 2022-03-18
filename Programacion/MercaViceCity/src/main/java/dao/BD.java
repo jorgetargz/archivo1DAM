@@ -7,13 +7,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BD {
 
     private BD() {
     }
 
-    public static final LinkedHashMap<String, Cliente> clientes = new LinkedHashMap<>();
+    public static final Map<String, Cliente> clientes = new LinkedHashMap<>();
     public static final ArrayList<Producto> inventario = new ArrayList<>();
     private static int idProduct = 0;
 

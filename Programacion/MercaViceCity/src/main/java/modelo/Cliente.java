@@ -80,13 +80,33 @@ public class Cliente implements Clonable<Cliente> {
         return Objects.hash(dni);
     }
 
-    public Set<Monedero> getListaMonederosClonada(){
+    public Set<Monedero> listaMonederosClonada(){
         return this.monederoCliente.stream().map(Monedero::clonar)
                 .collect(Collectors.toUnmodifiableSet());
     }
 
+    public List<LineaCompra> listaCompraClonada(){
+        return this.compraActual.stream().map(LineaCompra::clonar)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    public List<List<LineaCompra>> listaComprasClonada(){
+        List<List<LineaCompra>> listaComprasClonada = new ArrayList<>();
+        this.comprasCliente
+                .forEach(lineaCompras -> listaComprasClonada.add(lineaCompras.stream()
+                        .map(LineaCompra::clonar)
+                        .collect(Collectors.toList())));
+        return listaComprasClonada;
+    }
+
+    public List<Ingrediente> listaAlergenos(){
+        return this.alergenos.stream().map(Ingrediente::clonar)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     @Override
     public Cliente clonar() {
-        return new Cliente(this.dni, this.nombre, this.getListaMonederosClonada(), this.compraActual, this.comprasCliente, this.alergenos);
+        return new Cliente(this.dni, this.nombre, this.listaMonederosClonada(),
+                this.listaCompraClonada(), this.listaComprasClonada(), this.listaAlergenos());
     }
 }

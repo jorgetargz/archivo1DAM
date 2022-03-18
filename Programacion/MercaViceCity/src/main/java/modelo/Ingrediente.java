@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Objects;
 
-public class Ingrediente {
+public class Ingrediente implements Clonable<Ingrediente>{
 
     private final String nombre;
 
@@ -30,5 +30,10 @@ public class Ingrediente {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @Override
+    public Ingrediente clonar() {
+        return new Ingrediente(this.nombre);
     }
 }

@@ -1,5 +1,6 @@
 package services;
 
+import dao.BD;
 import dao.DaoClientes;
 import dao.DaoCompras;
 import dao.DaoMonederos;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ServicesCompras {
 
     public boolean scAddProductoCompraCliente(Cliente cliente, LineaCompra lineaCompra) {
-        DaoCompras daoCompras = new DaoCompras();
+        DaoCompras daoCompras = new DaoCompras(BD.clientes);
         ServicesProductos scProductos = new ServicesProductos();
         ServicesProductosPerecederos scProductosPerecederos = new ServicesProductosPerecederos();
         boolean caducado = lineaCompra.getProducto() instanceof ProductoPerecedero
@@ -29,7 +30,7 @@ public class ServicesCompras {
     }
 
     public boolean scPagarCompra(Cliente cliente) {
-        DaoCompras daoCompras = new DaoCompras();
+        DaoCompras daoCompras = new DaoCompras(BD.clientes);
         DaoMonederos daoMonederos = new DaoMonederos();
         DaoClientes daoClientes = new DaoClientes();
         ServicesMonederos scMonederos = new ServicesMonederos();
@@ -46,7 +47,7 @@ public class ServicesCompras {
     }
 
     public List<LineaCompra> scGetCarrito(Cliente cliente) {
-        DaoCompras daoCompras = new DaoCompras();
+        DaoCompras daoCompras = new DaoCompras(BD.clientes);
         return daoCompras.getCarrito(cliente);
     }
 
