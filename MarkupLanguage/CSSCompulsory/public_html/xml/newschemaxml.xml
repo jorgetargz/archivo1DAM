@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Customer xmlns="$LOCAL_SCHEMA$">
+    <ID>11111</ID>
+    <NameCust>asa</NameCust>
+    <Street>aa</Street>
+    <NumStreet>12121</NumStreet>
+    <PostalCode>1</PostalCode>
+    <City>ss</City>
+    <Phone>32</Phone>
+    <DateOfBirth>11-10-1999</DateOfBirth>
+    <Discount>true</Discount>
+</Customer>
