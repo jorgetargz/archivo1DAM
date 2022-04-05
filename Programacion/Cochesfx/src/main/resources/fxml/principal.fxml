@@ -8,38 +8,36 @@
 
 <AnchorPane prefHeight="615.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="ui.controllers.PrincipalController">
-    <children>
-        <MFXFontIcon description="mfx-home" layoutX="51.0" layoutY="74.0" size="50.0"
-                     wrappingWidth="59.199947357177734"/>
-        <Label layoutX="152.0" layoutY="41.0" text="%MainText">
-            <font>
-                <Font size="24.0"/>
-            </font>
-        </Label>
-        <MFXTextField fx:id="modeloTextField" floatMode="BORDER" layoutX="48.0" layoutY="417.0" prefHeight="0.0"
-                      prefWidth="266.0" promptText="%Modelo"/>
-        <MFXTextField fx:id="anioTextField" floatMode="BORDER" layoutX="330.0" layoutY="417.0" prefHeight="35.0"
-                      prefWidth="102.0" promptText="%Año"/>
-        <MFXDatePicker fx:id="fechaTextField" layoutX="444.0" layoutY="417.0" prefHeight="35.0" prefWidth="222.0"
-                       promptText="%FechaAdquisición"/>
-        <MFXTableView fx:id="tablaCoches" layoutX="52.0" layoutY="94.0"
-                      prefHeight="290.0" prefWidth="629.0">
-            <tableColumns>
-                <MFXTableColumn fx:id="columnModelo" prefHeight="42.0" prefWidth="319.0"
-                                text="%Modelo"/>
-                <MFXTableColumn fx:id="columnAnio" prefWidth="100.0" text="%Año"/>
-                <MFXTableColumn fx:id="columnFecha" prefWidth="200.0"
-                                text="%FechaAdquisición"/>
-            </tableColumns>
-        </MFXTableView>
-        <MFXButton buttonType="RAISED" layoutX="106.0" layoutY="505.0" mnemonicParsing="false" onAction="#addCoche"
-                   prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%AñadirCoche"/>
-        <MFXButton buttonType="RAISED" layoutX="283.0" layoutY="505.0" mnemonicParsing="false" onAction="#updateCoche"
-                   prefHeight="50.0" prefWidth="169.0" rippleColor="#9c0b99" text="%ActualizarDatosCoche"/>
-        <MFXButton buttonType="RAISED" layoutX="489.0" layoutY="505.0" mnemonicParsing="false" onAction="#deleteCoche"
-                   prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%BorrarCoche"/>
-        <Label layoutX="52.0" layoutY="400.0" text="%ModeloObligatorio"/>
-        <Label layoutX="330.0" layoutY="400.0" text="%AñoObligatorio"/>
-        <Label layoutX="444.0" layoutY="400.0" text="%FechaAdquisiciónObligatorio"/>
-    </children>
+    <MFXFontIcon description="mfx-home" layoutX="51.0" layoutY="74.0" size="50.0"
+                 wrappingWidth="59.199947357177734"/>
+    <Label layoutX="152.0" layoutY="41.0" text="%MainText">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Label>
+    <MFXTextField fx:id="modeloTextField" floatMode="BORDER" layoutX="48.0" layoutY="417.0" prefHeight="0.0"
+                  prefWidth="266.0" promptText="%Modelo"/>
+    <MFXTextField fx:id="anioTextField" floatMode="BORDER" layoutX="330.0" layoutY="417.0" prefHeight="35.0"
+                  prefWidth="102.0" promptText="%Año"/>
+    <MFXDatePicker fx:id="fechaTextField" layoutX="444.0" layoutY="417.0" prefHeight="35.0" prefWidth="222.0"
+                   promptText="%FechaAdquisición"/>
+    <MFXTableView fx:id="tablaCoches" layoutX="52.0" layoutY="94.0"
+                  prefHeight="290.0" prefWidth="629.0">
+        <tableColumns>
+            <MFXTableColumn fx:id="columnModelo" prefHeight="42.0" prefWidth="319.0"
+                            text="%Modelo"/>
+            <MFXTableColumn fx:id="columnAnio" prefWidth="100.0" text="%Año"/>
+            <MFXTableColumn fx:id="columnFecha" prefWidth="200.0"
+                            text="%FechaAdquisición"/>
+        </tableColumns>
+    </MFXTableView>
+    <MFXButton buttonType="RAISED" layoutX="106.0" layoutY="505.0" mnemonicParsing="false" onAction="#addCoche"
+               prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%AñadirCoche"/>
+    <MFXButton buttonType="RAISED" layoutX="283.0" layoutY="505.0" mnemonicParsing="false" onAction="#updateCoche"
+               prefHeight="50.0" prefWidth="169.0" rippleColor="#9c0b99" text="%ActualizarDatosCoche"/>
+    <MFXButton buttonType="RAISED" layoutX="489.0" layoutY="505.0" mnemonicParsing="false" onAction="#deleteCoche"
+               prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%BorrarCoche"/>
+    <Label layoutX="52.0" layoutY="400.0" text="%ModeloObligatorio"/>
+    <Label layoutX="330.0" layoutY="400.0" text="%AñoObligatorio"/>
+    <Label layoutX="444.0" layoutY="400.0" text="%FechaAdquisiciónObligatorio"/>
 </AnchorPane>

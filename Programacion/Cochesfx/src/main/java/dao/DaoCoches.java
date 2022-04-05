@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DaoCoches {
 
-    private Database db;
+    private final Database db;
 
     public DaoCoches() {
         this.db = new Database();

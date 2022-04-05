@@ -1,7 +1,6 @@
 package dao;
 
 import com.google.gson.*;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.reflect.TypeToken;
 import config.Configuration;
 import domain.modelo.Coche;

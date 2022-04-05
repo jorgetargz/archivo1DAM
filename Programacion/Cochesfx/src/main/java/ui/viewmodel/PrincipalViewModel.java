@@ -9,22 +9,22 @@ import lombok.Getter;
 @Getter
 public class PrincipalViewModel {
 
-    private ServiciosCoches serviciosCoches = new ServiciosCoches();
-    private ObservableList<Coche> _coches;
+    private final ServiciosCoches serviciosCoches = new ServiciosCoches();
+    private final ObservableList<Coche> observableCoches;
 
     public PrincipalViewModel() {
-        _coches = FXCollections.observableArrayList(serviciosCoches.listarCoches());
+        observableCoches = FXCollections.observableArrayList(serviciosCoches.listarCoches());
     }
 
     public ObservableList<Coche> getCoches() {
-        return FXCollections.unmodifiableObservableList(_coches);
+        return FXCollections.unmodifiableObservableList(observableCoches);
     }
 
     public boolean addCoche(Coche coche) {
         boolean anadido = serviciosCoches.insertarCoche(coche);
         if (anadido) {
-            _coches.clear();
-            _coches.addAll(serviciosCoches.listarCoches());
+            observableCoches.clear();
+            observableCoches.addAll(serviciosCoches.listarCoches());
         }
         return anadido;
     }
@@ -32,8 +32,8 @@ public class PrincipalViewModel {
     public boolean updateCoche(Coche coche) {
         boolean actualizado = serviciosCoches.modificarCoche(coche);
         if (actualizado) {
-            _coches.clear();
-            _coches.addAll(serviciosCoches.listarCoches());
+            observableCoches.clear();
+            observableCoches.addAll(serviciosCoches.listarCoches());
         }
         return actualizado;
     }
@@ -41,8 +41,8 @@ public class PrincipalViewModel {
     public boolean removeCoche(Coche coche) {
         boolean eliminado = serviciosCoches.eliminarCoche(coche);
         if (eliminado) {
-            _coches.clear();
-            _coches.addAll(serviciosCoches.listarCoches());
+            observableCoches.clear();
+            observableCoches.addAll(serviciosCoches.listarCoches());
         }
         return eliminado;
     }

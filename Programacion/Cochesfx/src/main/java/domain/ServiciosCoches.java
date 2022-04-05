@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ServiciosCoches {
 
-    private DaoCoches daoCoches;
+    private final DaoCoches daoCoches;
 
     public ServiciosCoches() {
         daoCoches = new DaoCoches();

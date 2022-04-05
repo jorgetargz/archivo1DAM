@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import ui.common.Constantes;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -19,14 +20,13 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        primaryStage.setTitle("Hello World!");
-        ResourceBundle bundle = ResourceBundle.getBundle("I18N/textosUI");
+        ResourceBundle bundle = ResourceBundle.getBundle(Constantes.TEXTOS_UI);
         FXMLLoader loaderMenu = new FXMLLoader(
-                getClass().getResource("/fxml/principal.fxml"), bundle);
+                getClass().getResource(Constantes.PRINCIPAL_FXML), bundle);
 
         AnchorPane root = loaderMenu.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Concesionario Filipo");
+        primaryStage.setTitle(Constantes.CONCESIONARIO_FILIPO);
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setResizable(false);
