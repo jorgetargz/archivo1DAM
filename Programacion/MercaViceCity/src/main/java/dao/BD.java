@@ -26,7 +26,6 @@ public class BD {
         return idProduct;
     }
 
-
     static {
 
         clientes.put("123", new Cliente("123"));
