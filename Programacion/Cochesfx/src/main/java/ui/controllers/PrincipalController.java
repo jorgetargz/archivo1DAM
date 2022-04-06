@@ -42,7 +42,6 @@ public class PrincipalController implements Initializable {
     private MFXTableColumn<Coche> columnFecha;
 
     public PrincipalController() {
-
     }
 
     @Override
@@ -55,9 +54,9 @@ public class PrincipalController implements Initializable {
                 new IntegerFilter<>(Constantes.ANOS, Coche::getAnio)
         );
 
-        columnModelo.setRowCellFactory(person -> new MFXTableRowCell<>(Coche::getModelo));
-        columnAnio.setRowCellFactory(person -> new MFXTableRowCell<>(Coche::getAnio));
-        columnFecha.setRowCellFactory(person -> new MFXTableRowCell<>(Coche::getFechaAdquisicion));
+        columnModelo.setRowCellFactory(coche -> new MFXTableRowCell<>(Coche::getModelo));
+        columnAnio.setRowCellFactory(coche -> new MFXTableRowCell<>(Coche::getAnio));
+        columnFecha.setRowCellFactory(coche -> new MFXTableRowCell<>(Coche::getFechaAdquisicion));
 
         tablaCoches.getSelectionModel().setAllowsMultipleSelection(false);
         tablaCoches.setItems(viewModel.getCoches());
@@ -104,6 +103,9 @@ public class PrincipalController implements Initializable {
             a.setContentText(text);
             a.showAndWait();
         }
+        modeloTextField.clear();
+        anioTextField.clear();
+        fechaTextField.clear();
     }
 
     @FXML
@@ -137,6 +139,9 @@ public class PrincipalController implements Initializable {
             a.setContentText(text);
             a.showAndWait();
         }
+        modeloTextField.clear();
+        anioTextField.clear();
+        fechaTextField.clear();
     }
 
     @FXML
@@ -164,6 +169,9 @@ public class PrincipalController implements Initializable {
             a.setContentText(text);
             a.showAndWait();
         }
+        modeloTextField.clear();
+        anioTextField.clear();
+        fechaTextField.clear();
     }
 
     private void playSound(String path) {
