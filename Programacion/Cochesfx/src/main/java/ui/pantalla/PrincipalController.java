@@ -24,10 +24,7 @@ import ui.common.Constantes;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PrincipalController implements Initializable {
 
@@ -97,7 +94,8 @@ public class PrincipalController implements Initializable {
         minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) rootPane.getScene().getWindow()).setIconified(true));
         alwaysOnTopIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             boolean newVal = !stage.isAlwaysOnTop();
-            alwaysOnTopIcon.pseudoClassStateChanged(PseudoClass.getPseudoClass("always-on-top"), newVal);
+            alwaysOnTopIcon.pseudoClassStateChanged(PseudoClass
+                    .getPseudoClass(Constantes.ALWAYS_ON_TOP), newVal);
             stage.setAlwaysOnTop(newVal);
         });
 
@@ -293,7 +291,7 @@ public class PrincipalController implements Initializable {
     }
 
     private void playSound(String path) {
-        Media sound = new Media(getClass().getClassLoader().getResource(path).toExternalForm());
+        Media sound = new Media(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
     }

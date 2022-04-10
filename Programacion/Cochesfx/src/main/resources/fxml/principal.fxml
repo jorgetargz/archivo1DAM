@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
-<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
-<?import io.github.palexdev.materialfx.controls.MFXTableView?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox?>
+<?import io.github.palexdev.materialfx.controls.*?>
 <?import io.github.palexdev.materialfx.font.MFXFontIcon?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="rootPane" prefHeight="615.0" prefWidth="734.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantalla.PrincipalController">
-    <HBox fx:id="windowHeader" alignment="CENTER_RIGHT" layoutY="6.0" prefHeight="50.0" prefWidth="1281.0" spacing="10.0" styleClass="windowBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane fx:id="rootPane" prefHeight="615.0" prefWidth="734.0" stylesheets="@../css/styles.css"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.pantalla.PrincipalController">
+    <HBox fx:id="windowHeader" alignment="CENTER_RIGHT" layoutY="6.0" prefHeight="50.0" prefWidth="1281.0"
+          spacing="10.0" styleClass="windowBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0">
         <padding>
-            <Insets right="10.0" />
+            <Insets right="10.0"/>
         </padding>
-       <Label fx:id="elegirIdioma" text="%ElegirIdiomaLabel" />
-       <MFXLegacyComboBox fx:id="langugeSelector" onAction="#selectLanguage" prefHeight="55.0" prefWidth="91.0">
-         <HBox.margin>
-            <Insets right="40.0" />
-         </HBox.margin></MFXLegacyComboBox>
-        <MFXFontIcon fx:id="alwaysOnTopIcon" description="mfx-lock" size="15.0" styleClass="always-on-top-icon" />
-        <MFXFontIcon fx:id="minimizeIcon" description="mfx-minus" size="15.0" styleClass="minimize-icon" />
-        <MFXFontIcon fx:id="closeIcon" description="mfx-x-alt" size="15.0" styleClass="close-icon" />
+        <Label fx:id="elegirIdioma" text="%ElegirIdiomaLabel"/>
+        <MFXLegacyComboBox fx:id="langugeSelector" onAction="#selectLanguage" prefHeight="55.0" prefWidth="91.0">
+            <HBox.margin>
+                <Insets right="40.0"/>
+            </HBox.margin>
+        </MFXLegacyComboBox>
+        <MFXFontIcon fx:id="alwaysOnTopIcon" description="mfx-lock" size="15.0" styleClass="always-on-top-icon"/>
+        <MFXFontIcon fx:id="minimizeIcon" description="mfx-minus" size="15.0" styleClass="minimize-icon"/>
+        <MFXFontIcon fx:id="closeIcon" description="mfx-x-alt" size="15.0" styleClass="close-icon"/>
     </HBox>
-    <MFXFontIcon description="mfx-home" layoutX="33.0" layoutY="130.0" size="50.0" wrappingWidth="59.199947357177734" />
+    <MFXFontIcon description="mfx-home" layoutX="33.0" layoutY="130.0" size="50.0" wrappingWidth="59.199947357177734"/>
     <Label id="titulo" fx:id="mainText" layoutX="101.0" layoutY="88.0" text="%MainText">
         <font>
-            <Font size="24.0" />
+            <Font size="24.0"/>
         </font>
     </Label>
-    <MFXTextField fx:id="modeloTextField" floatMode="BORDER" layoutX="53.0" layoutY="466.0" prefHeight="0.0" prefWidth="266.0" promptText="%Modelo" />
-    <MFXTextField fx:id="anioTextField" floatMode="BORDER" layoutX="340.0" layoutY="467.0" prefHeight="35.0" prefWidth="102.0" promptText="%Anio" />
-    <MFXDatePicker fx:id="fechaTextField" layoutX="461.0" layoutY="466.0" prefHeight="35.0" prefWidth="222.0" promptText="%FechaAdquisicion" />
+    <MFXTextField fx:id="modeloTextField" floatMode="BORDER" layoutX="53.0" layoutY="466.0" prefHeight="0.0"
+                  prefWidth="266.0" promptText="%Modelo"/>
+    <MFXTextField fx:id="anioTextField" floatMode="BORDER" layoutX="340.0" layoutY="467.0" prefHeight="35.0"
+                  prefWidth="102.0" promptText="%Anio"/>
+    <MFXDatePicker fx:id="fechaTextField" layoutX="461.0" layoutY="466.0" prefHeight="35.0" prefWidth="222.0"
+                   promptText="%FechaAdquisicion"/>
     <MFXTableView fx:id="tablaCoches" layoutX="52.0" layoutY="149.0" prefHeight="290.0" prefWidth="629.0">
         <tableColumns>
-            <MFXTableColumn fx:id="columnModelo" prefHeight="42.0" prefWidth="319.0" text="%Modelo" />
-            <MFXTableColumn fx:id="columnAnio" prefWidth="100.0" text="%Anio" />
-            <MFXTableColumn fx:id="columnFecha" prefWidth="200.0" text="%FechaAdquisicion" />
+            <MFXTableColumn fx:id="columnModelo" prefHeight="42.0" prefWidth="319.0" text="%Modelo"/>
+            <MFXTableColumn fx:id="columnAnio" prefWidth="100.0" text="%Anio"/>
+            <MFXTableColumn fx:id="columnFecha" prefWidth="200.0" text="%FechaAdquisicion"/>
         </tableColumns>
     </MFXTableView>
-    <MFXButton fx:id="addCoche" buttonType="RAISED" layoutX="51.0" layoutY="532.0" mnemonicParsing="false" onAction="#addCoche" prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%AnadirCoche" />
-    <MFXButton fx:id="updateCoche" buttonType="RAISED" layoutX="246.0" layoutY="532.0" mnemonicParsing="false" onAction="#updateCoche" prefHeight="50.0" prefWidth="242.0" rippleColor="#9c0b99" text="%ActualizarDatosCoche" />
-    <MFXButton fx:id="deleteCoche" buttonType="RAISED" layoutX="543.0" layoutY="532.0" mnemonicParsing="false" onAction="#deleteCoche" prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%BorrarCoche" />
-    <Label fx:id="modeloObligatorio" layoutX="57.0" layoutY="449.0" text="%ModeloObligatorio" />
-    <Label fx:id="anoObligatorio" layoutX="340.0" layoutY="450.0" text="%AnioObligatorio" />
-    <Label fx:id="fechaAdquisicionObligatorio" layoutX="461.0" layoutY="449.0" text="%FechaAdquisicionObligatorio" />
+    <MFXButton fx:id="addCoche" buttonType="RAISED" layoutX="51.0" layoutY="532.0" mnemonicParsing="false"
+               onAction="#addCoche" prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%AnadirCoche"/>
+    <MFXButton fx:id="updateCoche" buttonType="RAISED" layoutX="246.0" layoutY="532.0" mnemonicParsing="false"
+               onAction="#updateCoche" prefHeight="50.0" prefWidth="242.0" rippleColor="#9c0b99"
+               text="%ActualizarDatosCoche"/>
+    <MFXButton fx:id="deleteCoche" buttonType="RAISED" layoutX="543.0" layoutY="532.0" mnemonicParsing="false"
+               onAction="#deleteCoche" prefHeight="50.0" prefWidth="140.0" rippleColor="#9c0b99" text="%BorrarCoche"/>
+    <Label fx:id="modeloObligatorio" layoutX="57.0" layoutY="449.0" text="%ModeloObligatorio"/>
+    <Label fx:id="anoObligatorio" layoutX="340.0" layoutY="450.0" text="%AnioObligatorio"/>
+    <Label fx:id="fechaAdquisicionObligatorio" layoutX="461.0" layoutY="449.0" text="%FechaAdquisicionObligatorio"/>
 </AnchorPane>
