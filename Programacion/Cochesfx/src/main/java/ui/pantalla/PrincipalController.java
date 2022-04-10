@@ -3,15 +3,23 @@ package ui.pantalla;
 import domain.modelo.Coche;
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox;
 import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
+import io.github.palexdev.materialfx.font.MFXFontIcon;
+import javafx.application.Platform;
+import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import ui.common.Constantes;
 
 import java.net.URL;
@@ -24,6 +32,21 @@ import java.util.ResourceBundle;
 public class PrincipalController implements Initializable {
 
     private PrincipalViewModel viewModel;
+    private final Stage stage;
+    private double xOffset;
+    private double yOffset;
+
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private HBox windowHeader;
+
+    @FXML
+    private MFXFontIcon closeIcon;
+    @FXML
+    private MFXFontIcon minimizeIcon;
+    @FXML
+    private MFXFontIcon alwaysOnTopIcon;
 
     @FXML
     private Label mainText;
@@ -40,7 +63,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private Label elegirIdioma;
     @FXML
-    private MFXComboBox<String> langugeSelector;
+    private MFXLegacyComboBox<String> langugeSelector;
 
     @FXML
     private Label modeloObligatorio;
@@ -62,18 +85,35 @@ public class PrincipalController implements Initializable {
     @FXML
     private MFXButton deleteCoche;
 
-    public PrincipalController() {
+    public PrincipalController(Stage stage) {
+        this.stage = stage;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ResourceBundle bundle = getResourceBundle();
 
+        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
+        minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) rootPane.getScene().getWindow()).setIconified(true));
+        alwaysOnTopIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            boolean newVal = !stage.isAlwaysOnTop();
+            alwaysOnTopIcon.pseudoClassStateChanged(PseudoClass.getPseudoClass("always-on-top"), newVal);
+            stage.setAlwaysOnTop(newVal);
+        });
+
+        windowHeader.setOnMousePressed(event -> {
+            xOffset = stage.getX() - event.getScreenX();
+            yOffset = stage.getY() - event.getScreenY();
+        });
+        windowHeader.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() + xOffset);
+            stage.setY(event.getScreenY() + yOffset);
+        });
+
         viewModel = new PrincipalViewModel();
 
         langugeSelector.getItems().addAll(Constantes.ESPANOL, Constantes.INGLES);
         langugeSelector.setValue(Constantes.ESPANOL);
-        langugeSelector.setText(Constantes.ESPANOL);
 
         tablaCoches.getFilters().addAll(
                 new StringFilter<>(bundle.getString(Constantes.MODELO), Coche::getModelo),

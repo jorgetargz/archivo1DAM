@@ -1,5 +1,45 @@
 .root {
-    -fx-background-color: #a9bac7;
+    -fx-background-color: #cce1f3;
+    -fx-background-radius: 10;
+    -fx-border-color: #ebebeb;
+    -fx-border-radius: 10;
+}
+.windowBar {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #ebebeb;
+    -fx-border-radius: 10;
+}
+
+.windowBar .close-icon {
+    -mfx-color: red;
+    -fx-opacity: 0.5;
+}
+
+.windowBar .close-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.windowBar .minimize-icon {
+    -mfx-color: #ffbf37;
+    -fx-opacity: 0.5;
+}
+
+.windowBar .minimize-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.windowBar .always-on-top-icon {
+    -mfx-color: purple;
+    -fx-opacity: 0.5;
+}
+
+.windowBar .always-on-top-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.windowBar .always-on-top-icon:always-on-top {
+    -fx-opacity: 1.0;
 }
 .label {
     -fx-font-family: "Comic Sans MS";
@@ -14,10 +54,10 @@
 .mfx-table-view {
     -fx-font-family: Calibri;
     -fx-font-size: 17px;
-    -fx-background-color: #ada9c7;
+    -fx-background-color: #5ba3c2;
 }
 .mfx-table-view .virtual-flow {
-    -fx-background-color: #a9bac7;
+    -fx-background-color: #b1dcee;
 }
 #titulo {
     -fx-font-size: 28px;

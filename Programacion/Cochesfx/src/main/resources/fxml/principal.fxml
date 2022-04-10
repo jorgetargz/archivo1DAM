@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyComboBox?>
 <?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="615.0" prefWidth="734.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantalla.PrincipalController">
+<AnchorPane fx:id="rootPane" prefHeight="615.0" prefWidth="734.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.pantalla.PrincipalController">
+    <HBox fx:id="windowHeader" alignment="CENTER_RIGHT" layoutY="6.0" prefHeight="50.0" prefWidth="1281.0" spacing="10.0" styleClass="windowBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <padding>
+            <Insets right="10.0" />
+        </padding>
+       <Label fx:id="elegirIdioma" text="%ElegirIdiomaLabel" />
+       <MFXLegacyComboBox fx:id="langugeSelector" onAction="#selectLanguage" prefHeight="55.0" prefWidth="91.0">
+         <HBox.margin>
+            <Insets right="40.0" />
+         </HBox.margin></MFXLegacyComboBox>
+        <MFXFontIcon fx:id="alwaysOnTopIcon" description="mfx-lock" size="15.0" styleClass="always-on-top-icon" />
+        <MFXFontIcon fx:id="minimizeIcon" description="mfx-minus" size="15.0" styleClass="minimize-icon" />
+        <MFXFontIcon fx:id="closeIcon" description="mfx-x-alt" size="15.0" styleClass="close-icon" />
+    </HBox>
     <MFXFontIcon description="mfx-home" layoutX="33.0" layoutY="130.0" size="50.0" wrappingWidth="59.199947357177734" />
     <Label id="titulo" fx:id="mainText" layoutX="101.0" layoutY="88.0" text="%MainText">
         <font>
@@ -34,6 +49,4 @@
     <Label fx:id="modeloObligatorio" layoutX="57.0" layoutY="449.0" text="%ModeloObligatorio" />
     <Label fx:id="anoObligatorio" layoutX="340.0" layoutY="450.0" text="%AnioObligatorio" />
     <Label fx:id="fechaAdquisicionObligatorio" layoutX="461.0" layoutY="449.0" text="%FechaAdquisicionObligatorio" />
-    <MFXComboBox fx:id="langugeSelector" layoutX="148.0" layoutY="14.0" onAction="#selectLanguage" prefHeight="38.0" prefWidth="109.0" />
-    <Label fx:id="elegirIdioma" layoutX="51.0" layoutY="32.0" text="%ElegirIdiomaLabel" />
 </AnchorPane>
