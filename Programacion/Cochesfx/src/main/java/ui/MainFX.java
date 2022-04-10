@@ -26,7 +26,7 @@ public class MainFX extends Application {
 
         AnchorPane root = loaderMenu.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle(Constantes.CONCESIONARIO_FILIPO);
+        primaryStage.setTitle(bundle.getString(Constantes.TITULO_VENTANA));
         primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.setResizable(false);

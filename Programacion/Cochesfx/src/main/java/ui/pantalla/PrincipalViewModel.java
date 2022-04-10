@@ -1,4 +1,4 @@
-package ui.viewmodel;
+package ui.pantalla;
 
 import domain.ServiciosCoches;
 import domain.modelo.Coche;

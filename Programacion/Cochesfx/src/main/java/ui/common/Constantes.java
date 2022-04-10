@@ -2,24 +2,40 @@ package ui.common;
 
 public class Constantes {
 
-    private Constantes(){}
+    private Constantes() {
+    }
+
+    public static final String TEXTOS_UI = "I18N/textosUI";
+    public static final String PRINCIPAL_FXML = "/fxml/principal.fxml";
+    public static final String CORRECTO_MP_3 = "correcto.mp3";
+    public static final String INCORRECTO_MP_3 = "incorrecto.mp3";
 
     public static final String NO_DATA = "NO_DATA";
     public static final String MODELO = "Modelo";
-    public static final String ANOS = "Años";
-    public static final String CORRECTO_MP_3 = "correcto.mp3";
-    public static final String INCORRECTO_MP_3 = "incorrecto.mp3";
-    public static final String ESPACIO_MODELO = "modelo ";
-    public static final String HA_SIDO_ANADIDO = " ha sido añadido.";
-    public static final String YA_EXISTE_UTILIZA_LA_FUNCION_ACTUALIZAR = " ya existe utiliza la funcion actualizar.";
-    public static final String NO_HA_SIDO_ANADIDO = " no ha sido añadido.";
-    public static final String HA_SIDO_ACTUALIZADO = " ha sido actualizado.";
-    public static final String ANADE_EL_COCHE_A_LA_BASE_DE_DATOS = " añade el coche a la base de datos.";
-    public static final String NO_SE_HAN_ESPECIFICADO_TODOS_LOS_DATOS = " no se han especificado todos los datos.";
-    public static final String HA_SIDO_ELIMINADO = " ha sido eliminado.";
-    public static final String NO_HA_SIDO_ELIMINADO = " no ha sido eliminado.";
-    public static final String SELECCIONA_UN_MODELO_PARA_PODER_BORRARLO = "Selecciona un modelo para poder borrarlo.";
-    public static final String TEXTOS_UI = "I18N/textosUI";
-    public static final String PRINCIPAL_FXML = "/fxml/principal.fxml";
-    public static final String CONCESIONARIO_FILIPO = "Concesionario Filipo";
+    public static final String ESPANOL = "Español";
+    public static final String INGLES = "English";
+    public static final String MAIN_TEXT = "MainText";
+    public static final String TITULO_VENTANA = "TituloVentana";
+    public static final String ANIO = "Anio";
+    public static final String MODELO_ESPACIO = "ModeloEspacio";
+    public static final String ESPACIO = " ";
+    public static final String HA_SIDO_ANADIDO = "HaSidoAnadido";
+    public static final String UTILIZA_ACTUALIZAR = "UtilizaActualizar";
+    public static final String NO_HAY_DATOS = "NoHayDatos";
+    public static final String HA_SIDO_ACTUALIZADO = "HaSidoActualizado";
+    public static final String ANADE_PRIMERO = "AnadePrimero";
+    public static final String HA_SIDO_ELIMINADO = "HaSidoEliminado";
+    public static final String NO_HA_SIDO_ELIMINADO = "NoHaSidoEliminado";
+    public static final String NO_HAY_SELECCION = "NoHaySeleccion";
+    public static final String FECHA_ADQUISICION = "FechaAdquisicion";
+    public static final String ANADIR_COCHE = "AnadirCoche";
+    public static final String BORRAR_COCHE = "BorrarCoche";
+    public static final String ACTUALIZAR_DATOS_COCHE = "ActualizarDatosCoche";
+    public static final String ELEGIR_IDIOMA_LABEL = "ElegirIdiomaLabel";
+    public static final String MODELO_OBLIGATORIO = "ModeloObligatorio";
+    public static final String ANIO_OBLIGATORIO = "AnioObligatorio";
+    public static final String FECHA_ADQUISICION_OBLIGATORIO = "FechaAdquisicionObligatorio";
+    public static final String ES_ES = "es-ES";
+    public static final String CORRECTO = "Correcto";
+    public static final String INCORRECTO = "Incorrecto";
 }

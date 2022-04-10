@@ -1,0 +1,24 @@
+.root {
+    -fx-background-color: #a9bac7;
+}
+.label {
+    -fx-font-family: "Comic Sans MS";
+}
+.mfx-button {
+    -fx-font-family: Consolas;
+    -fx-font-size: 16px;
+}
+.mfx-button:hover {
+    -fx-background-color: #ada9c7
+}
+.mfx-table-view {
+    -fx-font-family: Calibri;
+    -fx-font-size: 17px;
+    -fx-background-color: #ada9c7;
+}
+.mfx-table-view .virtual-flow {
+    -fx-background-color: #a9bac7;
+}
+#titulo {
+    -fx-font-size: 28px;
+}
